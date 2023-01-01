@@ -5,14 +5,14 @@ function PageLogin(){
                     <div className='Login-Form'>
             <h1>Bem vindo</h1>
             <h6>ao</h6>
-            <img src='/static/media/Logo.10d9b2ebed4705df7759.png' width='150px'/>
+            <img src='/static/media/Logo.10d9b2ebed4705df7759.png' alt="logo" width='150px'/>
             <small>Entre para continuar</small>
             <form>
             <label name='login'>Usuario</label>
             <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+  <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
 </svg>
             <input type='text' name='login' placeholder=''/>
             </div>
@@ -35,7 +35,7 @@ function PageLogin(){
 
             <button>Entrar</button>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+  <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
 </svg>
             </div>
 
@@ -91,7 +91,7 @@ function PageLogin(){
             <div className='Register-Button'>
             <button onClick={CloseReg}>Entrar</button>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+  <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
 </svg>
             </div>
         </div>
@@ -103,12 +103,16 @@ function PageLogin(){
       
       var register = document.getElementById('register')
 
-      register.style.transform = 'translateX(0px)'
+      register.style.transform = 'translateY(0px)'
+      register.style.opacity = '1'
+
     }
     function CloseReg(){
       var register = document.getElementById('register')
 
-      register.style.transform = 'translateX(-2000px)'
+      register.style.transform = 'translateY(-2000px)'
+      register.style.opacity = '0'
+
     }
 } 
 

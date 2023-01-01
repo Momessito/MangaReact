@@ -1,47 +1,80 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from 'react-router-dom';
 
-class List extends React.Component {
-    state = {
-        linguagens: []
-    };
+const List = () => {
 
-    componentDidMount() {
-        fetch('https://q4l8x4.deta.dev/recent')
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    linguagens: res
-                });
-            });
+    const [posts, setposts] = useState([]);
+
+    const getposts = async () => {
+        try {
+            const response = await axios.get(
+                "https://q4l8x4.deta.dev/recent"
+            );
+
+
+
+            const data = response.data;
+
+            setposts(data)
+        } catch (Error) {
+            console.log(Error)
+        }
     }
 
-    render() {
-        return (
+    useEffect(() => {
+        getposts();
+    }, []);
+
+
+
+    return (
         <div className="Container" id="Container">
             <h1>Últimos Mangás adicionados</h1>
 
-                    {this.state.linguagens.map(item => (
-                        <div className="itemC" key={item.id}>
-                      <img alt='logo' src={item.image}/>
-                       <div className="textsC">
-                      <h3>{item.title}</h3>
-                           <h4>{item.author}</h4>
-                           <a className="cap" href='home'>Capitulo: {item.chapters_count}</a>
-            <div className="config">
-            <div className="cat">
-            <a className="at" href='home'><span role="img" aria-label=''>⭐{item.score}</span> </a>
-                <h5>{item.categories[1]}</h5>
-                <h5>{item.categories[2]}</h5>
-                <h5>{item.categories[3]}</h5>
-            </div></div>
-                        </div></div>
-                    ))}
+            {posts.length === 0 ? <p>Carregando</p> : (
+                posts.map((post) => (
+
+                    <div onLoad={categorias} key={post.id}>
+                        <Link to={`/mangas/${post.title}`} key={post.id} className='itemC'>
+
+                        <img alt='logo' src={post.image} id='imagemca' />
+                        <div className="textsC" id="textsC">
+                            <h3>{post.title}</h3>
+                            <h4>{post.author}</h4>
+                            <h6 className="cap" href='home'>Cap: {post.chapters_count}</h6>
+                            <div className="config">
+                                <div className="cat" id="cat" >
+                                    <a className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </a>
+                                    <h5 id='categories' >{post.categories[1]}</h5>
+                                    <h5 id='categories' >{post.categories[2]}</h5>
+                                    <h5 id='categories' >{post.categories[3]}</h5>
+                                </div></div>
+                        </div>
+
+                        </Link>
+
+                    </div>
+                )))}
+
         </div>
+    )
 
-            
-        );
+    function categorias(prop) {
+        var a = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[0]
+        var b = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[1]
+        var c = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[2]
+        if (a.innerHTML === 'Hentai' || a.innerHTML === 'Ecchi' || b.innerHTML === 'Hentai' || b.innerHTML === 'Ecchi' || c.innerHTML === 'Hentai' || c.innerHTML === 'Ecchi') {
+            var image = prop.target.style.filter = 'blur(4px)'
+            console.log(image)
 
+        }
     }
+
+
 }
 
 export default List;
+
+
+

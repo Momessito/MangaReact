@@ -420,13 +420,15 @@ footer .flex {
 }
 
 .itemC img {
+  filter: blur(0px);
   background-color: var(--color2);
   width: 104px;
   border-radius: 15px 0px 15px 0px;
 }
 
 .cap {
-  padding: 5px 10px;
+  padding: 5px 23px;
+  width: 115px;
   margin: 0px;
   background-color: var(--color3);
   border-radius: 25px;
@@ -945,7 +947,7 @@ color: var(--color2);}
 
 #Container3 {
   height: 73vh;
-  margin-top: -39px;
+  margin-top: 0;
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -1333,7 +1335,7 @@ visibility: hidden;
   top: 0;
   transition: all 0.3s linear;
 
-  margin-top: 15vh;
+  margin-top: 18vh;
   border-radius: 5px;
   margin-left: 30%;
   display: flex;
@@ -1342,7 +1344,8 @@ visibility: hidden;
   color: var(--color2);
   background-color: var(--color1);
   padding: 25px 10px;
-  transform: translate(-500%);
+  opacity: 0;
+  transform: translateY(-500%);
 
 }
 .Register-Form form div{
