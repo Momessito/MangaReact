@@ -98,6 +98,9 @@ margin-left: 65px;
   margin-left: 3px;
 
 }
+.itemC a{
+  flex-direction: column;
+}
 .carros .carroselImg {
   border: 0px solid black;
 }
