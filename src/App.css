@@ -407,13 +407,16 @@ footer .flex {
   overflow: hidden;
   width: 100%;
   display: flex;
+  flex-direction: row;
   transition: 0.1s all;
   border-radius: 5px;
   padding: 20px;
   border: 1px solid black;
   background-color: var(--color4);
 }
-
+.itemC a {
+  display: flex;
+}
 .itemC:hover {
   box-shadow: 0px 0px 15px black;
 
@@ -422,7 +425,7 @@ footer .flex {
 .itemC img {
   filter: blur(0px);
   background-color: var(--color2);
-  width: 104px;
+  width: 125px;
   border-radius: 15px 0px 15px 0px;
 }
 
@@ -449,8 +452,8 @@ footer .flex {
 }
 
 .textsC {
-  width: 70%;
-  margin-left: 40px;
+  width: 55%;
+  margin-left: 5px;
 }
 
 .textsC .cat {

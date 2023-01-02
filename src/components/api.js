@@ -35,8 +35,8 @@ const List = () => {
             {posts.length === 0 ? <p>Carregando</p> : (
                 posts.map((post) => (
 
-                    <div onLoad={categorias} key={post.id}>
-                        <Link to={`/mangas/${post.title}`} key={post.id} className='itemC'>
+                    <div onLoad={categorias} key={post.id} className='itemC'>
+                        <Link to={`/mangas/${post.title}`} key={post.id} >
 
                         <img alt='logo' src={post.image} id='imagemca' />
                         <div className="textsC" id="textsC">
@@ -45,7 +45,7 @@ const List = () => {
                             <h6 className="cap" href='home'>Cap: {post.chapters_count}</h6>
                             <div className="config">
                                 <div className="cat" id="cat" >
-                                    <a className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </a>
+                                    <p className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </p>
                                     <h5 id='categories' >{post.categories[1]}</h5>
                                     <h5 id='categories' >{post.categories[2]}</h5>
                                     <h5 id='categories' >{post.categories[3]}</h5>
