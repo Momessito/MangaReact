@@ -158,12 +158,7 @@ flex-wrap: nowrap;
   filter: invert(0);
   margin-top: 20px;
 }
-h1{
-text-align: center !important;
-width: 100%;
-font-size: large !important;
 
-}
 .MostC img {
   background-color: var(--color6);
   height: 225px;

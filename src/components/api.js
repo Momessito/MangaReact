@@ -36,21 +36,21 @@ const List = () => {
                 posts.map((post) => (
 
                     <div onLoad={categorias} key={post.id} className='itemC'>
-                        <Link to={`/mangas/${post.title}`} key={post.id} >
+                        <Link to={`/manga`} key={post.id} >
 
-                        <img alt='logo' src={post.image} id='imagemca' />
-                        <div className="textsC" id="textsC">
-                            <h3>{post.title}</h3>
-                            <h4>{post.author}</h4>
-                            <h6 className="cap" href='home'>Cap: {post.chapters_count}</h6>
-                            <div className="config">
-                                <div className="cat" id="cat" >
-                                    <p className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </p>
-                                    <h5 id='categories' >{post.categories[1]}</h5>
-                                    <h5 id='categories' >{post.categories[2]}</h5>
-                                    <h5 id='categories' >{post.categories[3]}</h5>
-                                </div></div>
-                        </div>
+                            <img alt='logo' src={post.image} id='imagemca' />
+                            <div className="textsC" id="textsC">
+                                <h3>{post.title}</h3>
+                                <h4>{post.author}</h4>
+                                <h6 className="cap" href='home'>Cap: {post.chapters_count}</h6>
+                                <div className="config">
+                                    <div className="cat" id="cat" >
+                                        <p className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </p>
+                                        <h5 id='categories'>{post.categories[1]}</h5>
+                                        <h5 id='categories'>{post.categories[2]}</h5>
+                                        <h5 id='categories'>{post.categories[3]}</h5>
+                                    </div></div>
+                            </div>
 
                         </Link>
 
@@ -65,9 +65,23 @@ const List = () => {
         var b = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[1]
         var c = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[2]
         if (a.innerHTML === 'Hentai' || a.innerHTML === 'Ecchi' || b.innerHTML === 'Hentai' || b.innerHTML === 'Ecchi' || c.innerHTML === 'Hentai' || c.innerHTML === 'Ecchi') {
-            var image = prop.target.style.filter = 'blur(4px)'
-            console.log(image)
+            prop.target.style.filter = 'blur(4px)'
 
+        }
+        if (a.innerHTML === '' || a.innerHTML === undefined) {
+            var aa = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[0]
+
+            aa.remove()
+        } 
+        if (b.innerHTML === '' || b.innerHTML === undefined) {
+            var bb = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[1]
+
+            bb.remove()
+        } 
+        if (c.innerHTML === '' || c.innerHTML === undefined) {
+            var cc = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[2]
+
+            cc.remove()
         }
     }
 
