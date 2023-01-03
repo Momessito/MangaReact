@@ -359,8 +359,11 @@ footer {
 }
 
 footer .footer-down-icon svg {
-  height: 40px;
+  width: 8%;
   margin: 5px 15px;
+}
+.footer-down-icon{
+  margin-left: 10%;
 }
 .footer-down{
   display: flex;
@@ -368,12 +371,13 @@ footer .footer-down-icon svg {
 background-color: var(--color6);
 }
 .footer-down h6{
+  font-size: 1vw;
   margin-right: 10px;
 }
 .footer-down-text{
   margin-left: 20px;
   padding: 10px;
-  width: 75%;
+  width: 100%;
 }
 
 .footer-down-text span{
