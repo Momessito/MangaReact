@@ -354,6 +354,8 @@ footer {
   bottom: 0;
   margin-top: 25px;
   padding-top: 15px;
+  font-size: 1vw;
+
 }
 
 footer .footer-down-icon svg {
@@ -382,6 +384,9 @@ background-color: var(--color6);
 .footer-container1{
   margin-left:10%;
   width: 20%;
+}
+.footer-container1 img{
+  width: 50%;
 }
 .carroselImg {
   width: 100%;
