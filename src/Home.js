@@ -41,7 +41,7 @@ function Home() {
           <MostReaded />
           <button id='carregard' onClick={carregar2}>Carregar Mais</button>
           <div className='Top'>
-            <h1>Mais lidos da semana</h1>
+            <h1 className='h1'>Mais lidos da semana</h1>
           <Top/>
 
           </div>

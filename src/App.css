@@ -365,6 +365,9 @@ footer .footer-down-icon svg {
 .footer-down-icon{
   margin-left: 10%;
 }
+.h1{
+  font-size: 2vw !important;
+}
 .footer-down{
   display: flex;
   align-items: center;
@@ -437,6 +440,7 @@ background-color: var(--color6);
 }
 
 .Container h1 {
+  font-size: 3vh;
   color: var(--color2);
 }
 
