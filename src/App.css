@@ -1251,7 +1251,7 @@ transition:all 0.2s linear;
   top:0;
   margin-right: 150px;
   padding: 5px;
-  border-radius: 55%;
+  border-radius: 25%;
 }
 #Login svg{
   padding: 0;
@@ -1449,7 +1449,7 @@ transform: translateX(0px);
   background-color: var(--color1);
 }
 .PageManga{
-  width: 100% ;
+  width: 50% ;
   margin-left: 50%;
   transform: translate(-50%);
 }

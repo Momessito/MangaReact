@@ -8,6 +8,7 @@ import {
   CarouselIndicators,
 } from 'reactstrap';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Items = (args) => {
   
@@ -59,17 +60,20 @@ var id = 0
     var color = post.base_color
     id = id + 1
     return (
+      <Link to={'/manga/' + post.id}>
       <CarouselItem 
         key={id}
         id='Itens'
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
+
         <img src={post.image} style={{backgroundColor : color+'7e'}} className='carroselImg' alt={post.id} width='200px'/>
         <div className="Text-left" style={{filter : "invert(1)",color : color,borderRight : "2px solid " + color,borderBottom : "2px solid " + color}}>{post.title}</div>
     <div className="Text-right" style={{filter : "invert(1)",color : color,borderLeft : "2px solid " + color,borderBottom : "2px solid " + color}}><h1>Capitulo:<br /><span>{post.chapters_count}</span></h1></div>
-      </CarouselItem>
 
+     </CarouselItem>
+     </Link>
     );
   });
 

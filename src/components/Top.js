@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
+
 
 const Top2 = () => {
   const [posts, setPosts] = useState([]);
@@ -30,7 +32,7 @@ const Top2 = () => {
     // delay for demo only
     setTimeout(() => setIsLoading(false), 1000);
 
-   // setIsLoading(false)
+    // setIsLoading(false)
   }
 
   return <div className="Container" id="Container3">
@@ -41,16 +43,17 @@ const Top2 = () => {
     {posts.length === 0 ? <p>Carregando</p> : (
       posts.map((post) => (
         <div key={post.title}>
+          <Link to={'/manga/' + post.id} key={post.id} >
           <div className="MostC">
-          <img
-        alt="ad-img"
-        width={300}
-        src="https://via.placeholder.com/300x200/8d99ae"
-        style={{ display: isLoading ? "block" : "none" }}
-      />
-            <img src={post.image} alt="logo"    
-                 style={{ display: isLoading ? "none" : "block" }}
-        onLoad={onLoad}  />
+            <img
+              alt="ad-img"
+              width={300}
+              src="https://via.placeholder.com/300x200/8d99ae"
+              style={{ display: isLoading ? "block" : "none" }}
+            />
+            <img src={post.image} alt="logo"
+              style={{ display: isLoading ? "none" : "block" }}
+              onLoad={onLoad} />
             <div className="texts2">
               <h5>{post.title}</h5>
               <div className="cate2">
@@ -60,6 +63,7 @@ const Top2 = () => {
               <h6 className="cap">Cap.{post.chapters_count}</h6>
             </div>
           </div>
+          </Link>
         </div>
       ))
     )}

@@ -26,7 +26,7 @@ const List = () => {
         getposts();
     }, []);
 
-    var capt
+    
 
     return (
         <div className="Container" id="Container">
@@ -36,8 +36,7 @@ const List = () => {
                 posts.map((post) => (
 
                     <div onLoad={categorias} key={post.id} className='itemC'>
-                        {capt = post.id_series}
-                        <Link to={capt} key={post.id} >
+                        <Link to={'/manga/'+post.id} key={post.id} >
 
                             <img alt='logo' src={post.image} id='imagemca' />
                             <div className="textsC" id="textsC">

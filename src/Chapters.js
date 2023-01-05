@@ -32,7 +32,6 @@ const Chapters = () => {
 
     //Image 
 
-    console.log(posts)
     const [img, setimg] = useState([]);
 
     const getimg = async () => {
@@ -77,7 +76,7 @@ const Chapters = () => {
                     <Link to={'/chapter/' + post.release_id} key={post.release_id}>
                         <div className='ChaptersCard'>
                             <h2>{post.name}</h2>
-                            <h4>{post.number}-{post.chapter_name}</h4>
+                            <h4>{post.number} {post.chapter_name}</h4>
                             <small>{post.date}</small>
                         </div>
                     </Link>
