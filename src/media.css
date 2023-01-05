@@ -258,6 +258,12 @@ flex-wrap: wrap;
 .PageManga{
   width: 100% !important;
 }
+.nav1{
+  width: 100% !important; height: 60px;
+}
+.mainManga{
+  overflow-x: hidden;
+}
 }
 @media screen and (max-width:768px) {
   

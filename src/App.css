@@ -1175,7 +1175,7 @@ color: var(--color2);}
 }
 
 .nav1 {
-  position: fixed;
+  position: absolute;
 }
 .context {
   color: var(--color2);
@@ -1446,12 +1446,10 @@ transform: translateX(0px);
   cursor: pointer;
 }
 .mainManga{
-  width: 100%;
-  height: auto;
   background-color: var(--color1);
 }
 .PageManga{
-  width: 50% !important;
+  width: 100% ;
   margin-left: 50%;
   transform: translate(-50%);
 }

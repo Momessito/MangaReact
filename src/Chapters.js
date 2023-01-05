@@ -2,6 +2,8 @@ import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import Nav from './components/nav';
+import SideMenu from './components/sideMenu';
 
 const Chapters = () => {
     const location = useLocation();
@@ -40,8 +42,8 @@ const Chapters = () => {
             );
 
             const data = response.data[0];
-                console.log(data)
-                
+            console.log(data)
+
             setimg(data)
         } catch (Error) {
             console.log(Error)
@@ -55,15 +57,18 @@ const Chapters = () => {
     return (
 
         <div>
+            <SideMenu />
 
+            <Nav />
+            <div className='Black'></div>
 
-            <div className='chapter-visual'>       
-                         <img width='300px' src={img.cover} />
-                         <div>
-                         <h1>{img.name}</h1>
-                         <h2>Capitulos: {img.number}</h2>
-                         <h3>Ultima Atualização: {img.date}</h3>
-                         </div>
+            <div className='chapter-visual'>
+                <img width='300px' src={img.cover} />
+                <div>
+                    <h1>{img.name}</h1>
+                    <h2>Nota: {img.score}</h2>
+                    <h3>Autor: {img.author}</h3>
+                </div>
             </div>
 
 
