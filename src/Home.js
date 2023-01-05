@@ -11,6 +11,7 @@ import Top from './components/carroseu';
 import Top2 from './components/Top';
 import Footer from './components/Footer';
 import MyGallery from './components/carros';
+import AdComponent from './components/adsense';
 
 function Home() {
   var isH = false
@@ -29,8 +30,6 @@ function Home() {
       <Nav />
 <div className='carro'>
 <MyGallery />
-<div className='ScrollTexts'>Categorias</div>
-<Categories /> 
 </div>
       <div className='all'>
         <div className='all2'>
