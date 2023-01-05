@@ -255,6 +255,9 @@ flex-wrap: wrap;
   margin-left: 50%;
   transform: translate(-50%);
 }
+.PageManga{
+  width: 100% !important;
+}
 }
 @media screen and (max-width:768px) {
   
