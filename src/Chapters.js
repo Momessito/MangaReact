@@ -8,13 +8,13 @@ import SideMenu from './components/sideMenu';
 const Chapters = () => {
     const location = useLocation();
     const location2 = location.pathname.substring(7)
-    const number = 1
+    const number = 0
     const [posts, setposts] = useState([]);
 
     const getposts = async () => {
         try {
             const response = await axios.get(
-                "https://q4l8x4.deta.dev/chapters/" + location2 + '/' + number
+                "https://q4l8x4.deta.dev/chapters/" + location2
             );
 
 
@@ -69,7 +69,7 @@ const Chapters = () => {
                 </div>
             </div>
 
-
+    <div className='flexC'>
             {posts.length === 0 ? <p>Carregando</p> : (
                 posts.map((post) => (
                     <Link to={'/chapter/' + post.release_id} key={post.release_id}>
@@ -81,6 +81,7 @@ const Chapters = () => {
                         <div className='wr2'></div>
                     </Link>
                 )))}
+                </div>
                 <button onClick={carregar} id='btn'>Carregar mais</button>
         </div>
 

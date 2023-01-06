@@ -1276,6 +1276,7 @@ transition:all 0.2s linear;
 width: 95%;
 }
 .Login{
+  
   padding: 0px;
   width: 100%;
   height: 100vh;
@@ -1292,7 +1293,7 @@ width: 95%;
   margin-bottom: 20px;
 }
 .Login-Form{
-  margin-top: 10vh;
+  margin-top: 2vh;
   border-radius: 5px;
   margin-left: 50%;
   transform: translate(-50%);
@@ -1302,6 +1303,9 @@ width: 95%;
   color: var(--color2);
   background-color: var(--color1);
   padding: 25px 10px;
+}
+.erro-Login{
+  opacity: 0;
 }
 .Login-Form form{
   border-radius: 15px;
@@ -1400,7 +1404,7 @@ visibility: hidden;
 
   margin-top: 18vh;
   border-radius: 5px;
-  margin-left: 30%;
+  margin-left: 35%;
   display: flex;
   flex-direction: column;
   width: 35%;
@@ -1458,7 +1462,29 @@ transform: translateX(0px);
   cursor: pointer;
 }
 .mainManga{
+  display: flex;
+  flex-direction: column;
   background-color: var(--color6);
+}
+.flexC{
+  display: flex;
+  flex-direction: column;
+}
+#btn{
+  background-color: var(--color1);
+  color: var(--color2);
+  border: 1px solid var(--color2);
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 20px;
+  padding: 2px 10px;
+}
+.btn{
+  color: var(--color1);
+  z-index: 100;
+  background-color: var(--background);
+  padding: 10px;
+  margin: 20px;
 }
 .PageManga{
   width: 30% ;
@@ -1491,6 +1517,7 @@ font-size: smaller;
   background-color: var(--color1);
   padding: 20px;
   display: flex;
+  align-items: center;
   margin-bottom: 15px;
 }
 .chapter-visual h1{

@@ -103,7 +103,7 @@ function PageLogin(){
       
       var register = document.getElementById('register')
 
-      register.style.transform = 'translateY(0px)'
+      register.style.transform = 'translateY(-7px)'
       register.style.opacity = '1'
 
     }

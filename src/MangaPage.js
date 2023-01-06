@@ -6,13 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 
 function Manga() {
     const location = useLocation();
     const location2 = location.pathname.substring(9)
-    console.log(location2)
 
     const [posts, setposts] = useState([]);
 
@@ -20,11 +19,14 @@ function Manga() {
         try {
             const response = await axios.get(
                 "https://q4l8x4.deta.dev/pages/" + location2
+                
             );
 
 
 
             const data = response.data.images;
+            console.log(data)
+
             setposts(data)
         } catch (Error) {
             console.log(Error)
@@ -36,28 +38,6 @@ function Manga() {
     }, []);
 
 
-
-    const [title, setTitle] = useState('')
-
-    var url = "https://q4l8x4.deta.dev/search/?q=" + posts.name
-
-    
-    const [Image, setImage] = useState([]);
-
-    const getImage = async () => {
-      try {
-        const response = await axios.get(
-          url
-        );
-  
-  
-
-        const data = response.data;
-  
-        setImage(data)
-      } catch (Error) {
-      }
-    }
 
     return (
         <div>
@@ -76,6 +56,7 @@ function Manga() {
                     posts.map((post) => (
                         <img src={post.avif} key={post.avif} alt='NaN' className='PageManga' />
                     )))}
+                    <button className='btn'><Link to={'/chapter/'+posts.avif}>Proximo capitulo</Link></button>
                 <div id="disqus_thread"></div>
             </div>
 

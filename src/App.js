@@ -16,7 +16,7 @@ return(
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="chapter/:id" element={<Manga />} />
+      <Route path="/chapter/:id" element={<Manga />} />
       <Route path='/manga/:id' element={<Chapters />} />
     </Routes>
   </Router>
