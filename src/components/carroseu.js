@@ -55,7 +55,7 @@ const Items = (args) => {
         onExited={() => setAnimating(false)}
         key={post.id}
       >
-        <img src={post.image} className='carroselImg' alt={post.id} width='200px' height='350px'/>
+        <img src={post.image} className='carroselImg' alt={post.id} />
         <h6 className='bottom-title'>{post.title}</h6>
         <h6 className='bottom-author'>{post.author}</h6>
         <h6 className='top-cap'>Capítulo.{post.chapters_count}</h6>

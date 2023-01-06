@@ -4,8 +4,8 @@
   --color3: #1a1d3d3a;
   --color4: #262b5f46;
   --color5: rgb(173, 58, 154);
-  --color6: #060822;
-  --color7: #2b2d422f;
+  --color6: #020314;
+  --color7: #0000072f;
   --background:#72728f;
 }
 
@@ -123,7 +123,14 @@ nav .a:hover {
   background-color: var(--color1);
   z-index: 10;
 }
-
+.wr2{
+  width: 80%;
+  height: 1px;
+  background-color: var(--color1);
+  margin: 10px 0px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
 #nav2 h2:hover {
   outline: 1px solid white;
   background-color: rgba(0, 0, 0, 0.151);
@@ -1100,6 +1107,7 @@ color: var(--color2);}
 }
 
 .titleCanvas h1 {
+  text-align: left;
   font-size: 1rem;
   color: var(--color1);
   width: 300px;
@@ -1252,6 +1260,10 @@ transition:all 0.2s linear;
   margin-right: 150px;
   padding: 5px;
   border-radius: 25%;
+}
+.desc{
+  height: 200px;
+  overflow:hidden;
 }
 #Login svg{
   padding: 0;
@@ -1446,17 +1458,17 @@ transform: translateX(0px);
   cursor: pointer;
 }
 .mainManga{
-  background-color: var(--color1);
+  background-color: var(--color6);
 }
 .PageManga{
-  width: 50% ;
+  width: 30% ;
   margin-left: 50%;
   transform: translate(-50%);
 }
 .ChaptersCard{
   background-color: var(--color1);
-  margin-top: 10px;
-  border-radius: 55px;
+  margin-top: 0px;
+  border-radius: 0;
   padding: 10px 55px;
   margin-left: 50px;
   margin-right: 50px;
@@ -1479,10 +1491,18 @@ font-size: smaller;
   background-color: var(--color1);
   padding: 20px;
   display: flex;
+  margin-bottom: 15px;
 }
 .chapter-visual h1{
   text-align: left;
 }
 .chapter-visual div{
   margin: 20px;
+}
+.chapter-visual h4{
+  color: var(--color1);
+  background-color: var(--color2);
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: medium;
 }

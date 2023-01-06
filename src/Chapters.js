@@ -20,7 +20,6 @@ const Chapters = () => {
 
 
             const data = response.data;
-
             setposts(data)
         } catch (Error) {
             console.log(Error)
@@ -37,11 +36,11 @@ const Chapters = () => {
     const getimg = async () => {
         try {
             const response = await axios.get(
-                "https://q4l8x4.deta.dev/search/?q=" + posts[0].name
+                "https://q4l8x4.deta.dev/manga/" + location2
             );
 
-            const data = response.data[0];
-            console.log(data)
+            const data = response.data;
+            console.log(response)
 
             setimg(data)
         } catch (Error) {
@@ -62,11 +61,11 @@ const Chapters = () => {
             <div className='Black'></div>
 
             <div className='chapter-visual'>
-                <img width='300px' src={img.cover} />
+                <img width='300px' src={img.image} alt={img.id} />
                 <div>
-                    <h1>{img.name}</h1>
-                    <h2>Nota: {img.score}</h2>
-                    <h3>Autor: {img.author}</h3>
+                    <h1>{img.title}</h1>
+                    <h2>Autor: {img.author}</h2>
+                    <h4>Descrição: {img.description}</h4>
                 </div>
             </div>
 
@@ -79,12 +78,19 @@ const Chapters = () => {
                             <h4>{post.number} {post.chapter_name}</h4>
                             <small>{post.date}</small>
                         </div>
+                        <div className='wr2'></div>
                     </Link>
                 )))}
+                <button onClick={carregar} id='btn'>Carregar mais</button>
         </div>
 
 
     )
+
+    function carregar(){
+        getposts();
+        number = 2
+    }
 }
 
 export default Chapters;

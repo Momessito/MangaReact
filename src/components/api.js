@@ -68,21 +68,6 @@ const List = () => {
             prop.target.style.filter = 'blur(4px)'
 
         }
-        if (a.innerHTML === '' || a.innerHTML === undefined) {
-            var aa = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[0]
-
-            aa.remove()
-        } 
-        if (b.innerHTML === '' || b.innerHTML === undefined) {
-            var bb = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[1]
-
-            bb.remove()
-        } 
-        if (c.innerHTML === '' || c.innerHTML === undefined) {
-            var cc = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[2]
-
-            cc.remove()
-        }
     }
 
 

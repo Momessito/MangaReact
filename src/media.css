@@ -191,6 +191,27 @@ flex-wrap: nowrap;
 flex-wrap: wrap;
 
 }
+.chapter-visual{
+  color: var(--color2);
+  background-color: var(--color1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.chapter-visual h1{
+  font-size:large;
+}
+.chapter-visual h2{
+  font-size: medium;
+}
+.chapter-visual h4{
+  color: var(--color1);
+  font-size: small;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: var(--color2);
+}
 .textsC{
   width: 100%;}
 #Container2 h1{
@@ -263,6 +284,9 @@ flex-wrap: wrap;
 }
 .mainManga{
   overflow-x: hidden;
+}
+.carroselImg{
+  width: 265px !important;
 }
 }
 @media screen and (max-width:768px) {
