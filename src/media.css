@@ -40,6 +40,15 @@
     }
 }
 @media screen and (max-width:425px) {
+  .scrollH{
+    width: 100%;
+  }
+  .categories img {
+    height: 170px;
+    width: 120px !important;
+    margin-left: 50%;
+    transform: translate(-50%);
+  }
   .ChaptersCard{
     background-color: var(--color1);
     margin-top: 0px;
