@@ -86,7 +86,6 @@ nav .a:hover {
 
   transition: padding 0.2s linear;
   z-index: 1000;
-
   display: flex;
   width: 100%;
   padding: 0px;
@@ -127,7 +126,7 @@ nav .a:hover {
   width: 80%;
   height: 1px;
   background-color: var(--color1);
-  margin: 10px 0px;
+  margin: 3px 0px;
   margin-left: 50%;
   transform: translate(-50%);
 }
