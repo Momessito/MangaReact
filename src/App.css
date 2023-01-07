@@ -1494,7 +1494,7 @@ transform: translateX(0px);
 }
 .Filter input{
   margin: 0px 10px;
-  width: 100px;
+  width: 130px;
   font-size: larger;
   background-color: transparent;
   border: none;
@@ -1523,16 +1523,17 @@ color: var(--color1);
     transform: scale(1);
     transform-origin: 50% 100%;
     opacity: 1;
-  }}
+  }
+}
 @keyframes scale-in-ver-bottom {
   0% {
-    transform: scaleY(0);
-    transform-origin: 0% 100%;
+    transform: scale(0);
+    transform-origin: 50% 100%;
     opacity: 1;
   }
   100% {
-    transform: scaleY(1);
-    transform-origin: 0% 100%;
+    transform: scale(1);
+    transform-origin: 50% 100%;
     opacity: 1;
   }
 }
@@ -1583,10 +1584,9 @@ font-size: smaller;
   align-items: center;
   margin-bottom: 15px;
 }
-.chapter-visual img:hover{
-
-}
 .chapter-visual h1{
+  transform: translateY(15px);
+  font-weight: bolder;
   text-align: left;
 }
 .chapter-visual div{
