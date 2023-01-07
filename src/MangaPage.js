@@ -14,6 +14,7 @@ function Manga() {
     const location2 = location.pathname.substring(9)
 
     const [posts, setposts] = useState([]);
+    const [next, setnext] = useState([]);
 
     const getposts = async () => {
         try {
@@ -23,20 +24,22 @@ function Manga() {
             );
 
 
-
             const data = response.data.images;
-            console.log(data)
+            const prox = response.data.next_chapter.release_id
 
             setposts(data)
+            setnext(prox)
         } catch (Error) {
             console.log(Error)
         }
+
     }
+
+
 
     useEffect(() => {
         getposts();
     }, []);
-
 
 
     return (
@@ -56,7 +59,7 @@ function Manga() {
                     posts.map((post) => (
                         <img src={post.avif} key={post.avif} alt='NaN' className='PageManga' />
                     )))}
-                    <button className='btn'><Link to={'/chapter/'+posts.avif}>Proximo capitulo</Link></button>
+                    <button className='btne'><Link reloadDocument to={'/chapter/'+next}>Proximo capitulo</Link></button>
                 <div id="disqus_thread"></div>
             </div>
 
