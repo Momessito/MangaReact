@@ -52,7 +52,7 @@ const Search = () => {
 <div className='titleCanvas' id="titleCanvas">
       {posts === false ? <div><img  src="https://icon-library.com/images/sad-face-icon-png/sad-face-icon-png-6.jpg" id="error" alt="NaN"/> <br /> <h1>Nenhum manga encontrado</h1></div> : (
     posts.map((search) => (
-<Link key={search.id_serie} to={'/manga/'+search.id_serie} >
+<Link reloadDocument key={search.id_serie} to={'/manga/'+search.id_serie} >
       <div  className='titleCanvasX'>
                <img src={search.cover_thumb} alt={search.name} />
                <div className="Texts">
