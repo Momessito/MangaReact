@@ -1,18 +1,19 @@
 :root {
-  --color1: #1e1f30;
-  --color2: #8d99ae;
+  --color1: #424151;
+  --color2: #8B728E;
   --color3: #1a1d3d3a;
   --color4: #262b5f46;
   --color5: rgb(173, 58, 154);
-  --color6: #020314;
+  --color6: #171724;
   --color7: #0000072f;
-  --background:#72728f;
+  --color8: #c50f0f;
+  --background: #72728f;
 }
 
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 #root {
-  background-color: var(--background);
+  background-color: var(--color6);
 }
 
 ::selection {
@@ -122,14 +123,16 @@ nav .a:hover {
   background-color: var(--color1);
   z-index: 10;
 }
-.wr2{
-  width: 80%;
+
+.wr2 {
+  width: 100%;
   height: 1px;
-  background-color: var(--color1);
+  background-color: var(--color6);
   margin: 3px 0px;
   margin-left: 50%;
   transform: translate(-50%);
 }
+
 #nav2 h2:hover {
   outline: 1px solid white;
   background-color: rgba(0, 0, 0, 0.151);
@@ -261,7 +264,7 @@ a {
   top: 0;
   z-index: 101;
   margin-right: 20px;
- 
+
 }
 
 #Bigsearch input {
@@ -281,7 +284,8 @@ a {
   border: none;
 }
 
-.Black, .Black2 {
+.Black,
+.Black2 {
   left: 0;
   transition: all 0.3s linear;
   background-color: rgba(0, 0, 0, 0);
@@ -368,58 +372,73 @@ footer .footer-down-icon svg {
   width: 8%;
   margin: 5px 15px;
 }
-.footer-down-icon{
+
+.footer-down-icon {
   margin-left: 10%;
 }
-.h1{
+
+.h1 {
+  margin-top: 100px;
+  color: var(--color2);
   font-size: 2vw !important;
 }
-.footer-down{
+
+.footer-down {
   display: flex;
   align-items: center;
-background-color: var(--color6);
+  background-color: var(--color4);
 }
-.footer-down h6{
-  font-size: 1vw;
+
+.footer-down h6 {
+  font-size: 0.7vw;
   margin-right: 10px;
 }
-.footer-down-text{
+
+.footer-down-text {
   margin-left: 20px;
   padding: 10px;
   width: 100%;
 }
 
-.footer-down-text span{
+.footer-down-text span {
   font-size: 1.2vw;
   font-weight: bold;
   color: rgb(84, 69, 216);
 }
-.footer-container1{
-  margin-left:10%;
+
+.footer-container1 {
+  margin-left: 10%;
   width: 20%;
 }
-.footer-container1 img{
+
+.footer-container1 img {
   width: 50%;
 }
+
 .carroselImg {
   width: 100%;
   height: 400px;
 }
-.footer-container2{
+
+.footer-container2 {
   width: 20%;
   font-size: 1vw;
-  margin-left:10%;
+  margin-left: 10%;
 }
-.footer-container2 h2{
+
+.footer-container2 h2 {
   font-size: 1.9vw;
   color: rgb(84, 69, 216);
 }
-.footer-container3{
-  margin-left:10%;
+
+.footer-container3 {
+  margin-left: 10%;
 }
-.footer-container3 p a{
+
+.footer-container3 p a {
   color: rgb(84, 69, 216);
 }
+
 .carros {
   width: 100% !important;
   left: 50%;
@@ -434,20 +453,35 @@ background-color: var(--color6);
 }
 
 .Container {
-  box-shadow: rgb(100, 100, 111) 0px 7px 29px 0px;
   width: 90%;
   margin: 15px;
   margin-top: 15px;
   padding: 10px 25px;
-  background-color: var(--color1);
+  background-color: transparent;
   border-radius: 5px;
   color: white;
-  border: 1px solid black;
 }
 
 .Container h1 {
   font-size: 3vh;
   color: var(--color2);
+}
+
+.categories {
+  border: 1px solid var(--color2);
+  width: 150px;
+  background-color: var(--color7);
+  border-radius: 5px;
+
+  margin: 0px 5px;
+  padding: 10px;
+}
+
+.categories img {
+  height: 170px;
+  width: 120px;
+  margin-left: 50%;
+  transform: translate(-50%);
 }
 
 .itemC {
@@ -458,13 +492,15 @@ background-color: var(--color6);
   flex-direction: row;
   transition: 0.1s all;
   border-radius: 5px;
-  padding: 20px;
+  padding: 5px;
   border: 1px solid black;
-  background-color: var(--color7);
+  background-color: var(--color1);
 }
+
 .itemC a {
   display: flex;
 }
+
 .itemC:hover {
   box-shadow: 0px 0px 15px black;
 
@@ -477,12 +513,28 @@ background-color: var(--color6);
   border-radius: 15px 0px 15px 0px;
 }
 
-.cap {
-  padding: 5px 23px;
-  width: 115px;
-  margin: 0px;
+.cape {
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--color3);
   border-radius: 25px;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.cap {
+  text-align: center;
+  width: 100px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color8);
+  border-radius: 2px 9px;
   border: 1px solid rgb(255, 255, 255);
 }
 
@@ -500,8 +552,8 @@ background-color: var(--color6);
 }
 
 .textsC {
-  width: 55%;
-  margin-left: 5px;
+  width: 50%;
+  margin-left: 25px;
 }
 
 .textsC .cat {
@@ -511,8 +563,10 @@ background-color: var(--color6);
   margin-left: 5px;
   width: auto;
   margin-top: 15px;
+  font-size: small;
   flex-direction: row;
   flex-wrap: wrap;
+  opacity: 1;
 }
 
 .Container h4 {
@@ -606,7 +660,7 @@ background-color: var(--color6);
 
 .textsC h3 {
   margin-bottom: 15px;
-  font-size: large;
+  font-size: medium;
   padding: 0px;
   width: 100%;
   overflow: hidden;
@@ -617,7 +671,7 @@ background-color: var(--color6);
 .textsC h4 {
   color: var(--color2);
   margin-top: 10px;
-  font-size: medium;
+  font-size: small;
   margin-bottom: 10px;
   width: 100%;
   overflow: hidden;
@@ -806,21 +860,25 @@ background-color: var(--color6);
   overflow-y: hidden;
   overflow-x: hidden;
 }
-.score{
+
+.score {
   color: #ffc83d;
   font-weight: bolder;
   text-shadow: 0px 05px 0px black;
 }
-.image-gallery-right-nav:hover{
+
+.image-gallery-right-nav:hover {
   fill: var(--color2) !important;
 }
-.allchapters{
+
+.allchapters {
   width: 70%;
   margin-left: 50%;
   transform: translate(-50%);
 }
+
 .all2 {
-  width: 60%;
+  width: 50%;
   margin-right: 0px;
   display: flex;
   flex-direction: column;
@@ -872,6 +930,7 @@ background-color: var(--color6);
   margin-left: 50%;
   transform: translate(-50%);
 }
+
 .image-gallery-icon {
   color: #fff;
   transition: all .3s ease-out;
@@ -884,8 +943,11 @@ background-color: var(--color6);
   z-index: 4;
   filter: drop-shadow(0 2px 2px rgb(0, 0, 0));
 }
-.image-gallery-svg:hover{
-color: var(--color2);}
+
+.image-gallery-svg:hover {
+  color: var(--color2);
+}
+
 .carro {
   width: 80% !important;
   margin-left: 50%;
@@ -1196,12 +1258,13 @@ color: var(--color2);}
 .nav1 {
   position: absolute;
 }
+
 .context {
   color: var(--color2);
   background-color: var(--color1);
   display: flex;
   text-align: center;
-  margin-right: 10px; 
+  margin-right: 10px;
   padding: 50px;
   width: 300px;
   white-space: nowrap;
@@ -1211,37 +1274,45 @@ color: var(--color2);}
   height: 100%;
   box-shadow: 0px 0px 5px black;
 }
-.image-gallery-slide{
+
+.image-gallery-slide {
   width: 100%;
 }
-.image-gallery{
+
+.image-gallery {
   width: 80%;
   margin-left: 50%;
   transform: translate(-50%);
 }
-.scrollH{
+
+.scrollH {
+  width: 75%;
+  margin-left: 50%;
+  transform: translate(-50%);
   margin-top: 43px;
-  height: 100%;
+  height: 250px;
   display: flex;
   overflow-y: hidden !important;
   border: 1px solid var(--color1);
-  background-color: var(--color2);
+  background-color: var(--color1);
   padding: 10px;
 }
-.ScrollTexts{
+
+.ScrollTexts {
   border: 1px solid var(--color1);
   border-bottom: 0px solid transparent;
-margin-top: 20px;
-position: absolute;
-color: var(--color1);
-background-color: var(--color2);
-width: 200px;
-text-align: center;
-margin-left: 50%;
-transform: translate(-50%);
-border-radius: 20px 20px 0px 0px;
+  margin-top: 20px;
+  position: absolute;
+  color: var(--color1);
+  background-color: var(--color2);
+  width: 200px;
+  text-align: center;
+  margin-left: 50%;
+  transform: translate(-50%);
+  border-radius: 20px 20px 0px 0px;
 }
-.BackTope{
+
+.BackTope {
   visibility: visible !important;
   padding: 15px;
   border-radius: 25px;
@@ -1254,56 +1325,68 @@ border-radius: 20px 20px 0px 0px;
   margin: 20px;
   cursor: pointer;
   opacity: 1;
-  z-index:1000000000000;
-  transition:all 0.2s linear;
+  z-index: 1000000000000;
+  transition: all 0.2s linear;
 }
-.BackTope svg{
-transition:all 0.2s linear;
+
+.BackTope svg {
+  transition: all 0.2s linear;
 }
-.BackTope:hover svg{
+
+.BackTope:hover svg {
   transform: rotate(225deg) !important;
 }
-#Login{
+
+#Login {
   position: absolute;
   right: 0;
   margin-top: 10px;
-  top:0;
+  top: 0;
   margin-right: 150px;
   padding: 5px;
   border-radius: 25%;
 }
-.desc{
+
+.desc {
   height: 200px;
-  overflow:hidden;
+  overflow: hidden;
 }
-#Login svg{
+
+#Login svg {
   padding: 0;
   border-radius: 0;
 }
-#Login:hover{
-    background-color: rgba(255, 255, 255, 0.144);
+
+#Login:hover {
+  background-color: rgba(255, 255, 255, 0.144);
 }
-.Login input{
-width: 95%;
+
+.Login input {
+  width: 95%;
 }
-.Login{
-  
+
+.Login {
+
   padding: 0px;
   width: 100%;
   height: 100vh;
   padding-bottom: 100px;
   background-color: var(--background);
 }
-.Login h6,h1{
+
+.Login h6,
+h1 {
   text-align: center;
 }
-.Login-Form img{
+
+.Login-Form img {
   margin-left: 50%;
   transform: translate(-50%);
   filter: brightness(100);
   margin-bottom: 20px;
 }
-.Login-Form{
+
+.Login-Form {
   margin-top: 2vh;
   border-radius: 5px;
   margin-left: 50%;
@@ -1315,10 +1398,12 @@ width: 95%;
   background-color: var(--color1);
   padding: 25px 10px;
 }
-.erro-Login{
+
+.erro-Login {
   opacity: 0;
 }
-.Login-Form form{
+
+.Login-Form form {
   border-radius: 15px;
   margin-top: 10px;
   display: flex;
@@ -1326,89 +1411,106 @@ width: 95%;
   padding: 05px 20px;
   background-color: var(--color4);
 }
-.Login-Form form input{
-background-color: transparent;
-border: none;
-color: var(--color2);
+
+.Login-Form form input {
+  background-color: transparent;
+  border: none;
+  color: var(--color2);
 }
+
 .Login-Form form label {
 
   font-size: small;
   letter-spacing: 1.5px;
 }
-.Login-Form form div{
+
+.Login-Form form div {
   padding: 5px 0px;
   display: flex;
 }
-.Login-Form form div svg{
+
+.Login-Form form div svg {
   margin-right: 20px;
 }
-.Login-Form .Password-Form{
+
+.Login-Form .Password-Form {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   padding: 05px 20px;
   background-color: var(--color4);
 }
- .Password-Form input{
-background-color: transparent;
-border: none;
-color: var(--color2);
+
+.Password-Form input {
+  background-color: transparent;
+  border: none;
+  color: var(--color2);
 }
- .Password-Form label {
+
+.Password-Form label {
 
   font-size: small;
   letter-spacing: 1.5px;
 }
- .Password-Form div{
+
+.Password-Form div {
   padding: 5px 0px;
   display: flex;
 }
- .Password-Form div svg{
+
+.Password-Form div svg {
   margin-right: 20px;
 }
-.Password-Form{
+
+.Password-Form {
   margin-top: 20px;
-border-radius: 15px;
+  border-radius: 15px;
 }
-.Login-Form button{
+
+.Login-Form button {
   background-color: var(--color3);
   padding: 10px 5px;
-  border:1px solid var(--color2);
+  border: 1px solid var(--color2);
   border-radius: 15px;
 
   width: 100%;
   color: var(--color2);
 }
-.Login-Button{
+
+.Login-Button {
   margin-top: 20px;
   align-items: center;
   display: flex;
   margin-top: 25px;
 
 }
-.Login-Button svg{
+
+.Login-Button svg {
   transition: all 0.2s linear;
   transform: translateX(-50px);
   position: absolute;
   margin-right: 20px;
-visibility: hidden;
+  visibility: hidden;
   right: 0;
 }
-.Login-Button:hover svg{
+
+.Login-Button:hover svg {
   visibility: visible;
 
   transform: translateX(0px);
 
 }
-.erro-Login{
+
+.erro-Login {
   display: block;
   color: red;
 }
-.Login-Button:active .erro-Login{
+
+.Login-Button:active .erro-Login {
   display: block;
 }
-.Register-Form{
+
+.Register-Form {
   position: absolute;
   top: 0;
   transition: all 0.3s linear;
@@ -1426,37 +1528,43 @@ visibility: hidden;
   transform: translateY(-500%);
 
 }
-.Register-Form form div{
-display: flex;
+
+.Register-Form form div {
+  display: flex;
 }
-.Register-Form form div input{
+
+.Register-Form form div input {
   margin-left: 5px;
   color: var(--color2);
   background-color: rgba(255, 255, 255, 0);
   border: none;
 }
-.Register-Form form{
+
+.Register-Form form {
   background-color: var(--color4);
   margin-top: 25px;
   border-bottom: 15px;
   padding: 10px 0px;
 }
-.Register-Form button{
+
+.Register-Form button {
 
   background-color: var(--color3);
   padding: 10px 5px;
-  border:1px solid var(--color2);
+  border: 1px solid var(--color2);
   border-radius: 15px;
 
   width: 100%;
   color: var(--color2);
 }
-.Register-Button{
+
+.Register-Button {
   display: flex;
   align-items: center;
   margin-top: 25px;
 }
-.Register-Button svg{
+
+.Register-Button svg {
   position: absolute;
   right: 0;
   margin-right: 25px;
@@ -1464,24 +1572,29 @@ display: flex;
   transform: translateX(-50px);
   transition: all 0.2s linear;
 }
-.Register-Button:hover svg{
-visibility: visible;
-transform: translateX(0px);
+
+.Register-Button:hover svg {
+  visibility: visible;
+  transform: translateX(0px);
 
 }
-.signup:hover{
+
+.signup:hover {
   cursor: pointer;
 }
-.mainManga{
+
+.mainManga {
   display: flex;
   flex-direction: column;
   background-color: var(--color6);
 }
-.flexC{
+
+.flexC {
   display: flex;
   flex-direction: column;
 }
-.btne{
+
+.btne {
   background-color: var(--color2);
   color: var(--color2);
   border: 1px solid var(--color2);
@@ -1490,58 +1603,54 @@ transform: translateX(0px);
   margin-bottom: 20px;
   padding: 2px 10px;
 }
-.filterDown{
+
+.filterDown {
   margin: 10px 0px;
   cursor: pointer;
   background-color: none;
   width: auto;
   padding: 10px;
   border-radius: 55px;
-  
+
 }
-.Filter{
+
+.Filter {
   display: flex;
   justify-content: space-between;
 }
-.Filter input{
+
+.Filter input {
   margin: 0px 10px;
   width: 130px;
   font-size: larger;
   background-color: transparent;
   border: none;
 }
-.filterI{
+
+.filterI {
   border-radius: 5px;
-  border: 1px solid var(--color1);
+  border: 1px solid ;
   padding: 5px 5px;
-  margin:15px 0px;
+  margin: 15px 0px;
   display: flex;
 }
-.filterI input::placeholder{
-color: var(--color1);
+
+.filterI input::placeholder {
+  color: var(--color2);
 }
-#load{
+
+#load {
   width: 100%;
   text-align: center;
 }
+
 @keyframes scale-in-bottom {
   0% {
     transform: scale(0);
     transform-origin: 50% 100%;
     opacity: 1;
   }
-  100% {
-    transform: scale(1);
-    transform-origin: 50% 100%;
-    opacity: 1;
-  }
-}
-@keyframes scale-in-ver-bottom {
-  0% {
-    transform: scale(0);
-    transform-origin: 50% 100%;
-    opacity: 1;
-  }
+
   100% {
     transform: scale(1);
     transform-origin: 50% 100%;
@@ -1549,46 +1658,77 @@ color: var(--color1);
   }
 }
 
-.filterDown:hover{
-  fill: var(--color2);
-  transition: all 0.2s;
-  background-color: var(--color1);
+@keyframes scale-in-ver-bottom {
+  0% {
+    transform: scale(0);
+    transform-origin: 50% 100%;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    transform-origin: 50% 100%;
+    opacity: 1;
+  }
 }
-.btn{
+
+.filterDown:hover {
+  fill: var(--color1);
+  transition: all 0.2s;
+  background-color: var(--color2);
+}
+
+.btn {
   color: var(--color1);
   z-index: 100;
   background-color: var(--background);
   padding: 10px;
   margin: 20px;
 }
-.PageManga{
-  width: 30% ;
+
+.PageManga {
+  width: 30%;
   margin-left: 50%;
   transform: translate(-50%);
 }
-.ChaptersCard{
+
+.ChaptersCard {
   background-color: var(--color1);
   margin-top: 0px;
   border-radius: 0;
-  padding: 10px 55px;
+  padding: 12px 55px;
   color: var(--color2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.ChaptersCard h2{
-font-size: smaller;
-white-space: nowrap;
-overflow: hidden;
-width: 100%;
+
+.ChaptersCard h2 {
+  font-size: smaller;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
 }
-.ChaptersCard h4{
-font-size: small;
+
+.ChaptersCard h4 {
+  font-size: small;
 }
-.ChaptersCard small{
-font-size: smaller;
+
+.ChaptersCard h4 span {
+  font-style: italic;
 }
-.disqus_thread{
+
+.ChaptersCard small {
+  font-size: smaller;
+  font-style: italic;
+
+}
+
+.disqus_thread {
   margin-top: 100px !important;
 }
-.chapter-visual{
+
+.chapter-visual {
   color: var(--color2);
   background-color: var(--color1);
   padding: 20px;
@@ -1596,18 +1736,22 @@ font-size: smaller;
   align-items: center;
   margin-bottom: 15px;
 }
-.chapter-visual h1{
+
+.chapter-visual h1 {
   transform: translateY(15px);
   font-weight: bolder;
   text-align: left;
 }
-.chapter-visual h2{
+
+.chapter-visual h2 {
   font-size: medium;
 }
-.chapter-visual div{
+
+.chapter-visual div {
   margin: 20px;
 }
-.chapter-visual h4{
+
+.chapter-visual h4 {
   color: var(--color1);
   background-color: var(--color2);
   border-radius: 5px;

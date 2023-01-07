@@ -4,14 +4,13 @@ import SideMenu from './components/sideMenu';
 import Nav from './components/nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import Categories from './components/dragCat';
 import List from './components/api';
-import MostReaded from './apitest';
 import Top from './components/carroseu';
 import Top2 from './components/Top';
 import Footer from './components/Footer';
 import MyGallery from './components/carros';
 import AdComponent from './components/adsense';
+import Categories from './components/dragCat';
 
 function Home() {
   var isH = false
@@ -31,14 +30,14 @@ function Home() {
 <div className='carro'>
 <MyGallery />
 </div>
+<Categories />
+
       <div className='all'>
         <div className='all2'>
           <List />
           <button id='carregar' onClick={carregar}>Carregar Mais</button>
         </div>
         <div className='all2'>
-          <MostReaded />
-          <button id='carregard' onClick={carregar2}>Carregar Mais</button>
           <div className='Top'>
             <h1 className='h1'>Mais lidos da semana</h1>
           <Top/>

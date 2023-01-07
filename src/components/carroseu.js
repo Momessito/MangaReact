@@ -7,6 +7,7 @@ import {
   CarouselControl,
 } from 'reactstrap';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Items = (args) => {
   
@@ -55,10 +56,12 @@ const Items = (args) => {
         onExited={() => setAnimating(false)}
         key={post.id}
       >
+        <Link to={'/manga/' + post.id}>
         <img src={post.image} className='carroselImg' alt={post.id} />
         <h6 className='bottom-title'>{post.title}</h6>
         <h6 className='bottom-author'>{post.author}</h6>
         <h6 className='top-cap'>Capítulo.{post.chapters_count}</h6>
+        </Link>
       </CarouselItem>
 
     );

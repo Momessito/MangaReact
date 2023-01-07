@@ -1,23 +1,44 @@
-import React, { Component } from 'react'
-
+import React, { useEffect,useState } from 'react'
+import axios from 'axios';
 import ScrollContainer from 'react-indiana-drag-scroll'
+import { Link } from 'react-router-dom';
 
 function Categories() {
-    return (<ScrollContainer className="scroll-container scrollH">
-        <div className='context'>Ação</div>
-        <div className='context'>Comedia</div>
-        <div className='context'>Sci-fi</div>
-        <div className='context'>Aventura</div>
-        <div className='context'>Drama</div>
-        <div className='context'>Romance</div>
-        <div className='context'>Horror</div>
-        <div className='context'>Seinen</div>
-        <div className='context'>Shonen</div>
-        <div className='context'>Isekai</div>
-        <div className='context'>Mecha</div>
-        <div className='context'>Josei</div>
-      </ScrollContainer>)
-    
+  const [items, setitems] = useState([]);
+
+  const getItems = async () => {
+    try {
+      const response = await axios.get(
+        "https://q4l8x4.deta.dev/mostread/total"
+      );
+
+
+
+      const data = response.data;
+
+      setitems(data)
+    } catch (Error) {
+      console.log(Error)
+    }
+  }
+
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  return (<ScrollContainer className="scroll-container scrollH">
+                    {items.length === 0 ? <p>Carregando</p> : (
+                    items.map((post) => (
+    <div className='categories'>
+      <Link to={'/manga/' + post.id}>
+      <img src={post.image} className='carroselImg' alt={post.id} />
+      <h6 className='bottom-title'>{post.title}</h6>
+      <h6 className='bottom-author'>{post.author}</h6>
+      </Link>
+    </div>
+                    )))}
+  </ScrollContainer>)
+
 }
 
 export default Categories
