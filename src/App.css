@@ -807,9 +807,21 @@ background-color: var(--color6);
   overflow-y: hidden;
   overflow-x: hidden;
 }
-
+.score{
+  color: #ffc83d;
+  font-weight: bolder;
+  text-shadow: 0px 05px 0px black;
+}
+.image-gallery-right-nav:hover{
+  fill: var(--color2) !important;
+}
+.allchapters{
+  width: 70%;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
 .all2 {
-  width: 40%;
+  width: 60%;
   margin-right: 0px;
   display: flex;
   flex-direction: column;
@@ -1480,7 +1492,7 @@ transform: translateX(0px);
   padding: 2px 10px;
 }
 .filterDown{
-  margin: 10px 100px;
+  margin: 10px 0px;
   cursor: pointer;
   background-color: none;
   width: auto;
@@ -1503,7 +1515,7 @@ transform: translateX(0px);
   border-radius: 5px;
   border: 1px solid var(--color1);
   padding: 5px 5px;
-  margin:15px 110px;
+  margin:15px 0px;
   display: flex;
 }
 .filterI input::placeholder{
@@ -1560,12 +1572,13 @@ color: var(--color1);
   margin-top: 0px;
   border-radius: 0;
   padding: 10px 55px;
-  margin-left: 50px;
-  margin-right: 50px;
   color: var(--color2);
 }
 .ChaptersCard h2{
-font-size: medium;
+font-size: smaller;
+white-space: nowrap;
+overflow: hidden;
+width: 100%;
 }
 .ChaptersCard h4{
 font-size: small;
@@ -1588,6 +1601,9 @@ font-size: smaller;
   transform: translateY(15px);
   font-weight: bolder;
   text-align: left;
+}
+.chapter-visual h2{
+  font-size: medium;
 }
 .chapter-visual div{
   margin: 20px;
