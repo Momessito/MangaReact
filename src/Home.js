@@ -96,7 +96,7 @@ function Home() {
       button.innerText = 'Carregar Menos'
     } else {
       isH = false
-      background.style.height = '73vh'
+      background.style.height = '90vh'
       button.innerText = 'Carregar Mais'
 
     }
