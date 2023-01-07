@@ -8,21 +8,35 @@ import SideMenu from './components/sideMenu';
 const Chapters = () => {
     const location = useLocation();
     const location2 = location.pathname.substring(7)
-    const number = 0
+    
     const [posts, setposts] = useState([]);
+    const baseUrl = "https://q4l8x4.deta.dev/";
+
+    async function getChapters(id, page){
+        const url = `${baseUrl}chapters/${id}/${page}`;
+
+        try {
+            const response = await axios.get(url);
+            return response.data;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const getposts = async () => {
         try {
-            const response = await axios.get(
-                "https://q4l8x4.deta.dev/chapters/" + location2
-            );
-
-
-
-            const data = response.data;
-            setposts(data)
-        } catch (Error) {
-            console.log(Error)
+            let result = [];
+            for (let page = 1; ; page++) {
+                let chapters = await getChapters(location2, page);
+                if (chapters.length > 0) {
+                    result = result.concat(chapters);
+                    continue;
+                }
+                break;
+            }
+            setposts(result);
+        } catch (err) {
+            console.error(err);
         }
     }
     useEffect(() => {
@@ -35,9 +49,8 @@ const Chapters = () => {
 
     const getimg = async () => {
         try {
-            const response = await axios.get(
-                "https://q4l8x4.deta.dev/manga/" + location2
-            );
+            const url = `${baseUrl}manga/${location2}`
+            const response = await axios.get(url);
 
             const data = response.data;
             console.log(response)
@@ -69,29 +82,21 @@ const Chapters = () => {
                 </div>
             </div>
 
-    <div className='flexC'>
-            {posts.length === 0 ? <p>Carregando</p> : (
-                posts.map((post) => (
-                    <Link to={'/chapter/' + post.release_id} key={post.release_id}>
-                        <div className='ChaptersCard'>
-                            <h2>{post.name}</h2>
-                            <h4>{post.number} {post.chapter_name}</h4>
-                            <small>{post.date}</small>
-                        </div>
-                        <div className='wr2'></div>
-                    </Link>
-                )))}
-                </div>
-                <button onClick={carregar} id='btn'>Carregar mais</button>
+            <div className='flexC'>
+                {posts.length === 0 ? <p>Carregando</p> : (
+                    posts.map((post) => (
+                        <Link to={'/chapter/' + post.release_id} key={post.release_id}>
+                            <div className='ChaptersCard'>
+                                <h2>{post.name}</h2>
+                                <h4>{post.number} {post.chapter_name}</h4>
+                                <small>{post.date}</small>
+                            </div>
+                            <div className='wr2'></div>
+                        </Link>
+                    )))}
+            </div>
         </div>
-
-
     )
-
-    function carregar(){
-        getposts();
-        number = 2
-    }
 }
 
 export default Chapters;
