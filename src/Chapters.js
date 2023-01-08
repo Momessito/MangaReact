@@ -1,34 +1,22 @@
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import axios from "axios";
 import Nav from './components/nav';
 import SideMenu from './components/sideMenu';
+import Mangas from './backend/mangas';
 
 const Chapters = () => {
     const location = useLocation();
-    const location2 = location.pathname.substring(7)
+    const mangaId = location.pathname.substring(7)
     var istrue = true
 
     const [posts, setposts] = useState([]);
-    const baseUrl = "https://q4l8x4.deta.dev/";
-
-    async function getChapters(id, page) {
-        const url = `${baseUrl}chapters/${id}/${page}`;
-
-        try {
-            const response = await axios.get(url);
-            return response.data;
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     const getposts = async () => {
         try {
             let result = [];
             for (let page = 1; ; page++) {
-                let chapters = await getChapters(location2, page);
+                let chapters = await Mangas.getChapters(mangaId, page);
                 if (chapters.length > 0) {
                     result = result.concat(chapters);
                     continue;
@@ -49,16 +37,8 @@ const Chapters = () => {
     const [img, setimg] = useState([]);
 
     const getimg = async () => {
-        try {
-            const url = `${baseUrl}manga/${location2}`
-            const response = await axios.get(url);
-
-            const data = response.data;
-
-            setimg(data)
-        } catch (Error) {
-            console.log(Error)
-        }
+        const data = await Mangas.getMangaById(mangaId);
+        setimg(data)
     }
     useEffect(() => {
         getimg();
