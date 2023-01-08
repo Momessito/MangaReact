@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from 'react-router-dom';
+import Mangas from "../backend/mangas";
 
 const List = () => {
 
@@ -8,14 +8,7 @@ const List = () => {
 
     const getposts = async () => {
         try {
-            const response = await axios.get(
-                "https://q4l8x4.deta.dev/recent"
-            );
-
-
-
-            const data = response.data;
-
+            const data = await Mangas.getRecents();
             setposts(data)
         } catch (Error) {
             console.log(Error)

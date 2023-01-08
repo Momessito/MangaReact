@@ -10,8 +10,6 @@ class Mangas {
         try {
             const url = `${baseUrl}manga/${id}`
             const response = await axios.get(url);
-
-            console.log(response.data);
             return response.data;
         } catch (Error) {
             console.log(Error)
@@ -21,6 +19,26 @@ class Mangas {
     static async getChapters(id, page) {
         try {
             const url = `${baseUrl}chapters/${id}/${page}`;
+            const response = await axios.get(url);
+            return response.data;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    static async search(manga_name) {
+        try {
+            const url = `${baseUrl}search/?q=${manga_name}/`
+            const response = await axios.get(url);
+            return response.data;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    static async getRecents(){
+        try {
+            const url = `${baseUrl}recent/`;
             const response = await axios.get(url);
             return response.data;
         } catch (err) {
