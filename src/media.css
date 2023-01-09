@@ -288,6 +288,15 @@ flex-wrap: wrap;
   width: 134px;
   height: 200px;
 }
+.App{
+  overflow-x: hidden;
+}
+.voltar {
+  margin-left: 20px;
+}
+.next{
+  margin-right: 20px;
+}
 .Logo{
   margin-left: 20px;
 }
