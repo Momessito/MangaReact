@@ -2,12 +2,17 @@ import User from '../backend/users';
 
 function PageLogin() {
 
-  function Login(){
+  const Login = async () => {
+    try {
     var user = document.getElementById('userLogin').value
     var password = document.getElementById('passLogin').value
 
     var entrar = User.login(user,password)
-    console.log(entrar)
+    console.log(entrar)}catch (Error) {
+      console.log(Error)
+  }
+
+
   }
   return (
     <div className='Login'>
