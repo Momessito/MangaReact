@@ -20,6 +20,7 @@
 #nav2 h2{
   font-size: 0.5rem
 }
+
 }
 @media screen and (max-width:375px) {
   .itemC{
@@ -48,6 +49,9 @@
 @media screen and (max-width:425px) {
   .scrollH{
     width: 100%;
+  }
+  #Profile{
+    width: 90%;
   }
   .categories img {
     height: 170px;

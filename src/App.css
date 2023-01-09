@@ -425,12 +425,101 @@ footer .footer-down-icon svg {
   font-size: 1vw;
   margin-left: 10%;
 }
+.configAll{
+  width: 100%;
+  background-color: var(--color1);
+  height: 90.9vh;
+}
+#icon2{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.pic{
+  margin-left: 20px;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
 
+}
+.p{
+  height: 100px;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  font-size: small;
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(56, 56, 56, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s, visibility .2s;
+}
+.pic:hover .p {
+  visibility: visible;
+  opacity: 1;
+}
+#ChangeImg{
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.425);
+  color:  white;
+  overflow: hidden;
+}
+.Blacks{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background-color: rgba(255, 0, 0, 0);
+  left: 0;
+}
+#ChangeImg div:nth-child(2){
+  overflow: hidden;
+  margin-top: 10%;
+  margin-left: 50%;
+transform: translate(-50%);
+  width: 90%;
+  padding: 10px;
+  background-color: var(--color1);
+  
+}
+#Email{
+  margin-top: 50px;
+  text-align: center;
+}
+#Profile{
+  width: 30%;
+  margin-left: 50%;
+  transform: translate(-50%);
+  padding: 10px;
+  background-color: var(--color2);
+  margin-top: 0px;
+  border-radius: 0px 0px 20px 20px;
+  display: flex; align-items: center;flex-direction: column;
+}
 .footer-container2 h2 {
   font-size: 1.9vw;
   color: var(--color5);
 }
-
+#nick2{
+  font-weight: bold;
+}
 .footer-container3 {
   margin-left: 10%;
 }

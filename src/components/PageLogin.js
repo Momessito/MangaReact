@@ -10,9 +10,8 @@ function PageLogin() {
       await User.login(user, password)
       const userInfo = await User.getUser();
       window.location.href = '/';
-      console.log(userInfo.data);
     } catch (Error) {
-      alert(Error)
+      console.log(Error)
     }
 
   }
@@ -24,12 +23,12 @@ function PageLogin() {
     var nick = document.getElementById('NickReg').value
 
     if (confpassword !== password) {
-     document.getElementById('erro-reg').innerHTML = 'As senhas devem ser iguais'
-    }else if(user === ''||user === undefined||password === '' || password === undefined||nick === '' || nick === undefined){
+      document.getElementById('erro-reg').innerHTML = 'As senhas devem ser iguais'
+    } else if (user === '' || user === undefined || password === '' || password === undefined || nick === '' || nick === undefined) {
       document.getElementById('erro-reg').innerHTML = 'Você deve completar o que falta'
-    }else if(password.length < 5){
+    } else if (password.length < 5) {
       document.getElementById('erro-reg').innerHTML = 'A senha deve ter no minimo 6 digitos!'
-    }else if(user.length < 4){
+    } else if (user.length < 4) {
       document.getElementById('erro-reg').innerHTML = 'O usuario deve ter no minimo 5 digitos!'
     }
     else {
@@ -47,7 +46,7 @@ function PageLogin() {
         const userInfo = await User.createUser();
         console.log(response);
       } catch (Error) {
-        alert(Error)
+        alert('Senha ou Email Errados')
       }
     }
 

@@ -25,7 +25,7 @@ function Categories() {
   useEffect(() => {
     getItems();
   }, []);
-
+  
   return (<ScrollContainer className="scroll-container scrollH">
                     {items.length === 0 ? <p>Carregando</p> : (
                     items.map((post) => (
