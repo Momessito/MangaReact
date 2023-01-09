@@ -8,8 +8,9 @@ function PageLogin() {
     var password = document.getElementById('passLogin').value
 
     var entrar = User.login(user,password)
-    console.log(entrar)}catch (Error) {
-      console.log(Error)
+    console.log(entrar)
+    }catch (Error) {
+      alert(Error)
   }
 
 
@@ -22,7 +23,7 @@ function PageLogin() {
         <img src='/static/media/Logo.10d9b2ebed4705df7759.png' alt="logo" width='150px' />
         <small>Entre para continuar</small>
         <form>
-          <label name='login'>Usuario</label>
+          <label name='login'>Email</label>
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
