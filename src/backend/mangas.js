@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const baseUrl = "https://q4l8x4.deta.dev/";
-
 class Mangas {
 
     constructor() { }

@@ -11,9 +11,22 @@ import Footer from './components/Footer';
 import MyGallery from './components/carros';
 import AdComponent from './components/adsense';
 import Categories from './components/dragCat';
+import Mangas from './backend/mangas';
 
 function Home() {
   var isH = false
+
+
+  const getposts = async () => {
+    try {
+        const data = await Mangas.getMangaById('1');
+        console.log(data)
+    } catch (Error) {
+        console.log(Error)
+    }
+}
+getposts()
+
 
   return (
 
