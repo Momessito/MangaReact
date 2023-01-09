@@ -1523,7 +1523,28 @@ h1 {
   display: block;
   color: red;
 }
-
+.stats{
+  position: absolute;
+  width: 200px;
+  background-color: var(--color1);
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  display: none;
+}
+#user{
+  display: none;
+}
+#user img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+#erro-reg{
+  color: red;
+  font-size: small;
+}
 .Login-Button:active .erro-Login {
   display: block;
 }

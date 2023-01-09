@@ -48,6 +48,18 @@ class User {
             console.log(err);
         }
     }
+    
+
+
+    static async Exit() {
+        try {
+            console.log('saiu')
+            localStorage.setItem('token', '')
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 export default User;

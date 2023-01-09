@@ -20,7 +20,6 @@ function Home() {
   const getposts = async () => {
     try {
         const data = await Mangas.getMangaById('1');
-        console.log(data)
     } catch (Error) {
         console.log(Error)
     }
