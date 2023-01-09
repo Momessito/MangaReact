@@ -334,11 +334,11 @@ flex-wrap: wrap;
 .carroselImg{
   width: 300px !important;
 }
-.carousel-control-prev{
-  margin-left: 0px;
+.Top{
+  width: 100% !important;
 }
-.carousel-control-next{
-  margin-right: 0px;
+.carousel{
+  width: 100%;
 }
 }
 @media screen and (max-width:768px) {
