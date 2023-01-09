@@ -40,22 +40,9 @@ function Manga() {
     useEffect(() => {
         getposts();
     }, []);
-    let size
-    function load() {
-        var size = document.getElementById('sizeT')
 
-        size.innerHTML = '30%'
-        size = size.innerHTML
-    }
-    function big() {
-        alert('foi')
-        var size = document.getElementById('sizeT')
-        var page = document.getElementById('PageManga').style.width
-        page = page + '10%'
-    }
-    function small() {
+    
 
-    }
     return (
         <div>
 
@@ -69,18 +56,9 @@ function Manga() {
                 </svg>
             </div>
             <div className='mainManga'>
-                <div className='Size'>
-                    <svg xmlns="http://www.w3.org/2000/svg" onClick={small} width="32" height="32" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
-                        <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />
-                    </svg>
-                    <h5 id='sizeT'>Size</h5>
-                    <svg xmlns="http://www.w3.org/2000/svg" onClick={big} width="32" height="32" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
-                        <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z" />
-                    </svg>
-                </div>
                 {posts.length === 0 ? <p id='load'>Carregando</p> : (
                     posts.map((post) => (
-                        <img src={post.avif} key={post.avif} onLoad={load} alt='NaN' className='PageManga' id='PageManga' />
+                        <img src={post.legacy} key={post.avif} alt='NaN' className='PageManga' id='PageManga' />
                     )))}
                 <button className='btne'><Link reloadDocument to={'/chapter/' + next}>Proximo capitulo</Link></button>
                 <div id="disqus_thread"></div>
