@@ -13,7 +13,6 @@ function Nav(){
       const userInfo = await User.getUser();
       document.getElementById('nick').innerHTML = 'Bem vindo! ' + userInfo.data.nickname
       document.getElementById('icon').src = userInfo.data.img
-
     }catch(Error){
       console.log(Error)
     }

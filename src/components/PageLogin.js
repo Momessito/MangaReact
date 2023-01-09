@@ -81,7 +81,7 @@ function PageLogin() {
         </form>
 
         <small className='erro-Login'>Usuario ou senha incorretos</small>
-        <Link reloadDocument to={'/'}>
+        <Link>
         <div className='Login-Button'>
 
           <button onClick={Login}>Entrar</button>
