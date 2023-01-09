@@ -23,11 +23,12 @@ function Nav(){
   const usuario = async () => {
     try {
       const userInfo = await User.getUser();
-      if(userInfo.status === 200){
+      if(userInfo.name !== 'AxiosError'){
         document.getElementById('loginn').style.display = 'none'
         document.getElementById('user').style.display = 'block'
       }else{
         document.getElementById('loginn').style.display = 'block'
+        console.log('foi')
         document.getElementById('user').style.display = 'none'
       }
       name()

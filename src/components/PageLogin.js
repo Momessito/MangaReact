@@ -7,7 +7,6 @@ function PageLogin() {
     try {
       var user = document.getElementById('userLogin').value
       var password = document.getElementById('passLogin').value
-
       await User.login(user, password)
       const userInfo = await User.getUser();
       console.log(userInfo.data);
