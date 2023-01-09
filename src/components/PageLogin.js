@@ -1,5 +1,5 @@
 import User from '../backend/users';
-import { Link } from 'react-router-dom';
+import Nav from './nav';
 
 function PageLogin() {
 
@@ -9,6 +9,7 @@ function PageLogin() {
       var password = document.getElementById('passLogin').value
       await User.login(user, password)
       const userInfo = await User.getUser();
+      window.location.href = '/';
       console.log(userInfo.data);
     } catch (Error) {
       alert(Error)
@@ -81,7 +82,6 @@ function PageLogin() {
         </form>
 
         <small className='erro-Login'>Usuario ou senha incorretos</small>
-        <Link>
         <div className='Login-Button'>
 
           <button onClick={Login}>Entrar</button>
@@ -89,7 +89,6 @@ function PageLogin() {
             <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
           </svg>
         </div>
-        </Link>
         <small className='signup' onClick={registerApear} >Ainda não possui conta?</small>
       </div>
 

@@ -19,7 +19,7 @@ function Nav(){
 
   }
 
-  const usuario = async () => {
+  const Usuario = async () => {
     try {
       const userInfo = await User.getUser();
       if(userInfo.name !== 'AxiosError'){
@@ -27,7 +27,6 @@ function Nav(){
         document.getElementById('user').style.display = 'block'
       }else{
         document.getElementById('loginn').style.display = 'block'
-        console.log('foi')
         document.getElementById('user').style.display = 'none'
       }
       name()
@@ -55,7 +54,7 @@ function Nav(){
 
 return(
     <div>
-    <nav className='nav1' onLoad={usuario}>
+    <nav className='nav1' onLoad={Usuario}>
 
     <Link to="/" ><img className='logo-img' alt='logo' src={Logo} /></Link>
     <Search />
