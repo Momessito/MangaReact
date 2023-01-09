@@ -71,7 +71,7 @@ nav .a:hover {
   top: 0;
   left: 0;
   padding: 5px 5px;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-left: 40px;
   border-radius: 55px;
   background-color: none;
@@ -1536,9 +1536,9 @@ h1 {
   display: none;
 }
 #user img{
-  margin-top: -7px;
-  width: 50px;
-  height: 50px;
+  margin-top: 05px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   border: 2px solid white;
 }

@@ -13,6 +13,9 @@ function Nav(){
       const userInfo = await User.getUser();
       document.getElementById('nick').innerHTML = 'Bem vindo! ' + userInfo.data.nickname
       document.getElementById('icon').src = userInfo.data.img
+      if(userInfo.data.img === ''){
+        document.getElementById('icon').src = 'https://pbs.twimg.com/media/FCvrblIX0AI6sMJ.jpg'
+      }
     }catch(Error){
       console.log(Error)
     }
