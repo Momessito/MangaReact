@@ -1172,7 +1172,7 @@ transform: translate(-50%);
 
 .Top {
 
-  height: 600px;
+  height: 500px;
   width: 100%;
   margin-top: 25px;
 }
@@ -1494,8 +1494,8 @@ transform: translate(-50%);
   
 }
 .ad-side{
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width:100%;
 }
 .textScroll{
   position: absolute;
