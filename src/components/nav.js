@@ -11,7 +11,7 @@ function Nav() {
   const name = async () => {
     try {
       const userInfo = await User.getUser();
-      document.getElementById('nick').innerHTML = 'Bem vindo! ' + userInfo.data.nickname
+      document.getElementById('nick').innerHTML = 'Bem vindo! ' + '<span>'+userInfo.data.nickname+"</span>"
       document.getElementById('icon').src = userInfo.data.img
       if (userInfo.data.img === '') {
         document.getElementById('icon').src = 'https://pbs.twimg.com/media/FCvrblIX0AI6sMJ.jpg'
@@ -48,9 +48,11 @@ function Nav() {
   function config() {
     if (istrue === true) {
       document.querySelector('.stats').style.display = 'block'
+      document.querySelector('.stats').style.animation = 'scale-in-top 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
       istrue = false
     } else {
-      document.querySelector('.stats').style.display = 'none'
+      document.querySelector('.stats').style.opacity = '0'
+      document.querySelector('.stats').style.animation = 'scale-out-top 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both'
       istrue = true
     }
   }
@@ -73,12 +75,14 @@ function Nav() {
             <img id='icon' onClick={config} />
             <div className='stats'>
               <p id='nick'> </p>
+              <div className='wr2'></div>
               <ul>
-                <li>Meus Favoritos</li>
-                <li>Mangas</li>
-                <li><Link to={'/config'}>Configurações</Link></li>
+                <li><Link to={'/config'} id='listC'>Meus Favoritos</Link></li>
+                <li><Link to={'/config'} id='listC'>Mangas</Link></li>
+                <li><Link to={'/config'} id='listC'>Configurações</Link></li>
               </ul>
               <Link reloadDocument>
+                <div className='wr2'></div>
                 <small onClick={Sair}  >Sair</small>
               </Link>
             </div>
@@ -97,32 +101,7 @@ function Nav() {
         <Burgers />
       </nav>
       <div style={{ width: '100%', height: '60px' }}></div>
-      <nav id='nav2'>
-        <h2 onClick={function descer1() {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
-        }}>Destaques</h2>
-        <div className='wr' ></div>
-        <h2 onClick={function descer2() {
-          document.body.scrollTop = 2000;
-          document.documentElement.scrollTop = 1200;
-        }}>Mais Lidos Da Semana</h2>
-        <div className='wr'></div>
-        <h2 onClick={function descer2() {
-          document.body.scrollTop = 2000;
-          document.documentElement.scrollTop = 700;
-        }}>Mangas mais lidos</h2>
-        <div className='wr'></div>
-        <h2 onClick={function descer2() {
-          document.body.scrollTop = 2000;
-          document.documentElement.scrollTop = 500;
-        }}>Recém adicionados</h2>
-        <div className='wr'></div>
-        <h2 onClick={function descer2() {
-          document.body.scrollTop = 2000;
-          document.documentElement.scrollTop = 2000;
-        }}>Bem avaliados</h2>
-      </nav>
+      
     </div>
   )
 

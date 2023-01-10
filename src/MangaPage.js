@@ -8,13 +8,13 @@ import axios from "axios";
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
 function Manga() {
     const location = useLocation();
     const location2 = location.pathname.substring(9)
 
     const [posts, setposts] = useState([]);
     const [next, setnext] = useState([]);
+    const [chap, setchap] = useState([]);
 
     const getposts = async () => {
         try {
@@ -23,12 +23,13 @@ function Manga() {
 
             );
 
-
+            const chap = response.data
             const data = response.data.images;
             const prox = response.data.next_chapter.release_id
 
             setposts(data)
             setnext(prox)
+            setchap(chap)
         } catch (Error) {
             console.log(Error)
         }
@@ -36,12 +37,9 @@ function Manga() {
     }
 
 
-
     useEffect(() => {
         getposts();
     }, []);
-
-    
 
     return (
         <div>
@@ -56,6 +54,7 @@ function Manga() {
                 </svg>
             </div>
             <div className='mainManga'>
+                <h1 id='Title'>Capitulo: {chap.chapter_number}</h1>
                 {posts.length === 0 ? <p id='load'>Carregando</p> : (
                     posts.map((post) => (
                         <img src={post.legacy} key={post.avif} alt='NaN' className='PageManga' id='PageManga' />

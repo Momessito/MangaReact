@@ -39,6 +39,32 @@ getposts()
 
       <SideMenu />
       <Nav />
+      <nav id='nav2'>
+        <h2 onClick={function descer1() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }}>Destaques</h2>
+        <div className='wr' ></div>
+        <h2 onClick={function descer2() {
+          document.body.scrollTop = 2000;
+          document.documentElement.scrollTop = 1200;
+        }}>Mais Lidos Da Semana</h2>
+        <div className='wr'></div>
+        <h2 onClick={function descer2() {
+          document.body.scrollTop = 2000;
+          document.documentElement.scrollTop = 700;
+        }}>Mangas mais lidos</h2>
+        <div className='wr'></div>
+        <h2 onClick={function descer2() {
+          document.body.scrollTop = 2000;
+          document.documentElement.scrollTop = 500;
+        }}>Recém adicionados</h2>
+        <div className='wr'></div>
+        <h2 onClick={function descer2() {
+          document.body.scrollTop = 2000;
+          document.documentElement.scrollTop = 2000;
+        }}>Bem avaliados</h2>
+      </nav>
 <div className='carro'>
 <MyGallery />
 </div>

@@ -214,7 +214,9 @@ flex-wrap: nowrap;
   filter: invert(0);
   margin-top: 20px;
 }
-
+.MostC{
+  margin-left: 10px;
+}
 .MostC img {
   background-color: var(--color6);
   height: 225px;
@@ -355,7 +357,7 @@ flex-wrap: wrap;
 }
 }
 @media screen and (max-width:768px) {
-  
+
 }
 @media screen and (max-width:1024px) {
   .textsC h3, .textsC h4 {
