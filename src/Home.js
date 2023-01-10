@@ -9,7 +9,6 @@ import Top from './components/carroseu';
 import Top2 from './components/Top';
 import Footer from './components/Footer';
 import MyGallery from './components/carros';
-import AdComponent from './components/adsense';
 import Categories from './components/dragCat';
 import Mangas from './backend/mangas';
 

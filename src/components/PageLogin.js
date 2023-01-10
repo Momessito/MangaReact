@@ -1,5 +1,4 @@
 import User from '../backend/users';
-import Nav from './nav';
 
 function PageLogin() {
 
@@ -13,7 +12,6 @@ function PageLogin() {
     } catch (Error) {
       console.log(Error)
     }
-
   }
 
   const Register = async () => {
@@ -21,6 +19,8 @@ function PageLogin() {
     var password = document.getElementById('passReg').value
     var confpassword = document.getElementById('passRegC').value
     var nick = document.getElementById('NickReg').value
+    document.querySelector('.Login-Form').style.display = 'block'
+
 
     if (confpassword !== password) {
       document.getElementById('erro-reg').innerHTML = 'As senhas devem ser iguais'
@@ -31,6 +31,7 @@ function PageLogin() {
     } else if (user.length < 4) {
       document.getElementById('erro-reg').innerHTML = 'O usuario deve ter no minimo 5 digitos!'
     }
+    
     else {
       try {
         var register = document.getElementById('register')

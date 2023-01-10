@@ -2,12 +2,7 @@
   #search{
     margin-right: 40px !important;
   }
-  .itemC img {
-    border: 2px solid black;
-    width: 100%;
-    height: 200px;
-    border-radius: 15px 0px 15px 0px;
-  }
+
 #burger{
   margin-right: 0px !important;
 }
@@ -33,7 +28,7 @@
   .itemC{
     flex-direction: column;
     padding: 20px 10px;
-    width: 45%;
+    width: 45% !important;
     margin-left: 3px;
   }
   #search{
@@ -54,6 +49,12 @@
     }
 }
 @media screen and (max-width:425px) {
+  .itemC img {
+    border: 2px solid black;
+    width: 100% !important;
+    height: 200px;
+    border-radius: 15px 0px 15px 0px;
+  }
   .scrollH{
     width: 100%;
   }
@@ -157,7 +158,7 @@ margin-left: 65px;
 .itemC{
   flex-direction: column;
   padding:5px 2px;
-  width: 49%;
+  width: 49% !important;
   margin-left: 3px;
 
 }
@@ -271,7 +272,7 @@ flex-wrap: wrap;
   background-color: var(--color2);
 }
 .textsC{
-  width: 100%;}
+  width: 100% !important;}
 #Container2 h1{
   width: 100%;
 }
@@ -287,12 +288,6 @@ flex-wrap: wrap;
   width: 100%;
   margin-left: 50%;
   transform: translate(-50%);
-}
-.itemC img {
-  border: 2px solid black;
-  width: 100%;
-  height: 250px;
-  border-radius: 15px 0px 15px 0px;
 }
 .carroselImg{
   border: 2px solid black;
@@ -375,6 +370,8 @@ font-size:x-large;
   margin-right: 20px !important;
   transform: translate(0);
 }
+.fullscreen div{
+  display: none;}
 }
 @media screen and (max-width:520px) {
 #Profile{

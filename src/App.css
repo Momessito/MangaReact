@@ -80,9 +80,27 @@ nav .a:hover {
   cursor: pointer;
 
 }
+.fullscreen{
+  display: flex;
+  margin: 5px;
+  cursor: pointer;
+}
+.flex{
+  margin: 15px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.fullscreen div{
+  position: absolute;
+  top: 0;
+  margin-top: 85px;
+}
 
+.fullscreen div:last-child{
+  opacity: 0;
+}
 #nav2 {
-
   transition: padding 0.2s linear;
   z-index: 1000;
   display: flex;
@@ -99,7 +117,6 @@ nav .a:hover {
   align-items: center;
   box-shadow: 0px 0px 5px black;
   border-bottom: 2px solid black;
-
 }
 
 #nav2 h2 {
@@ -1848,10 +1865,8 @@ h1 {
   border-bottom: 5px solid var(--color7);
 }
 #Title{
+  margin: 0;
   color:  white;
-  margin: 5px;
-  margin-left: 200px;
-  margin-right: 200px;
   transform: translate(0);
 }
 .btne:active{
