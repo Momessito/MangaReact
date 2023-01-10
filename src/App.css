@@ -493,7 +493,7 @@ footer .footer-down-icon svg {
 
 
 }
-#ChangeImg{
+#ChangeImg, #ChangeNick, #ChangeEmail{
   display: none;
   width: 100%;
   height: 100vh;
@@ -503,6 +503,24 @@ footer .footer-down-icon svg {
   background-color: rgba(0, 0, 0, 0.425);
   color:  white;
   overflow: hidden;
+}
+#ChangeNick input{
+  margin-top: 100px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+#ChangeEmail input{
+  margin-top: 100px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+#ChangeNick button{
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+#ChangeEmail button{
+  margin-left: 50%;
+  transform: translate(-50%);
 }
 .Blacks{
   width: 100%;
@@ -522,9 +540,33 @@ transform: translate(-50%);
   background-color: var(--color1);
   
 }
-#Email{
-  margin-top: 50px;
-  text-align: center;
+#Email,#nick4,#Pass{
+  text-align: left;
+  font-size: larger;
+  overflow: hidden;
+  width: 100%;
+}
+#informations{
+  margin-top: 60px;
+  margin-left: 50%;
+  transform: translate(-50%);
+  width: 60%;
+  overflow: hidden;
+  padding: 5px 20px;
+  background-color: var(--color7);
+  color: white;
+}
+#informations div{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+#informations div svg{
+  margin-left: 5px;
+  margin-top: -5px;
+}
+#informations svg{
+  cursor: pointer;
 }
 #Profile{
   width: 30%;
@@ -545,6 +587,8 @@ transform: translate(-50%);
 }
 #nick2{
   font-weight: bold;
+  overflow: hidden;
+  width: 100%;
 }
 .footer-container3 {
   margin-left: 10%;
@@ -1693,7 +1737,7 @@ h1 {
   display: none;
 }
 #user img{
-  margin-top: -10px;
+  margin-top: -13px;
   width: 55px;
   height: 55px;
   border-radius: 50%;

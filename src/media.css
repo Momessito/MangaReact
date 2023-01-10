@@ -362,12 +362,23 @@ flex-wrap: wrap;
 .carousel{
   width: 100%;
 }
+.score{
+  font-size: smaller;
+}
+.chapter-visual h1{
+font-size:x-large;
+}
 #Title{
   color:  white;
   margin: 5px;
   margin-left: 20px !important;
   margin-right: 20px !important;
   transform: translate(0);
+}
+}
+@media screen and (max-width:520px) {
+#Profile{
+  width: 50%;
 }
 }
 @media screen and (max-width:768px) {
@@ -377,9 +388,11 @@ flex-wrap: wrap;
     margin-left: 100px;
     margin-right: 100px;
     transform: translate(0);
+    overflow: hidden;
   }
-}
-@media screen and (max-width:1024px) {
+  #informations{
+    width: 90%;
+  }
   .textsC h3, .textsC h4 {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -397,10 +410,24 @@ flex-wrap: wrap;
     align-items: center;
 }
 .all2 {
-  width: 80%;
+  width: 90% !important;
 }
-.all2:last-child {
-  width: 80%;
+}
+@media screen and (max-width:1024px) {
+  .itemC{
+    width: 100%;
+  }
+  .textsC{
+    width: 30%;
+  }
+  .all2{
+    width: 45%;
+  }
+.all2 {
+  width: 50%;
+}
+.all2:last-child{
+  width: 40%;
 }
 .Text-right{
   width: 200px;
