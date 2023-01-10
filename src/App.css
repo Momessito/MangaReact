@@ -773,7 +773,14 @@ transform: translate(-50%);
   justify-content: center;
   align-items: flex-start;
 }
-
+#minimize{
+  transition: 0.2s all;
+  padding: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+}
 .MostC {
   color: var(--color2);
   display: flex;
@@ -1479,18 +1486,34 @@ transform: translate(-50%);
   margin-left: 50%;
   transform: translate(-50%);
 }
-
+.scrollH2{
+  display: flex;
+}
+#minimize:hover{
+  background-color: rgba(189, 189, 189, 0.24);
+  
+}
+.textScroll{
+  position: absolute;
+  top: 0;
+  margin-left: 50px;
+  margin-top: 5px;
+  color: white;
+}
 .scrollH {
+  transition: 0.2s all;
   width: 75%;
   margin-left: 50%;
   transform: translate(-50%);
   margin-top: 43px;
-  height: 250px;
+  height: 300px;
   display: flex;
+  flex-direction: column;
   overflow-y: hidden !important;
   border: 1px solid var(--color1);
   background-color: var(--color1);
   padding: 10px;
+  padding-top: 40px;
 }
 
 .ScrollTexts {

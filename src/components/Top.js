@@ -9,7 +9,7 @@ const Top2 = () => {
   const getPosts = async () => {
     try {
       const response = await axios.get(
-        "https://q4l8x4.deta.dev/top"
+        "https://q4l8x4.deta.dev/mostread/total"
       );
 
 
@@ -37,7 +37,7 @@ const Top2 = () => {
 
   return <div className="Container" id="Container3">
     <h1>
-      Mangás bem avaliados
+      Mangás Mais Lidos
     </h1>
 
     {posts.length === 0 ? <p>Carregando</p> : (
