@@ -83,7 +83,7 @@ function Nav() {
               </ul>
               <Link reloadDocument>
                 <div className='wr2'></div>
-                <small onClick={Sair}  >Sair</small>
+                <small onClick={Sair}>Sair</small>
               </Link>
             </div>
           </div>

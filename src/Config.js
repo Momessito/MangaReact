@@ -25,11 +25,24 @@ function Config() {
 
     }
 
-    function foi(){
-        var img = document.getElementById('inputImg')
-        console.log(img.value)
-    }
+
+
+        const foi = async () => {
+            try {
+                var img = document.getElementById('inputImg')
+                console.log(img.value)
+    
+
+               const useredit = await User.getUser();
+                useredit.img = img.value;
+               User.editUser(useredit); 
+            } catch (Error) {
+                console.log(Error)
+            }
+        }
+
 var istrue = true
+
     function show(){
         if(istrue === true){
         document.getElementById('ChangeImg').style.display = 'block'
