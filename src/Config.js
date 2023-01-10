@@ -14,6 +14,11 @@ function Config() {
             if (userInfo.data.img === '') {
                 document.getElementById('icon2').src = 'https://pbs.twimg.com/media/FCvrblIX0AI6sMJ.jpg'
             }
+
+            // // teste
+            // const useredit = await User.getUser();
+            // useredit.img = "https://i.pinimg.com/736x/9a/eb/f6/9aebf6d9d179073ca81495b9deaf7881.jpg";
+            // User.editUser(userANtigo); 
         } catch (Error) {
             console.log(Error)
         }
