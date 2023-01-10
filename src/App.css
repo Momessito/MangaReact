@@ -1807,8 +1807,8 @@ h1 {
 #Title{
   color:  white;
   margin: 5px;
-  margin-left: 25px;
-  margin-right: 25px;
+  margin-left: 200px;
+  margin-right: 200px;
   transform: translate(0);
 }
 .btne:active{

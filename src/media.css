@@ -11,6 +11,13 @@
 #burger{
   margin-right: 0px !important;
 }
+#Title{
+  color:  white;
+  margin: 5px;
+  margin-left: 0px !important; 
+  margin-right: 0px !important;
+  transform: translate(0);
+}
 .Logo{
   margin-left: 5px !important;
 }
@@ -355,9 +362,22 @@ flex-wrap: wrap;
 .carousel{
   width: 100%;
 }
+#Title{
+  color:  white;
+  margin: 5px;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+  transform: translate(0);
+}
 }
 @media screen and (max-width:768px) {
-
+  #Title{
+    color:  white;
+    margin: 5px;
+    margin-left: 100px;
+    margin-right: 100px;
+    transform: translate(0);
+  }
 }
 @media screen and (max-width:1024px) {
   .textsC h3, .textsC h4 {
