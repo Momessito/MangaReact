@@ -435,6 +435,8 @@ footer .footer-down-icon svg {
   height: 100px;
   border-radius: 50%;
   border: 2px solid white;
+  cursor: pointer;
+
 }
 .pic{
   margin-left: 20px;
@@ -442,9 +444,11 @@ footer .footer-down-icon svg {
   height: 100px;
   width: 100px;
   border-radius: 50%;
+  cursor: pointer;
 
 }
 .p{
+  cursor: pointer !important;
   height: 100px;
   border-radius: 50%;
   align-items: center;
@@ -469,6 +473,8 @@ footer .footer-down-icon svg {
 .pic:hover .p {
   visibility: visible;
   opacity: 1;
+
+
 }
 #ChangeImg{
   display: none;

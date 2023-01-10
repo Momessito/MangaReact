@@ -21,7 +21,8 @@ function Config() {
     }
 
     function foi(){
-
+        var img = document.getElementById('inputImg')
+        console.log(img.value)
     }
 var istrue = true
     function show(){
@@ -41,15 +42,16 @@ var istrue = true
             <Nav />
             <div id="ChangeImg" >
             <div className="Blacks" onClick={show}></div>
-                <div>             
-                    <h2>Escolha sua imagem</h2>   
-                    <input type='file' onChange={foi}/>
+                <div >             
+                    <h2>Digite o Link da sua imagem</h2>   
+                    <input type='text' id='inputImg'/>
+                    <button onClick={foi}>Enviar</button>
                 </div>
 
             </div>
             <div className="configAll">
                 <div id="Profile">
-                    <div className="pic" onClick={show}>
+                    <div className="pic" onClick={show} >
                         <img id="icon2" />
                         <p className="p">Mudar imagem</p>
                     </div>
