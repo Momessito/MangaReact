@@ -20,7 +20,7 @@ class User {
         }
     }
 
-    static async getUser(){
+    static async getUser() {
         try {
             const url = `${baseUrl}/users/`;
             const token = localStorage.getItem('token');
@@ -48,8 +48,27 @@ class User {
             console.log(err);
         }
     }
-    
 
+    static async editUser(user) {
+        const { nickname, img, email } = user;
+        try {
+            const url = `${baseUrl}/users/`;
+            const token = localStorage.getItem('token');
+            const body = {
+                "nickname": nickname,
+                "img": img,
+                "email": email
+            }
+            const response = await axios.put(url, body, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     static async Exit() {
         try {
