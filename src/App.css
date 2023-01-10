@@ -70,13 +70,11 @@ nav .a:hover {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 5px 5px;
-  margin-top: 5px;
+  margin-top:15px;
   margin-left: 40px;
   border-radius: 55px;
   background-color: none;
 }
-
 .Logo:hover {
   background-color: rgba(189, 189, 189, 0.24);
   cursor: pointer;
@@ -1695,8 +1693,9 @@ h1 {
   display: none;
 }
 #user img{
-  width: 45px;
-  height: 45px;
+  margin-top: -10px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   border: 2px solid white;
 }
