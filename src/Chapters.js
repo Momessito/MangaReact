@@ -19,11 +19,11 @@ const Chapters = () => {
                 let chapters = await Mangas.getChapters(mangaId, page);
                 if (chapters.length > 0) {
                     result = result.concat(chapters);
+                    setposts(result);
                     continue;
                 }
                 break;
             }
-            setposts(result);
         } catch (err) {
             console.error(err);
         }
