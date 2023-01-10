@@ -152,17 +152,18 @@ function PageLogin() {
   function registerApear() {
 
     var register = document.getElementById('register')
-
     register.style.transform = 'translateY(-7px)'
     register.style.opacity = '1'
+    document.querySelector('.Login-Form').style.display = 'none'
 
   }
   function CloseReg() {
-
     var register = document.getElementById('register')
 
     register.style.transform = 'translateY(-2000px)'
     register.style.opacity = '0'
+    document.querySelector('.Login-Form').style.display = 'block'
+
   }
 }
 

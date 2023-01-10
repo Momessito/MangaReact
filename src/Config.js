@@ -36,6 +36,7 @@ function Config() {
                const useredit = await User.getUser();
                 useredit.img = img.value;
                User.editUser(useredit); 
+               window.location.href = '/config';
             } catch (Error) {
                 console.log(Error)
             }
