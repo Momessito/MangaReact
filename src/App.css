@@ -1493,6 +1493,10 @@ transform: translate(-50%);
   background-color: rgba(189, 189, 189, 0.24);
   
 }
+.ad-side{
+  height: 200px;
+  width: 200px;
+}
 .textScroll{
   position: absolute;
   top: 0;
