@@ -32,6 +32,7 @@ function Categories() {
       document.querySelector('.scrollH2').style.display = 'none'
       document.querySelector('.scrollH').style.height = '40px'
       document.querySelector('.scrollH').style.padding = '0'
+      document.querySelector('.scrollH').style.paddingLeft = '10px'
       document.getElementById('minimize').style.rotate = '180deg'
       istrue = false
     }else{
