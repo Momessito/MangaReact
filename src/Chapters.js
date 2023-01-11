@@ -11,7 +11,6 @@ const Chapters = () => {
     const location = useLocation();
     const mangaId = location.pathname.substring(7)
     var istrue = true
-    var istrue2 = true
 
     const [posts, setposts] = useState([]);
 
@@ -42,6 +41,7 @@ const Chapters = () => {
     const getimg = async () => {
         const data = await Mangas.getMangaById(mangaId);
         setimg(data)
+
     }
     useEffect(() => {
         getimg();
@@ -49,33 +49,31 @@ const Chapters = () => {
 
 
 
-
+    
 
 
 
     const favoritar = async () => {
         try {
-            if (istrue2 === true) {
+
                 var title = document.getElementById('TitleManga').innerHTML;
                 await User.addFavorite(title, mangaId)
-                istrue2 = false
-                document.getElementById('favosvg2').style.display = 'block'
-                document.getElementById('favosvg1').style.display = 'none'
-            } else if (istrue2 === false ) {
-                var title = document.getElementById('TitleManga').innerHTML;
-                await User.removeFavorite(mangaId)
-                istrue2 = true
-                document.getElementById('favosvg1').style.display = 'block'
-                document.getElementById('favosvg2').style.display = 'none'
-            }
-
-
-
-
+                document.querySelector('.favo').style.display = 'none';
+                document.querySelector('.favo2').style.display = 'flex';
         } catch (Error) {
-          console.log(Error)
+            console.log(Error)
         }
-      }
+    }
+    const removerfav = async () => {
+        try {
+                await User.removeFavorite(mangaId)
+                document.querySelector('.favo').style.display = 'flex';
+                document.querySelector('.favo2').style.display = 'none';
+            
+        } catch (Error) {
+            console.log(Error)
+        }
+    }
 
 
 
@@ -93,14 +91,17 @@ const Chapters = () => {
                 <div className='chapter-visual'>
                     <img width='300px' src={img.image} alt={img.id} />
                     <div className='favo' onClick={favoritar}>Favoritar
-                        <svg id='favosvg1' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star" viewBox="0 0 16 16">
-                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                        </svg>
-
-                        <svg id='favosvg2' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <svg id='favosvg2' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                         </svg>
                     </div>
+                    <div className='favo2' onClick={removerfav}>Favoritar
+
+                        <svg id='favosvg1' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star" viewBox="0 0 16 16">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                        </svg>
+                    </div>
+
                     <div className='info'>
                         <h1 id='TitleManga'>{img.title}</h1>
                         <h2>Autor: {img.author}</h2>
@@ -116,7 +117,7 @@ const Chapters = () => {
                     </div>
                     <div className='filterI'><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--color2)" className="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                    </svg><input placeholder='Pesquisar...' id='pesquisa' onKeyUpCapture={pesquisar} />
+                    </svg><input placeholder='Pesquisar...' id='pesquisa' />
                     </div>
 
                 </div>
@@ -125,7 +126,7 @@ const Chapters = () => {
                     {posts.length === 0 ? <p id='load'>Carregando</p> : (
                         posts.map((post) => (
                             <Link to={'/chapter/' + post.release_id} key={post.release_id}>
-                                <div className='ChaptersCard' id='ChaptersCard'>
+                                <div className='ChaptersCard' id='ChaptersCard' onClick={lido}>
                                     <h4 id='capit'><span>Capitulo: </span>{post.number} {post.chapter_name}</h4>
                                     <small>{post.date}</small>
                                 </div>
@@ -137,8 +138,9 @@ const Chapters = () => {
         </div>
     )
 
-    function pesquisar() {
 
+    function lido(e) {
+        e.target.styte.backgroundColor = 'black'
 
     }
 
