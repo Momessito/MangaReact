@@ -149,6 +149,20 @@ class User {
             console.log(err);
         }
     }
+
+    static async isFavorited(id) {
+        try {
+            const response = await this.getFavorites();
+            const size = response.data.items.length;
+            for (let i = 0; i < size; i++){
+                const mangaId = response.data.items[i].manga_id;
+                if (mangaId == id) return true;
+            }
+            return false;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 export default User;
