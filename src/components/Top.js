@@ -36,33 +36,35 @@ const Top2 = () => {
   }
 
   return <div className="Container" id="Container3">
-    <h1>
-      Mangás Mais Lidos
-    </h1>
+    <div className="TopText">    
+    <h1>Mangás Mais Lidos</h1>
+    
+    </div>
+
 
     {posts.length === 0 ? <p>Carregando</p> : (
       posts.map((post) => (
         <div key={post.title}>
           <Link to={'/manga/' + post.id} key={post.id} >
-          <div className="MostC">
-            <img
-              alt="ad-img"
-              width={300}
-              src="https://via.placeholder.com/300x200/8d99ae"
-              style={{ display: isLoading ? "block" : "none" }}
-            />
-            <img src={post.image} alt="logo"
-              style={{ display: isLoading ? "none" : "block" }}
-              onLoad={onLoad} />
-            <div className="texts2">
-              <h5>{post.title}</h5>
-              <div className="cate2">
-                <h5>⭐{post.score}</h5>
+            <div className="MostC">
+              <img
+                alt="ad-img"
+                width={300}
+                src="https://via.placeholder.com/300x200/8d99ae"
+                style={{ display: isLoading ? "block" : "none" }}
+              />
+              <img src={post.image} alt="logo"
+                style={{ display: isLoading ? "none" : "block" }}
+                onLoad={onLoad} />
+              <div className="texts2">
+                <h5>{post.title}</h5>
+                <div className="cate2">
+                  <h5>⭐{post.score}</h5>
+                </div>
+                <h4>{post.author}</h4>
+                <h6 className="cap">Cap.{post.chapters_count}</h6>
               </div>
-              <h4>{post.author}</h4>
-              <h6 className="cap">Cap.{post.chapters_count}</h6>
             </div>
-          </div>
           </Link>
         </div>
       ))

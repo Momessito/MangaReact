@@ -652,6 +652,25 @@ transform: translate(-50%);
   margin: 0px 5px;
   padding: 10px;
 }
+.categories2 {
+  border: 1px solid var(--color2);
+  width: 150px;
+  background-color: var(--color7);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  color: var(--color2);
+  margin: 0px 5px;
+  padding: 10px;
+}
+.categories2 img{
+  border-radius: 5px;
+  border: 1px solid var(--color2);
+  margin-top: 20px;
+  margin-bottom: 35px;
+  width: 120px;
+}
 
 .categories img {
   height: 170px;
@@ -1908,12 +1927,12 @@ h1 {
   border-bottom: 5px solid var(--color7);
 }
 .Last h1{
-  font-size: smaller;
+  font-size: medium;
   text-align: left;
   color: var(--color1);
   padding: 5px 10px;
   background-color: var(--color2);
-  width: 35%;
+  width: 45%;
   white-space: nowrap;
   overflow: hidden;
   border-radius: 0px 0px 10px 0px;
@@ -1937,7 +1956,7 @@ h1 {
   border-top: 2px solid var(--color2);
 }
 .Last3 h1{
-  font-size: smaller;
+  font-size: medium;
   text-align: center;
   color: var(--color1);
   padding: 5px 10px;
@@ -1946,6 +1965,25 @@ h1 {
   white-space: nowrap;
   overflow: hidden;
   border-radius: 0px 0px 10px 10px;
+}
+.TopText{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid var(--color2);
+  margin: 0;
+}
+.TopText h1{
+  margin: 0;
+  font-size: medium;
+  text-align: center;
+  color: var(--color1);
+  padding: 5px 10px;
+  background-color: var(--color2);
+  width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 10px 10px 0px 0px;
 }
 .btne{
   color: white;

@@ -77,7 +77,7 @@ function Home() {
         </div>
         <div className='all2'>
           <div className='Top'>
-          <div className="Last3">            <h1>Últimos Mangás adicionados</h1> 
+          <div className="Last3">            <h1>Populares</h1> 
             </div>
             <Top />
 

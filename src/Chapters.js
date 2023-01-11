@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Nav from './components/nav';
 import SideMenu from './components/sideMenu';
 import Mangas from './backend/mangas';
+import User from './backend/users';
+import Categories from './components/dragCat';
 
 const Chapters = () => {
     const location = useLocation();
@@ -44,17 +46,42 @@ const Chapters = () => {
     useEffect(() => {
         getimg();
     }, []);
-    function favoritar() {
-        if (istrue2 === true) {
-            istrue2 = false
-            document.getElementById('favosvg2').style.display = 'block'
-            document.getElementById('favosvg1').style.display = 'none'
-        } else if (istrue2 === false) {
-            istrue2 = true
-            document.getElementById('favosvg1').style.display = 'block'
-            document.getElementById('favosvg2').style.display = 'none'
+
+
+
+
+
+
+
+    const favoritar = async () => {
+        try {
+            if (istrue2 === true) {
+                var title = document.getElementById('TitleManga').innerHTML;
+                await User.addFavorite(title, mangaId)
+                istrue2 = false
+                document.getElementById('favosvg2').style.display = 'block'
+                document.getElementById('favosvg1').style.display = 'none'
+            } else if (istrue2 === false ) {
+                var title = document.getElementById('TitleManga').innerHTML;
+                await User.removeFavorite(mangaId)
+                istrue2 = true
+                document.getElementById('favosvg1').style.display = 'block'
+                document.getElementById('favosvg2').style.display = 'none'
+            }
+
+
+
+
+        } catch (Error) {
+          console.log(Error)
         }
-    }
+      }
+
+
+
+
+
+
 
     return (
 
@@ -75,7 +102,7 @@ const Chapters = () => {
                         </svg>
                     </div>
                     <div className='info'>
-                        <h1>{img.title}</h1>
+                        <h1 id='TitleManga'>{img.title}</h1>
                         <h2>Autor: {img.author}</h2>
                         <h3 className='score'>Nota: {img.score}⭐</h3>
                         <h4>Descrição: {img.description}</h4>
