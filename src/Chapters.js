@@ -58,15 +58,19 @@ const Chapters = () => {
 
             var title = document.getElementById('TitleManga').innerHTML;
             await User.addFavorite(title, mangaId)
+            document.querySelector('.favo').style.display = 'flex';
+            document.querySelector('.favo2').style.display = 'none';
         } catch (Error) {
             console.log(Error)
         }
     }
-
+    var favo
     const isfavor = async () => {
         try {
-            var favo = await User.isFavorited(mangaId)
-            if (favo === true) {
+            favo = await User.isFavorited(mangaId)
+
+            if (favo != null) {
+                
                 document.querySelector('.favo').style.display = 'flex';
                 document.querySelector('.favo2').style.display = 'none';
 
@@ -74,17 +78,19 @@ const Chapters = () => {
                 document.querySelector('.favo').style.display = 'none';
                 document.querySelector('.favo2').style.display = 'flex';
             }
+            return favo
         } catch (Error) {
             console.log(Error)
         }
     }
 
-
     const removerfav = async () => {
         try {
-            console.log(User.removeFavorite(0))
-            await User.removeFavorite(0)
-
+            var sample2 = await isfavor();
+            var deletar = await User.removeFavorite(sample2)
+            document.querySelector('.favo').style.display = 'none';
+            document.querySelector('.favo2').style.display = 'flex';
+            console.log(deletar);
 
         } catch (Error) {
             console.log(Error)
