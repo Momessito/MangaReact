@@ -73,7 +73,7 @@ function Home() {
       <div className='all'>
         <div className='all2'>
           <List />
-          <button id='carregar' onClick={carregar}>Carregar Mais</button>
+          <button id='carregar' className='btne' onClick={carregar}>Carregar Mais</button>
         </div>
         <div className='all2'>
           <div className='Top'>
@@ -88,7 +88,7 @@ function Home() {
           />
           
           <Top2 />
-          <button id='carregarb' onClick={carregar3}>Carregar Mais</button>
+          <button id=' carregarb' className='btne' onClick={carregar3}>Carregar Mais</button>
         </div>
       </div>
       <div>
