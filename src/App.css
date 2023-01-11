@@ -1907,6 +1907,46 @@ h1 {
   border-radius: 20px;
   border-bottom: 5px solid var(--color7);
 }
+.Last h1{
+  font-size: smaller;
+  text-align: left;
+  color: var(--color1);
+  padding: 5px 10px;
+  background-color: var(--color2);
+  width: 35%;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 0px 0px 10px 0px;
+}
+.Last2{
+  color: var(--color2);
+}
+.Last  {
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  border-top: 2px solid var(--color2);
+}
+.Last3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin-left: 50%;
+  transform: translate(-50%);
+  border-top: 2px solid var(--color2);
+}
+.Last3 h1{
+  font-size: smaller;
+  text-align: center;
+  color: var(--color1);
+  padding: 5px 10px;
+  background-color: var(--color2);
+  width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 0px 0px 10px 10px;
+}
 .btne{
   color: white;
   transition: 0.2s all;

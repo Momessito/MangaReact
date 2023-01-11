@@ -19,17 +19,20 @@ const List = () => {
         getposts();
     }, []);
 
-    
+
 
     return (
         <div className="Container" id="Container">
-            <h1>Últimos Mangás adicionados</h1>
+            <div className="Last">            <h1>Últimos Mangás adicionados</h1> 
+            <div className="Last2">Hoje</div>
+            </div>
+
 
             {posts.length === 0 ? <p>Carregando</p> : (
                 posts.map((post) => (
 
                     <div onLoad={categorias} key={post.id} className='itemC'>
-                        <Link to={'/manga/'+post.id} key={post.id} >
+                        <Link to={'/manga/' + post.id} key={post.id} >
 
                             <img alt='logo' src={post.image} id='imagemca' />
                             <div className="textsC" id="textsC">

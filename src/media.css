@@ -105,10 +105,6 @@
 left: 0;
 margin-left: 65px;
   }
-  .Container h1 {
-    font-size: 4vh;
-    color: var(--color2);
-  }
   .h1{
     font-size: 5vh !important;
   }
