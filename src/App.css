@@ -1909,6 +1909,7 @@ h1 {
 }
 .btne{
   color: white;
+  transition: 0.2s all;
 }
 #Title{
   margin: 0;
@@ -1921,6 +1922,7 @@ h1 {
 }
 .btne:hover{
   background-color: var(--color8);
+  transition: 0.2s all;
 }
 .filterDown {
   margin: 10px 0px;
