@@ -6,6 +6,7 @@ class User {
 
     constructor() { }
 
+    // USER
     static async login(email, password) {
         try {
             const url = `${baseUrl}/login/`;
@@ -70,11 +71,80 @@ class User {
         }
     }
 
+    static async editPassword(old_password, new_password) {
+        try {
+            const url = `${baseUrl}/userpassword/`;
+            const body = {
+                "old_password": old_password,
+                "new_password": new_password
+            }
+            const token = localStorage.getItem('token');
+            const response = await axios.put(url, body, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     static async Exit() {
         try {
-            console.log('saiu')
-            localStorage.setItem('token', '')
+            console.log('saiu');
+            localStorage.setItem('token', '');
 
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    // FAVORITE
+    static async addFavorite(name, id) {
+        try {
+            const url = `${baseUrl}/favorites/`;
+            const body = {
+                "name": name,
+                "manga_id": id
+            }
+            const token = localStorage.getItem('token');
+            const response = await axios.post(url, body, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    static async removeFavorite(id) {
+        try {
+            const url = `${baseUrl}/favorites/${id}/`;
+            const token = localStorage.getItem('token');
+            const response = await axios.delete(url, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    static async getFavorites() {
+        try {
+            const url = `${baseUrl}/favorites/`;
+            const token = localStorage.getItem('token');
+            const response = await axios.get(url, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
         } catch (err) {
             console.log(err);
         }
