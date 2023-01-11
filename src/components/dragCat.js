@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import ScrollContainer from 'react-indiana-drag-scroll'
 import { Link } from 'react-router-dom';
+import Mangas from '../backend/mangas';
 
 function Categories() {
   const [items, setitems] = useState([]);
 
   const getItems = async () => {
     try {
-      const response = await axios.get(
-        "https://q4l8x4.deta.dev/mostread/total"
-      );
-
-
-
-      const data = response.data;
-
+      const data = await Mangas.getFavorites();
       setitems(data)
     } catch (Error) {
       console.log(Error)

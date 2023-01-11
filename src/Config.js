@@ -4,6 +4,7 @@ import React from "react"
 import User from "./backend/users"
 
 function Config() {
+
     const name = async () => {
         try {
             const userInfo = await User.getUser();
@@ -11,16 +12,10 @@ function Config() {
             document.getElementById('Email').innerHTML = 'Email: ' + userInfo.data.email
             document.getElementById('nick4').innerHTML = 'Nick: ' + userInfo.data.nickname
             document.getElementById('Pass').innerHTML = 'Password: *******'
-            document.getElementById('icon2').src = userInfo.data.img
-            console.log(userInfo)
+            document.getElementById('icon2').src = userInfo.data.img;
             if (userInfo.data.img === '') {
                 document.getElementById('icon2').src = 'https://pbs.twimg.com/media/FCvrblIX0AI6sMJ.jpg'
             }
-
-            // // teste
-            // const useredit = await User.getUser();
-            // useredit.img = "https://i.pinimg.com/736x/9a/eb/f6/9aebf6d9d179073ca81495b9deaf7881.jpg";
-            // User.editUser(userANtigo); 
         } catch (Error) {
             console.log(Error)
         }
