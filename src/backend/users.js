@@ -156,9 +156,10 @@ class User {
             const size = response.data.items.length;
             for (let i = 0; i < size; i++){
                 const mangaId = response.data.items[i].manga_id;
-                if (mangaId == id) return true;
+                const key = response.data.items[i].key;
+                if (mangaId == id) return key;
             }
-            return false;
+            return null;
         } catch (err) {
             console.log(err);
         }
