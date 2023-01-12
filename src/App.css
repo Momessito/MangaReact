@@ -485,7 +485,7 @@ input:focus {
   background-color: var(--color1);
   height: 90.9vh;
 }
-#icon2{
+#icon2,#icon3{
   width: 100px;
   height: 100px;
   border-radius: 50%;

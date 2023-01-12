@@ -12,7 +12,7 @@ function Config() {
             document.getElementById('Email').innerHTML = 'Email: ' + userInfo.data.email
             document.getElementById('nick4').innerHTML = 'Nick: ' + userInfo.data.nickname
             document.getElementById('Pass').innerHTML = 'Password: *******'
-            document.getElementById('icon2').src = userInfo.data.img;
+            document.getElementById('icon3').src = userInfo.data.img;
             if (userInfo.data.img === '') {
                 document.getElementById('icon2').src = 'https://pbs.twimg.com/media/FCvrblIX0AI6sMJ.jpg'
             }
@@ -130,7 +130,7 @@ function Config() {
             <div className="configAll">
                 <div id="Profile">
                     <div className="pic" onClick={show} >
-                        <img id="icon2" alt="MyIcon" />
+                        <img id="icon3" alt="MyIcon" />
                         <p className="p">Mudar imagem</p>
                     </div>
 
