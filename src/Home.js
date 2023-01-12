@@ -88,7 +88,7 @@ function Home() {
           <div className='container-ad'>
             <div className="ad-class">
               {/* add your slot id  */}
-              <GoogleAds slot="5815353327"/>
+              <GoogleAds slot="2774095310"/>
             </div>
           </div>
 
