@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import MyGallery from './components/carros';
 import Categories from './components/dragCat';
 import Mangas from './backend/mangas';
-import {Adsense} from '@ctrl/react-adsense';
+import GoogleAds from './components/GoogleAds';
 
 function Home() {
   var isH = false
@@ -77,7 +77,7 @@ function Home() {
         </div>
         <div className='all2' id='down-animation2'>
           <div className='Top'>
-          <div className="Last3">            <h1>Populares</h1> 
+            <div className="Last3">            <h1>Populares</h1>
             </div>
             <Top />
 
@@ -85,13 +85,12 @@ function Home() {
 
           <Top2 />
           <button id='carregarb' className='carregar-mais' onClick={carregar3}>Carregar Mais</button>
-          <Adsense
-  client="ca-pub-3330889871238840"
-  slot="5815353327"
-  style={{ display: 'block', width: '100%' , height: '400px'}}
-  layout="in-article"
-  format="fluid"
-/>
+          <div className='container-ad'>
+            <div className="ad-class">
+              {/* add your slot id  */}
+              <GoogleAds slot="5815353327" />
+            </div>
+          </div>
 
         </div>
       </div>
