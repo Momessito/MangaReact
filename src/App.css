@@ -795,7 +795,7 @@ transform: scale(1.2);
 }
 
 .textsC {
-  width: calc(100% - 170px);
+  width: 70% !important;
   margin-left: 25px;
 }
 
