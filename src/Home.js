@@ -48,22 +48,22 @@ function Home() {
         <h2 onClick={function descer2() {
           document.body.scrollTop = 2000;
           document.documentElement.scrollTop = 1200;
-        }}>Mais Lidos Da Semana</h2>
+        }}>Favoritos</h2>
         <div className='wr'></div>
         <h2 onClick={function descer2() {
           document.body.scrollTop = 2000;
           document.documentElement.scrollTop = 700;
-        }}>Mangas mais lidos</h2>
+        }}>Últimos adicionados</h2>
         <div className='wr'></div>
         <h2 onClick={function descer2() {
           document.body.scrollTop = 2000;
           document.documentElement.scrollTop = 500;
-        }}>Recém adicionados</h2>
+        }}>Populares</h2>
         <div className='wr'></div>
         <h2 onClick={function descer2() {
           document.body.scrollTop = 2000;
           document.documentElement.scrollTop = 2000;
-        }}>Bem avaliados</h2>
+        }}>Mais Lidos</h2>
       </nav>
       <div className='carro'>
         <MyGallery />
@@ -71,11 +71,11 @@ function Home() {
       <Categories />
 
       <div className='all'>
-        <div className='all2'>
+        <div className='all2' id='down-animation1'>
           <List />
-          <button id='carregar' className='btne' onClick={carregar}>Carregar Mais</button>
+          <button id='carregar' className='carregar-mais' onClick={carregar}>Carregar Mais</button>
         </div>
-        <div className='all2'>
+        <div className='all2' id='down-animation2'>
           <div className='Top'>
           <div className="Last3">            <h1>Populares</h1> 
             </div>
@@ -89,7 +89,7 @@ function Home() {
           />
           
           <Top2 />
-          <button id=' carregarb' className='btne' onClick={carregar3}>Carregar Mais</button>
+          <button id='carregarb' className='carregar-mais' onClick={carregar3}>Carregar Mais</button>
         </div>
       </div>
       <div>
@@ -107,27 +107,15 @@ function Home() {
     if (isH === false) {
       isH = true
       background.style.height = 'auto'
+      document.documentElement.scrollTop = 0;
+      document.getElementById('down-animation1').style.animation = 'scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
+
       button.innerText = 'Carregar Menos'
     } else {
       isH = false
       background.style.height = '200vh'
       button.innerText = 'Carregar Mais'
-
-    }
-  }
-
-  function carregar2() {
-    var background = document.getElementById('Container2');
-    var button = document.getElementById('carregard')
-
-    if (isH === false) {
-      isH = true
-      background.style.height = 'auto'
-      button.innerText = 'Carregar Menos'
-    } else {
-      isH = false
-      background.style.height = '50vh'
-      button.innerText = 'Carregar Mais'
+      document.getElementById('down-animation1').style.animation = 'scale-in-ver-bottom2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
 
     }
   }
@@ -137,12 +125,15 @@ function Home() {
 
     if (isH === false) {
       isH = true
+      document.documentElement.scrollTop = 0;
+      document.getElementById('down-animation2').style.animation = 'scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
       background.style.height = 'auto'
-      button.innerText = 'Carregar Menos'
+      button.innerHTML = 'Carregar Menos'
     } else {
       isH = false
+      document.getElementById('down-animation2').style.animation = 'scale-in-ver-bottom2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
       background.style.height = '90vh'
-      button.innerText = 'Carregar Mais'
+      button.innerHTML = 'Carregar Mais'
 
     }
   }

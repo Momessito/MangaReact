@@ -1,11 +1,6 @@
 @media screen and (max-width:320px) {
-  #search{
-    margin-right: 40px !important;
-  }
 
-#burger{
-  margin-right: 0px !important;
-}
+
 #Title{
   color:  white;
   margin: 5px;
@@ -13,9 +8,7 @@
   margin-right: 0px !important;
   transform: translate(0);
 }
-.Logo{
-  margin-left: 5px !important;
-}
+
 #nav2{
   overflow-y: hidden;
 }
@@ -25,24 +18,10 @@
 
 }
 @media screen and (max-width:375px) {
-  .itemC{
-    flex-direction: column;
-    padding: 20px 10px;
-    width: 45% !important;
-    margin-left: 3px;
-  }
-  #search{
-    margin-right: 56px !important;
-  }
-  .Logo{
-    margin-left: 5px !important;
-  }
   #nav2 h2{
     font-size: 0.5rem
   }
-#burger{
-  margin-right: 17px !important;
-}
+
 #Login{
   left: 0;
   margin-left: 50px;
@@ -50,8 +29,9 @@
 }
 @media screen and (max-width:425px) {
   .itemC img {
-    border: 2px solid black;
-    width: 100% !important;
+    width: 97% !important;
+    margin-left: 50%;
+    transform: translate(-50%);
     height: 200px;
     border-radius: 15px 0px 15px 0px;
   }
@@ -131,7 +111,7 @@ margin-left: 65px;
     animation: slide-in-fwd-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
   #burger{
-    margin-right: 25px;
+    margin-right: 5%;
   }
   .all{
     flex-direction: column !important;
@@ -152,7 +132,7 @@ margin-left: 65px;
   flex-direction: column;
   padding:5px 2px;
   width: 49% !important;
-  margin-left: 3px;
+  margin: 0.5%;
 
 }
 .itemC a{
@@ -189,7 +169,7 @@ margin-left: 65px;
 }
 .logo-img {
   display: block;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 #Container3{
   flex-direction: column;
@@ -205,7 +185,7 @@ flex-wrap: nowrap;
   display: none;
 }
 #search{
-  margin-right: 80px;
+  margin-right: 15%;
 }
 .carro .carousel-control-next-icon {
     filter: invert(0);
@@ -214,9 +194,15 @@ flex-wrap: nowrap;
 .carro .carousel-control-prev-icon {
   filter: invert(0);
   margin-top: 20px;
-}
+} 
 .MostC{
-  margin-left: 10px;
+  margin:10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: var(--color7);
+  padding: 10px 5px;
+  border-radius: 5px;
+  display: flex;
 }
 .MostC img {
   background-color: var(--color6);
@@ -282,12 +268,11 @@ flex-wrap: wrap;
   margin-left: 50%;
   transform: translate(-50%);
 }
-.carroselImg{
-  border: 2px solid black;
-}
 #Container3 .MostC img{
-  width: 134px;
-  height: 200px;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 20%;
+  height: 50%;
 }
 .App{
   overflow-x: hidden;
@@ -299,7 +284,7 @@ flex-wrap: wrap;
   margin-right: 20px;
 }
 .Logo{
-  margin-left: 20px;
+  margin-left: 5%;
 }
 .Scrollover{
   background-color: rgba(255, 0, 0, 0);
@@ -341,9 +326,7 @@ flex-wrap: wrap;
 .mainManga{
   overflow-x: hidden;
 }
-.carroselImg{
-  width: 300px !important;
-}
+
 .Top{
   width: 100% !important;
 }
@@ -370,6 +353,36 @@ font-size:x-large;
 #Profile{
   width: 50%;
 }
+.favoritos{
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+flex-wrap: wrap;
+}
+.favoritos .categories{
+  border: 1px solid var(--color2);
+  width: 31.9% !important;
+  background-color: var(--color7);
+  border-radius: 5px;
+  margin: 03px 0.716% !important;
+  padding: 2px;
+margin: 3px;
+font-size: smaller;
+}
+.favoritos .bottom-title{
+  font-size: smaller;
+  text-align: left;
+  vertical-align: middle;
+  padding: 5px 0px;
+}
+.favoritos .categories img{
+  width: 100% !important;
+  height: 70%;
+}
+.favoritos{
+  width: 100%;
+  display: flex;
+}
 }
 @media screen and (max-width:768px) {
   #Title{
@@ -380,36 +393,7 @@ font-size:x-large;
     transform: translate(0);
     overflow: hidden;
   }
-  .favoritos{
-    width: 100%;
-    flex-direction: row;
-    justify-content: flex-start;
-  flex-wrap: wrap;
-  }
-  .favoritos .categories{
-    border: 1px solid var(--color2);
-    width: 31.9% !important;
-    background-color: var(--color7);
-    border-radius: 5px;
-    margin: 03px 0.716% !important;
-    padding: 2px;
-  margin: 3px;
-  font-size: smaller;
-  }
-  .favoritos .bottom-title{
-    font-size: smaller;
-    text-align: left;
-    vertical-align: middle;
-    padding: 5px 0px;
-  }
-  .favoritos .categories img{
-    width: 100% !important;
-    height: 170px;
-  }
-  .favoritos{
-    width: 100%;
-    display: flex;
-  }
+
   #informations{
     width: 90%;
   }
@@ -455,38 +439,44 @@ font-size:x-large;
 .Text-left{
 display: none;
 }
+
 }
-@media screen and (min-width:1025px) and (max-width:1440px) {
-  .favoritos{
-    width: 100%;
-    flex-direction: row;
-    
-  flex-wrap: wrap;
-  }
-  .favoritos .categories{
-    border: 1px solid var(--color2);
-    width: 32%;
-    background-color: var(--color7);
-    border-radius: 5px;
-    margin: 0px 5px;
-    padding: 2px;
-  margin: 3px;
+@media screen and (min-width:521px) and (max-width:1024px) {
+.favoritos{
+  width: 100%;
+  flex-direction: row;
+  
+flex-wrap: wrap;
+}
+.favoritos .categories{
+  border: 1px solid var(--color2);
+  width: 24%;
+  background-color: var(--color7);
+  border-radius: 5px;
+  margin: 03px 0.5% !important;
+  padding: 2px;
+font-size: smaller;
+}
+.favoritos .bottom-title{
   font-size: smaller;
-  }
-  .favoritos .bottom-title{
-    font-size: smaller;
-    text-align: left;
-    vertical-align: middle;
-    padding: 5px 0px;
-  }
-  .favoritos .categories img{
-    width: 100% !important;
-    height: 400px;
-  }
-  .favoritos{
-    width: 100%;
-    display: flex;
-  }
+  text-align: left;
+  vertical-align: middle;
+  padding: 5px 0px;
+}
+.favoritos .categories img{
+  width: 100% !important;
+  height: 70%;
+}
+.favoritos{
+  width: 100%;
+  display: flex;
+}
+}
+
+
+
+@media screen and (min-width:1025px) and (max-width:1440px) {
+  
 }
 @media screen and (max-width:2560px) {
 }

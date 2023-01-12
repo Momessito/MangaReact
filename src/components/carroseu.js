@@ -55,12 +55,14 @@ const Items = (args) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={post.id} 
+        interval={10000}
+        slide={false}
       >
         <Link to={'/manga/' + post.id} onLoad={categorias}>
         <img src={post.image} className='carroselImg' alt={post.id} />
         <h6 className='bottom-title'>{post.title}</h6>
         <h6 className='bottom-author'>{post.author}</h6>
-        <h6 className='top-cap'>Capítulo.{post.chapters_count}</h6>
+        <h6 className='top-cap'>Cap.{post.chapters_count}</h6>
         <div>{post.categories[0]}</div>
         <div>{post.categories[1]}</div>
         <div>{post.categories[2]}</div>
@@ -72,6 +74,7 @@ const Items = (args) => {
 
   return (
     <Carousel
+    slide={false}
       activeIndex={activeIndex}
       next={next}
       previous={previous}

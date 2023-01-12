@@ -7,7 +7,7 @@ import Logo from '../Logo.png'
 import { Link } from 'react-router-dom';
 import User from '../backend/users';
 
-function Nav() {
+function NavRead() {
   const name = async () => {
     try {
       const userInfo = await User.getUser();
@@ -59,7 +59,7 @@ function Nav() {
 
   return (
     <div>
-      <nav className='nav1' onLoad={Usuario}>
+      <nav className='nav1 ' id='nav3' onLoad={Usuario}>
 
         <Link to="/" ><img className='logo-img' alt='logo' src={Logo} /></Link>
         <Search />
@@ -107,4 +107,4 @@ function Nav() {
 
 }
 
-export default Nav
+export default NavRead
