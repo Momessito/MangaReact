@@ -2,7 +2,7 @@ import Search from './search';
 import Burgers from './burger';
 import '../App.css';
 import '../media.css';
-import React from "react"
+import { useEffect } from 'react';
 import Logo from '../Logo.png'
 import { Link } from 'react-router-dom';
 import User from '../backend/users';
@@ -39,6 +39,10 @@ function Nav() {
 
   }
 
+  useEffect(() => {
+    Usuario();
+}, []);
+
   const Sair = async () => {
     await User.Exit()
   }
@@ -58,7 +62,7 @@ function Nav() {
 
   return (
     <div>
-      <nav className='nav1' onLoad={Usuario}>
+      <nav className='nav1'>
 
         <Link to="/" ><img className='logo-img' alt='logo' src={Logo} /></Link>
         <Search />

@@ -82,15 +82,17 @@ function Home() {
             <Top />
 
           </div>
+
           <Top2 />
           <button id='carregarb' className='carregar-mais' onClick={carregar3}>Carregar Mais</button>
           <Adsense
   client="ca-pub-3330889871238840"
   slot="5815353327"
-  style={{ display: 'block' }}
+  style={{ display: 'block', width: '100%' , height: '400px'}}
   layout="in-article"
   format="fluid"
 />
+
         </div>
       </div>
       <div>

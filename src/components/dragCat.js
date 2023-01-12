@@ -10,8 +10,8 @@ function Categories() {
   const getItems = async () => {
     try {
 
-      const data = await Mangas.getFavorites();
-      setitems(data)
+      const datae = await Mangas.getFavorites();
+      setitems(datae)
     } catch (Error) {
       console.log(Error)
     }
