@@ -250,13 +250,10 @@ a {
   overflow: hidden;
   position: absolute;
   border-right: 1px solid black;
-  box-shadow: 0px 0px 5px black;
   left: 0;
   transform: translateX(-600px);
   transition: 0.3s all;
   height: 100vh;
-  padding-right: 30px;
-  padding-left: 20px;
   display: flex;
   background-color: var(--color1);
   flex-direction: column;
@@ -266,9 +263,69 @@ a {
 }
 
 #sideMenu ul {
-  width: 100%;
+  width: 300px;
   text-align: left;
-  margin-top: 60px;
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+#sideMenu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.158);
+  text-align: left;
+  padding: 10px 0px;
+  width: 100%;
+  color: white;
+  list-style: none;
+  margin-bottom: 5px;
+  font-weight: 500;
+  border-bottom: 5px solid transparent;
+}
+#sideMenu li svg{
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 20px;
+}
+#sideMenu li:hover {
+  cursor: pointer;
+  background-color: var(--color4);
+  color: var(--color2);
+  border-bottom: 5px solid var(--color7);
+  box-shadow: 0px 0px 10px black;
+}
+.LogoSide{
+  position: absolute;
+  bottom: 0;
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 10px;
+  padding: 10px 5px;
+  background-color: var(--color7);
+  border-radius: 5px;
+}
+#favorite1{
+  width: 300px;
+  height: 100%;
+  transform: scale(1.2);
+}
+.favImg #icon2{
+  position: absolute !important;
+  width: 130px;
+  height: 130px;
+  margin-top: 45px;
+  border-radius: 50%;
+}
+.favImg h1{
+  width: 100%;
+  position: absolute;
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.favImg{
+  border-bottom: 5px solid white;
+  display: flex;
+  justify-content: center;
+  height: 250px;
+  overflow: hidden;
 }
 .stats ul li{
   list-style: none;
@@ -291,23 +348,7 @@ list-style-type: disc;
   transition: 0.2s all;
   color: var(--color5);
 }
-#sideMenu li {
-  padding: 5px;
-  margin-left: -25px;
-  color: white;
-  list-style: none;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  font-weight: 500;
-}
 
-#sideMenu li:hover {
-  cursor: pointer;
-  background-color: var(--color2);
-  color: black;
-
-  box-shadow: 0px 0px 10px black;
-}
 
 #Bigsearch {
   transition: 1s all;

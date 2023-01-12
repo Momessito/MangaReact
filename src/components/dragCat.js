@@ -11,7 +11,10 @@ function Categories() {
     try {
 
       const datae = await Mangas.getFavorites();
+
+      console.log(datae)
       setitems(datae)
+
     } catch (Error) {
       console.log(Error)
     }
