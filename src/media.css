@@ -391,7 +391,7 @@ font-size:x-large;
     width: 31.9% !important;
     background-color: var(--color7);
     border-radius: 5px;
-    margin: 0px 5px;
+    margin: 03px 0.716% !important;
     padding: 2px;
   margin: 3px;
   font-size: smaller;
@@ -403,7 +403,7 @@ font-size:x-large;
     padding: 5px 0px;
   }
   .favoritos .categories img{
-    width: 113px !important;
+    width: 100% !important;
     height: 170px;
   }
   .favoritos{
