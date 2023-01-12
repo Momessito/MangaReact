@@ -33,8 +33,10 @@ const List = () => {
 
                     <div onLoad={categorias} key={post.id} className='itemC'>
                         <Link to={'/manga/' + post.id} key={post.id} >
-
+                            <div className="img-hover">
                             <img alt='logo' src={post.image} id='imagemca' />
+                            </div>
+
                             <div className="textsC" id="textsC">
                                 <h3>{post.title}</h3>
                                 <h4>{post.author}</h4>

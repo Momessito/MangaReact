@@ -30,8 +30,7 @@
 @media screen and (max-width:425px) {
   .itemC img {
     width: 97% !important;
-    margin-left: 50%;
-    transform: translate(-50%);
+    margin-left: 2.5px;
     height: 200px;
     border-radius: 15px 0px 15px 0px;
   }
@@ -133,16 +132,13 @@ margin-left: 65px;
   padding:5px 2px;
   width: 49% !important;
   margin: 0.5%;
-
+  background-color: var(--color1);
 }
 .itemC a{
   flex-direction: column;
 }
 .carros .carroselImg {
   border: 0px solid black;
-}
-.textsC {
-  margin-left: 0px;
 }
 .cat{
   margin: 0px;
@@ -250,8 +246,25 @@ flex-wrap: wrap;
   border-radius: 5px;
   background-color: var(--color2);
 }
+.all2:first-child{
+  box-shadow: 0px 0px 10px var(--color7);
+  margin-top: 20px;
+  background-color: transparent;
+}
 .textsC{
-  width: 100% !important;}
+  margin-left: 2px;
+  width: 100%;
+  margin-right: 2px;
+}
+.itemC:hover{
+  border: 1px solid transparent;
+}
+.itemC:hover .textsC{
+  transform: scale(1);
+}
+.img-hover:hover img{
+  transform: scale(1.2) !important;  
+  }
 #Container2 h1{
   width: 100%;
 }
@@ -397,12 +410,6 @@ font-size: smaller;
   #informations{
     width: 90%;
   }
-  .textsC h3, .textsC h4 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 150px;
-}
   .Container{
     width: 100%;
   }
@@ -418,11 +425,8 @@ font-size: smaller;
 }
 }
 @media screen and (max-width:1024px) {
-  .itemC{
-    width: 100%;
-  }
-  .textsC{
-    width: 30%;
+  .itemC a{
+    width: 100% !important;
   }
   .all2{
     width: 45%;
