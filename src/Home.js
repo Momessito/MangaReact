@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import MyGallery from './components/carros';
 import Categories from './components/dragCat';
 import Mangas from './backend/mangas';
-import AdSense from 'react-adsense';
+import {Adsense} from '@ctrl/react-adsense';
 
 function Home() {
   var isH = false
@@ -82,14 +82,15 @@ function Home() {
             <Top />
 
           </div>
-          <AdSense.Google
-            className='ad-side'
-            client='ca-pub-3330889871238840'
-            slot='5815353327'
-          />
-          
           <Top2 />
           <button id='carregarb' className='carregar-mais' onClick={carregar3}>Carregar Mais</button>
+          <Adsense
+  client="ca-pub-3330889871238840"
+  slot="5815353327"
+  style={{ display: 'block' }}
+  layout="in-article"
+  format="fluid"
+/>
         </div>
       </div>
       <div>

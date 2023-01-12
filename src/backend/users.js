@@ -32,7 +32,6 @@ class User {
             });
             return user;
         } catch (err) {
-            console.log(err);
         }
     }
 

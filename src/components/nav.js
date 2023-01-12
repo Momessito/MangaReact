@@ -17,7 +17,6 @@ function Nav() {
         document.getElementById('icon').src = 'https://pbs.twimg.com/media/FCvrblIX0AI6sMJ.jpg'
       }
     } catch (Error) {
-      console.log(Error)
     }
 
   }
@@ -72,7 +71,7 @@ function Nav() {
 
         <div className='Logo'>
           <div id='user'>
-            <img id='icon' onClick={config} />
+            <img id='icon' />
 
             <div className='stats'>
               <p id='nick'></p>

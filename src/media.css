@@ -31,7 +31,7 @@
   .itemC img {
     width: 97% !important;
     margin-left: 2.5px;
-    height: 200px;
+    height: 250px;
     border-radius: 15px 0px 15px 0px;
   }
   .scrollH{
@@ -193,8 +193,8 @@ flex-wrap: nowrap;
 } 
 .MostC{
   margin:10px;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
   background-color: var(--color7);
   padding: 10px 5px;
   border-radius: 5px;
@@ -284,7 +284,7 @@ flex-wrap: wrap;
 #Container3 .MostC img{
   margin-top: 20px;
   margin-left: 20px;
-  width: 20%;
+  width: 25%;
   height: 50%;
 }
 .App{
