@@ -163,6 +163,44 @@ class User {
             console.log(err);
         }
     }
+
+    static async markMangaRead(mangaId, capId){
+        try {
+            const url = `${baseUrl}/users/historys/`;
+            const body = {
+                "manga_id": mangaId, 
+                "cap_id": capId
+            }
+            const token = localStorage.getItem('token');
+            const response = await axios.post(url, body, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    static async markMangaUnread(mangaId, capId) {
+        try {
+            const url = `${baseUrl}/users/historys/`;
+            const token = localStorage.getItem('token');
+            const body = {
+                "manga_id": mangaId, 
+                "cap_id": capId
+            }
+            const response = await axios.delete(url, body, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 export default User;
