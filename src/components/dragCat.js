@@ -56,7 +56,6 @@ function Categories() {
           <Link to={'/manga/' + post.id}>
             <img src={post.image} className='carroselImg' alt={post.id} />
             <h6 className='bottom-title'>{post.title}</h6>
-            <h6 className='bottom-title'>{post.chapter}</h6>
             <h6 className='bottom-author'>{post.author}</h6>
           </Link>
         </div>
