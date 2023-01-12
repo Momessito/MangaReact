@@ -1552,6 +1552,36 @@ transform: translate(-50%);
   background-color: rgba(189, 189, 189, 0.24);
   
 }
+.favoritos{
+  width: 100%;
+  flex-direction: row;
+  
+flex-wrap: wrap;
+}
+.favoritos .categories{
+  border: 1px solid var(--color2);
+  width: 15%;
+  background-color: var(--color7);
+  border-radius: 5px;
+  margin: 0px 5px;
+  padding: 2px;
+margin: 3px;
+font-size: smaller;
+}
+.favoritos .bottom-title{
+  font-size: smaller;
+  text-align: left;
+  vertical-align: middle;
+  padding: 5px 0px;
+}
+.favoritos .categories img{
+  width: 100% !important;
+  height: 400px;
+}
+.favoritos{
+  width: 100%;
+  display: flex;
+}
 .ad-side{
   height: 300px;
   width:100%;
@@ -1562,6 +1592,9 @@ transform: translate(-50%);
   margin-left: 50px;
   margin-top: 5px;
   color: white;
+}
+.textScroll:hover{
+  text-decoration: underline;
 }
 .scrollH {
   transition: 0.2s all;

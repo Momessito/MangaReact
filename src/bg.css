@@ -1,0 +1,7 @@
+#root{
+    background-color: var(--color6);
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}

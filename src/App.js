@@ -7,6 +7,7 @@ import Login from './Login'
 import Manga from './MangaPage'
 import Chapters from './Chapters';
 import Config from './Config';
+import Favoritos from './Favoritos';
 
 function App() {
   
@@ -20,6 +21,7 @@ return(
       <Route path="/chapter/:id" element={<Manga />} />
       <Route path='/manga/:id' element={<Chapters />} />
       <Route path='/config' element={<Config />} />
+      <Route path='/favoritos' element={<Favoritos />} />
     </Routes>
   </Router>
 )
