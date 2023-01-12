@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Footer from './components/Footer';
 
 function Manga() {
     const location = useLocation();
@@ -74,7 +75,7 @@ function Manga() {
                 <div id="disqus_thread"></div>
             </div>
 
-
+                        <Footer />
         </div>
 
     )

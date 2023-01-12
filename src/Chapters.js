@@ -5,7 +5,7 @@ import Nav from './components/nav';
 import SideMenu from './components/sideMenu';
 import Mangas from './backend/mangas';
 import User from './backend/users';
-import Categories from './components/dragCat';
+import Footer from './components/Footer';
 
 const Chapters = () => {
     const location = useLocation();
@@ -157,6 +157,7 @@ const Chapters = () => {
                         )))}
                 </div>
             </div>
+            <Footer />
         </div>
     )
 

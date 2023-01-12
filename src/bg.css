@@ -1,5 +1,5 @@
 #root{
-    background-color: var(--color6);
+    background-color: transparent;
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;

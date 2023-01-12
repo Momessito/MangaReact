@@ -59,9 +59,9 @@ const List = () => {
     )
 
     function categorias(prop) {
-        var a = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[0]
-        var b = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[1]
-        var c = prop.target.parentElement.getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('div')[0].getElementsByTagName('h5')[2]
+        var a = prop.target.parentElement.parentElement.getElementsByTagName('div')[3].getElementsByTagName('h5')[0]
+        var b = prop.target.parentElement.parentElement.getElementsByTagName('div')[3].getElementsByTagName('h5')[1]
+        var c = prop.target.parentElement.parentElement.getElementsByTagName('div')[3].getElementsByTagName('h5')[2]
         if (a.innerHTML === 'Hentai' || a.innerHTML === 'Ecchi' || b.innerHTML === 'Hentai' || b.innerHTML === 'Ecchi' || c.innerHTML === 'Hentai' || c.innerHTML === 'Ecchi') {
             prop.target.style.filter = 'blur(4px)'
 
