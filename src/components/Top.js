@@ -45,7 +45,7 @@ const Top2 = () => {
     {posts.length === 0 ? <p>Carregando</p> : (
       posts.map((post) => (
         <div key={post.title}>
-          <Link to={'/manga/' + post.id} key={post.id} >
+          <Link to={'/mangas/' + post.id} key={post.id} >
             <div className="MostC">
               <img
                 alt="ad-img"

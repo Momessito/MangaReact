@@ -58,7 +58,7 @@ const Items = (args) => {
         interval={10000}
         slide={false}
       >
-        <Link to={'/manga/' + post.id} onLoad={categorias}>
+        <Link to={'/mangas/' + post.id} onLoad={categorias}>
         <img src={post.image} className='carroselImg' alt={post.id} />
         <h6 className='bottom-title'>{post.title}</h6>
         <h6 className='bottom-author'>{post.author}</h6>

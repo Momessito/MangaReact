@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 
 const Chapters = () => {
     const location = useLocation();
-    const mangaId = location.pathname.substring(7)
+    const mangaId = window.location.pathname.split("/")[2];
     var istrue = true
 
     const [posts, setposts] = useState([]);
@@ -147,7 +147,7 @@ const Chapters = () => {
 
                     {posts.length === 0 ? <p id='load'>Carregando</p> : (
                         posts.map((post) => (
-                            <Link to={'/chapter/' + post.release_id} key={post.release_id}>
+                            <Link to={'/mangas/'+mangaId+'/capitulos/' + post.release_id} key={post.release_id}>
                                 <div className='ChaptersCard' id='ChaptersCard' onClick={lido}>
                                     <h4 id='capit'><span>Capitulo: </span>{post.number} {post.chapter_name}</h4>
                                     <small>{post.date}</small>

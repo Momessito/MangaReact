@@ -18,8 +18,8 @@ return(
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/chapter/:id" element={<Manga />} />
-      <Route path='/manga/:id' element={<Chapters />} />
+      <Route path="/mangas/:id/capitulos/:chap" element={<Manga />} />
+      <Route path='/mangas/:id' element={<Chapters />} />
       <Route path='/config' element={<Config />} />
       <Route path='/favoritos' element={<Favoritos />} />
     </Routes>

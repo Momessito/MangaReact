@@ -32,7 +32,7 @@ const List = () => {
                 posts.map((post) => (
 
                     <div onLoad={categorias} key={post.id} className='itemC'>
-                        <Link to={'/manga/' + post.id} key={post.id} >
+                        <Link to={'/mangas/' + post.id} key={post.id} >
                             <div className="img-hover">
                             <img alt='logo' src={post.image} id='imagemca' />
                             </div>
