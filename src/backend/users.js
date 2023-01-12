@@ -73,7 +73,7 @@ class User {
 
     static async editPassword(old_password, new_password) {
         try {
-            const url = `${baseUrl}/userpassword/`;
+            const url = `${baseUrl}/users/password/`;
             const body = {
                 "old_password": old_password,
                 "new_password": new_password
@@ -103,7 +103,7 @@ class User {
     // FAVORITE
     static async addFavorite(name, id) {
         try {
-            const url = `${baseUrl}/favorites/`;
+            const url = `${baseUrl}/users/favorites/`;
             const body = {
                 "name": name,
                 "manga_id": id
@@ -122,7 +122,7 @@ class User {
 
     static async removeFavorite(id) {
         try {
-            const url = `${baseUrl}/favorites/${id}/`;
+            const url = `${baseUrl}/users/favorites/${id}/`;
             const token = localStorage.getItem('token');
             const response = await axios.delete(url, {
                 headers: {
@@ -137,7 +137,7 @@ class User {
 
     static async getFavorites() {
         try {
-            const url = `${baseUrl}/favorites/`;
+            const url = `${baseUrl}/users/favorites/`;
             const token = localStorage.getItem('token');
             const response = await axios.get(url, {
                 headers: {
