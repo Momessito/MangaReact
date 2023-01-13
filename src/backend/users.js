@@ -202,6 +202,20 @@ class User {
         }
     }
 
+    static async listMangaRead(){
+        try {
+            const url = `${baseUrl}/users/historys/`;
+            const token = localStorage.getItem('token');
+            const response = await axios.get(url, {
+                headers: {
+                    "x-acess-token": token
+                }
+            });
+            return response;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }
 
 export default User;
