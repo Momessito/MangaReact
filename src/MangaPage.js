@@ -33,7 +33,6 @@ function Manga() {
             const chap = response.data
             const data = response.data.images;
             const prox = response.data.next_chapter.release_id
-
             setposts(data)
             setnext(prox)
             setchap(chap)
@@ -72,12 +71,14 @@ function Manga() {
 
     useEffect(() => {
         getposts();
+        lido();
     }, []);
+
 
     const lido = async () => {
         try {
             var favo = await User.markMangaRead(location2, location)
-            
+            console.log(favo)
         } catch (Error) {
             console.log(Error)
         }
@@ -103,7 +104,7 @@ function Manga() {
                 <div className='flex'>
 
 
-                    <h1 id='Title' onLoad={lido}>Capitulo: {chap.chapter_number}</h1>
+                    <h1 id='Title'>Capitulo: {chap.chapter_number}</h1>
                     <div className='fullscreen' onClick={aumentar}>
                         <div id='fullscreen1'>                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" className="bi bi-fullscreen" viewBox="0 0 16 16">
                             <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z" />
@@ -118,7 +119,7 @@ function Manga() {
                     posts.map((post) => (
                         <img src={post.avif} key={post.legacy} alt='NaN' className='PageManga' id='PageManga' />
                     )))}
-                <button className='btne' id='btne'><Link reloadDocument to={'/chapter/' + next}>Proximo capitulo</Link></button>
+                <button className='btne' id='btne'><Link reloadDocument to={'/mangas/'+location+'/capitulos/' + next}>Proximo capitulo</Link></button>
                 <div id="disqus_thread"></div>
             </div>
 
@@ -142,7 +143,6 @@ function Manga() {
             var page = document.getElementsByTagName('img')
             for (let index = 2; index < page.length; index++) {
                 var page2 = document.getElementsByTagName('img')[index];
-                console.log(page2);
                 page2.style.width = '70%';
             }
             document.getElementById('fullscreen1').style.opacity = '0'

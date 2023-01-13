@@ -68,7 +68,7 @@ const Chapters = () => {
     const isfavor = async () => {
         try {
             favo = await User.isFavorited(mangaId)
-
+            
             if (favo != null) {
                 
                 document.querySelector('.favo').style.display = 'flex';
