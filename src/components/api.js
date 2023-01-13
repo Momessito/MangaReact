@@ -44,9 +44,8 @@ const List = () => {
                                 <div className="config">
                                     <div className="cat" id="cat" >
                                         <p className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </p>
-                                        <h5 id='categories'>{post.categories[1]}</h5>
-                                        <h5 id='categories'>{post.categories[2]}</h5>
-                                        <h5 id='categories'>{post.categories[3]}</h5>
+                                        {post.categories.map((category) => (
+                                            <h5 id='categories'>{category}</h5>))}
                                     </div></div>
                             </div>
 
