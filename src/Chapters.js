@@ -68,7 +68,7 @@ const Chapters = () => {
     const isfavor = async () => {
         try {
             favo = await User.isFavorited(mangaId)
-            
+
             if (favo != null) {
                 
                 document.querySelector('.favo').style.display = 'flex';
@@ -167,9 +167,7 @@ const Chapters = () => {
 
     function lido(e) {
         console.log(e.target)
-
-        User.markMangaRead(mangaId,)
-        e.target.styte.backgroundColor = 'black'
+        e.target.style.BackgroundColor = 'var(--color2)'
     }
 
     function descer() {

@@ -201,6 +201,7 @@ class User {
             console.log(err);
         }
     }
+
 }
 
 export default User;
