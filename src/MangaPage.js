@@ -8,6 +8,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import Footer from './components/Footer';
 import Mangas from './backend/mangas';
+import User from './backend/users';
 
 function Manga() {
     const location2 = window.location.pathname.split("/")[4];
@@ -73,6 +74,16 @@ function Manga() {
         getposts();
     }, []);
 
+    const lido = async () => {
+        try {
+            var favo = await User.markMangaRead(location2, location)
+            
+        } catch (Error) {
+            console.log(Error)
+        }
+
+
+    }
 
 
 
@@ -92,21 +103,7 @@ function Manga() {
                 <div className='flex'>
 
 
-                    <h1 id='Title'>Capitulo: {chap.chapter_number}</h1>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <h1 id='Title' onLoad={lido}>Capitulo: {chap.chapter_number}</h1>
                     <div className='fullscreen' onClick={aumentar}>
                         <div id='fullscreen1'>                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" className="bi bi-fullscreen" viewBox="0 0 16 16">
                             <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z" />
@@ -130,8 +127,11 @@ function Manga() {
 
     )
 
+
+
+
     function last() {
-        if(next == ''){
+        if (next == '') {
             document.getElementById('btne').innerHTML = 'Ultimo Capitulo!'
             document.getElementById("btne").disabled = true;
         }

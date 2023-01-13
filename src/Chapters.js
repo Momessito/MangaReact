@@ -147,8 +147,8 @@ const Chapters = () => {
 
                     {posts.length === 0 ? <p id='load'>Carregando</p> : (
                         posts.map((post) => (
-                            <Link to={'/mangas/'+mangaId+'/capitulos/' + post.release_id} key={post.release_id}>
-                                <div className='ChaptersCard' id='ChaptersCard'>
+                            <Link to={'/mangas/'+mangaId+'/capitulos/' + post.release_id}  key={post.release_id}>
+                                <div className='ChaptersCard' id='ChaptersCard' onClick={lido}>
                                     <h4 id='capit'><span>Capitulo: </span>{post.number} {post.chapter_name}</h4>
                                     <small>{post.date}</small>
                                 </div>
@@ -167,6 +167,8 @@ const Chapters = () => {
 
     function lido(e) {
         console.log(e.target)
+
+        User.markMangaRead(mangaId,)
         e.target.styte.backgroundColor = 'black'
     }
 
