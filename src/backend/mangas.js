@@ -2,6 +2,8 @@ import axios from 'axios';
 import User from './users';
 
 const baseUrl = "https://q4l8x4.deta.dev/";
+const baseGateWay = 'https://uerxf4.deta.dev/';
+
 class Mangas {
 
     constructor() { }
@@ -18,9 +20,14 @@ class Mangas {
 
     static async getChapters(id, page) {
         try {
-            const url = `${baseUrl}chapters/${id}/${page}`;
-            const response = await axios.get(url);
-            return response.data;
+            const url = `${baseGateWay}chapters/${id}/${page}`;
+            const token = localStorage.getItem('token');
+            const response = await axios.get(url, {
+                headers: {
+                    'x-acess-token': token
+                }
+            });
+            return response;
         } catch (err) {
             console.log(err);
         }
