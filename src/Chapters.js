@@ -36,7 +36,6 @@ const Chapters = () => {
     useEffect(() => {
         getimg();
         getposts();
-        lido();
     }, []);
 
     //Image 
@@ -95,40 +94,7 @@ const Chapters = () => {
     
 
 
-    const lido = async () => {
 
-        try {
-            var ret = await User.listMangaRead(mangaId)
-            var retd = ret.data
-            return retd
-            
-        } catch (Error) {
-            console.log(Error)
-        }
-        
-    }
-
-    const checkRead = async () => {
-        try {
-            let data = await lido()
-            let history = data
-            
-            var chap = document.getElementById('flexC').childNodes
-            for (let i = 0; i < chap.length; i++) {
-                const element2 = chap[i];
-                console.log(element2)
-                
-                for (let index = 0; index < history.count; index++) {
-                    const element = history.items[index].cap_id;     
-    
-    
-                }
-            }
-
-        } catch (error) {
-            
-        }
-    }
 
     return (
 
@@ -174,23 +140,35 @@ const Chapters = () => {
 
                     {posts.length === 0 ? <p id='load'>Carregando</p> : (
                         posts.map((post) => (
-                            <Link to={'/mangas/'+mangaId+'/capitulos/' + post.release_id}  key={post.release_id}>
-                                <h1 style={{display: 'none'}} >{post.release_id}</h1>
-                                <div className='ChaptersCard' id='ChaptersCard'>
-                                    <h4 id='capit'><span>Capitulo: </span>{post.number} {post.chapter_name}</h4>
+                            <Link to={'/mangas/'+mangaId+'/capitulos/' + post.release_id}  key={post.release_id} >
+                                <img style={{display: 'none'}} onLoad={lido} src='https://static.wikia.nocookie.net/portalworldsgame/images/0/02/Elven_Block_1.png/revision/latest?cb=20190610134709'/>
+                                <p style={{display: 'none'}} onLoad={lido}>{post.read.toString()}</p>
+                            
+                                <div className='ChaptersCard' id='ChaptersCard' >
+
+                                    <h4 id='capit' ><span>Capitulo: </span>{post.number} {post.chapter_name}</h4>
                                     
                                     <small>{post.date}</small>
                                 </div>
                                 <div className='wr2'></div>
                             </Link>
                         )))}
+
                 </div>
             </div>
             <Footer />
         </div>
     )
     
+    function lido(id) {
+        var lido = id.nativeEvent.path[1].getElementsByTagName('p')[0].innerHTML
+        if(lido === 'false'){
 
+        }else{
+            var element = id.nativeEvent.path[1].getElementsByTagName('div')[0].style.backgroundColor = 'var(--color6)'
+            var elementB = id.nativeEvent.path[1].getElementsByTagName('div')[0].style.border = '1px solid var(--color2)'
+        }
+    }
 
     function pesquisar() {
 
