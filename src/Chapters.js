@@ -18,7 +18,8 @@ const Chapters = () => {
         try {
             let result = [];
             for (let page = 1; ; page++) {
-                let chapters = await Mangas.getChapters(mangaId, page);
+                const response = await Mangas.getChapters(mangaId, page);
+                const chapters = response.data.chapters;
                 if (chapters.length > 0) {
                     result = result.concat(chapters);
                     setposts(result);
