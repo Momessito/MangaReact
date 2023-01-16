@@ -47,15 +47,10 @@ const Top2 = () => {
         <div key={post.title}>
           <Link to={'/mangas/' + post.id} key={post.id} >
             <div className="MostC">
-              <img
-                alt="ad-img"
-                width={300}
-                src="https://via.placeholder.com/300x200/8d99ae"
-                style={{ display: isLoading ? "block" : "none" }}
-              />
+            <div className="img2">            
               <img src={post.image} alt="logo"
                 style={{ display: isLoading ? "none" : "block" }}
-                onLoad={onLoad} />
+                onLoad={onLoad} /></div>
               <div className="texts2">
                 <h5>{post.title}</h5>
                 <div className="cate2">

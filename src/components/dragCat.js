@@ -5,7 +5,7 @@ import Mangas from '../backend/mangas';
 
 function Categories() {
   const [items, setitems] = useState([]);
-  
+
 
   const getItems = async () => {
     try {
@@ -24,15 +24,15 @@ function Categories() {
   }, []);
 
   var istrue = true
-  function minimize(){
-    if(istrue === true){
+  function minimize() {
+    if (istrue === true) {
       document.querySelector('.scrollH2').style.display = 'none'
       document.querySelector('.scrollH').style.height = '40px'
       document.querySelector('.scrollH').style.padding = '0'
       document.querySelector('.scrollH').style.paddingLeft = '10px'
       document.getElementById('minimize').style.rotate = '180deg'
       istrue = false
-    }else{
+    } else {
       document.querySelector('.scrollH2').style.display = 'flex'
       document.querySelector('.scrollH').style.height = '300px'
       document.querySelector('.scrollH').style.padding = '10px'
@@ -48,18 +48,20 @@ function Categories() {
     </svg>
     <div className='textScroll'><Link to={'/favoritos'}>Favoritos</Link></div>
     <div className='scrollH2'>
-    {items == null ||items.length == 0 ?         
-    <div className='categories2'>Nenhum Manga Adicionado... <img src="https://64.media.tumblr.com/5e3b8ef08a53e3c054717129e345db59/d68a5dee2d650b34-9c/s400x600/875f3686901573006d0c0e984a0430634680498d.jpg" /> </div> : (
-      items.map((post) => (
-        <div className='categories' key={post.id}>
-          <Link to={'/mangas/' + post.id}>
-            <img src={post.image} className='carroselImg' alt={post.id} />
-            <h6 className='bottom-title'>{post.title}</h6>
-            <h6 className='bottom-author'>{post.author}</h6>
-          </Link>
-        </div>
-      )))}
-      </div>
+      {items == null || items.length == 0 ?
+        <p>Carregando</p> : (
+          items.map((post) => (
+            <div className='categories' key={post.id}>
+              <Link to={'/mangas/' + post.id}>
+                <div className='img'>            
+                <div class="spinner"></div>
+                <img src={post.image} className='carroselImg' alt={post.id} onError={() => {this.src = ''}}/></div>
+                <h6 className='bottom-title'>{post.title}</h6>
+                <h6 className='bottom-author'>{post.author}</h6>
+              </Link>
+            </div>
+          )))}
+    </div>
   </ScrollContainer>)
 
 }

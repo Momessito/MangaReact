@@ -59,7 +59,8 @@ const Items = (args) => {
         slide={false}
       >
         <Link to={'/mangas/' + post.id} onLoad={categorias}>
-        <img src={post.image} className='carroselImg' alt={post.id} />
+          <img src={post.image} className='carroselImg' alt={post.id} height='100%'/>
+
         <h6 className='bottom-title'>{post.title}</h6>
         <h6 className='bottom-author'>{post.author}</h6>
         <h6 className='top-cap'>Cap.{post.chapters_count}</h6>

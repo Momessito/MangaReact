@@ -10,6 +10,7 @@ const List = () => {
         try {
             const data = await Mangas.getRecents();
             setposts(data)
+            console.log(data)
         } catch (Error) {
             console.log(Error)
         }
@@ -28,7 +29,8 @@ const List = () => {
             </div>
 
 
-            {posts.length === 0 ? <p>Carregando</p> : (
+            {posts.length === 0 ?
+            <p>Carregando</p> : (
                 posts.map((post) => (
 
                     <div onLoad={categorias} key={post.id} className='itemC'>

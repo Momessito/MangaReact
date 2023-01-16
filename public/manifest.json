@@ -10,7 +10,7 @@
     {
       "src": "Logo.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "512x512"
     },
     {
       "src": "Logo.png",
@@ -19,7 +19,7 @@
     }
   ],
   "start_url": ".",
-  "display": "Fullscreen",
+  "display": "Standalone",
   "theme_color": "#424151",
   "background_color": "#424151"
 }

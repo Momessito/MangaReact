@@ -202,9 +202,9 @@ class User {
         }
     }
 
-    static async listMangaRead(){
+    static async listMangaRead(idManga){
         try {
-            const url = `${baseUrl}/users/historys/`;
+            const url = `${baseUrl}/users/historys/${idManga}`;
             const token = localStorage.getItem('token');
             const response = await axios.get(url, {
                 headers: {

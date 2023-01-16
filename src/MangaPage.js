@@ -77,7 +77,7 @@ function Manga() {
 
     const lido = async () => {
         try {
-            var favo = await User.markMangaRead(location2, location)
+            var favo = await User.markMangaRead(location, location2)
             console.log(favo)
         } catch (Error) {
             console.log(Error)

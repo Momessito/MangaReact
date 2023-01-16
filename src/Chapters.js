@@ -13,6 +13,7 @@ const Chapters = () => {
     var istrue = true
 
     const [posts, setposts] = useState([]);
+    const [resultArray, setResultArray] = useState([]);
 
     const getposts = async () => {
         try {
@@ -35,6 +36,7 @@ const Chapters = () => {
     useEffect(() => {
         getimg();
         getposts();
+        lido();
     }, []);
 
     //Image 
@@ -46,13 +48,6 @@ const Chapters = () => {
         setimg(data)
 
     }
-
-
-
-
-
-
-
 
     const favoritar = async () => {
         try {
@@ -97,12 +92,43 @@ const Chapters = () => {
             console.log(Error)
         }
     }
+    
 
 
+    const lido = async () => {
 
+        try {
+            var ret = await User.listMangaRead(mangaId)
+            var retd = ret.data
+            return retd
+            
+        } catch (Error) {
+            console.log(Error)
+        }
+        
+    }
 
+    const checkRead = async () => {
+        try {
+            let data = await lido()
+            let history = data
+            
+            var chap = document.getElementById('flexC').childNodes
+            for (let i = 0; i < chap.length; i++) {
+                const element2 = chap[i];
+                console.log(element2)
+                
+                for (let index = 0; index < history.count; index++) {
+                    const element = history.items[index].cap_id;     
+    
+    
+                }
+            }
 
-
+        } catch (error) {
+            
+        }
+    }
 
     return (
 
@@ -149,8 +175,10 @@ const Chapters = () => {
                     {posts.length === 0 ? <p id='load'>Carregando</p> : (
                         posts.map((post) => (
                             <Link to={'/mangas/'+mangaId+'/capitulos/' + post.release_id}  key={post.release_id}>
-                                <div className='ChaptersCard' id='ChaptersCard' onClick={lido}>
+                                <h1 style={{display: 'none'}} >{post.release_id}</h1>
+                                <div className='ChaptersCard' id='ChaptersCard'>
                                     <h4 id='capit'><span>Capitulo: </span>{post.number} {post.chapter_name}</h4>
+                                    
                                     <small>{post.date}</small>
                                 </div>
                                 <div className='wr2'></div>
@@ -161,15 +189,13 @@ const Chapters = () => {
             <Footer />
         </div>
     )
+    
+
 
     function pesquisar() {
 
       }
 
-    function lido(e) {
-        console.log(e.target)
-        e.target.style.BackgroundColor = 'var(--color2)'
-    }
 
     function descer() {
         if (istrue === true) {

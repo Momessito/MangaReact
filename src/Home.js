@@ -107,14 +107,14 @@ function Home() {
       isH = true
       background.style.height = 'auto'
       document.documentElement.scrollTop = 0;
-      document.getElementById('down-animation1').style.animation = 'scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
+      document.getElementById('down-animation1').style.animation = 'scale-in-ver-top 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
 
       button.innerText = 'Carregar Menos'
     } else {
       isH = false
       background.style.height = '200vh'
       button.innerText = 'Carregar Mais'
-      document.getElementById('down-animation1').style.animation = 'scale-in-ver-bottom2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
+      document.getElementById('down-animation1').style.animation = 'scale-in-ver-bottom2 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
 
     }
   }
@@ -125,12 +125,12 @@ function Home() {
     if (isH === false) {
       isH = true
       document.documentElement.scrollTop = 0;
-      document.getElementById('down-animation2').style.animation = 'scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
+      document.getElementById('down-animation2').style.animation = 'scale-in-ver-top 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
       background.style.height = 'auto'
       button.innerHTML = 'Carregar Menos'
     } else {
       isH = false
-      document.getElementById('down-animation2').style.animation = 'scale-in-ver-bottom2 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
+      document.getElementById('down-animation2').style.animation = 'scale-in-ver-bottom2 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
       background.style.height = '90vh'
       button.innerHTML = 'Carregar Mais'
 

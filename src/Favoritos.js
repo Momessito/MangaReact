@@ -9,13 +9,14 @@ import './bg.css'
 function Favoritos() {
     
     const [items, setitems] = useState([]);
-  
+    
 
     const getItems = async () => {
       try {
-  
+        
         const data = await Mangas.getFavorites();
         setitems(data)
+        console.log(data)
       } catch (Error) {
         console.log(Error)
       }
