@@ -8,6 +8,7 @@ import Manga from './MangaPage'
 import Chapters from './Chapters';
 import Config from './Config';
 import Favoritos from './Favoritos';
+import Recentes from './Recentes';
 
 function App() {
   
@@ -22,6 +23,7 @@ return(
       <Route path='/mangas/:id' element={<Chapters />} />
       <Route path='/config' element={<Config />} />
       <Route path='/favoritos' element={<Favoritos />} />
+      <Route path='/Recentes' element={<Recentes />} />
     </Routes>
   </Router>
 )

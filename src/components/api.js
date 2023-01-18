@@ -10,7 +10,6 @@ const List = () => {
         try {
             const data = await Mangas.getRecents();
             setposts(data)
-            console.log(data)
         } catch (Error) {
             console.log(Error)
         }
@@ -24,7 +23,7 @@ const List = () => {
 
     return (
         <div className="Container" id="Container">
-            <div className="Last">            <h1>Últimos Mangás adicionados</h1> 
+            <div className="Last">           <Link to={'/recentes'}><h1>Últimos Mangás adicionados</h1></Link>  
             <div className="Last2">Hoje</div>
             </div>
 
@@ -32,9 +31,8 @@ const List = () => {
             {posts.length === 0 ?
             <p>Carregando</p> : (
                 posts.map((post) => (
-
                     <div onLoad={categorias} key={post.id} className='itemC'>
-                        <Link to={'/mangas/' + post.id} key={post.id} >
+                        <Link to={'/mangas/' + post.id} >
                             <div className="img-hover">
                             <img alt='logo' src={post.image} id='imagemca' />
                             </div>
@@ -47,10 +45,9 @@ const List = () => {
                                     <div className="cat" id="cat" >
                                         <p className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </p>
                                         {post.categories.map((category) => (
-                                            <h5 id='categories'>{category}</h5>))}
+                                            <h5 id='categories' key={category}>{category}</h5>))}
                                     </div></div>
                             </div>
-
                         </Link>
 
                     </div>

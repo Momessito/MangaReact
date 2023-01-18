@@ -11,8 +11,9 @@ function Categories() {
     try {
 
       const datae = await Mangas.getFavorites();
-
-      setitems(datae)
+      if(datae == undefined){}else{
+        setitems(datae)
+      }
 
     } catch (Error) {
       console.log(Error)
@@ -54,8 +55,9 @@ function Categories() {
             <div className='categories' key={post.id}>
               <Link to={'/mangas/' + post.id}>
                 <div className='img'>            
-                <div class="spinner"></div>
-                <img src={post.image} className='carroselImg' alt={post.id} onError={() => {this.src = ''}}/></div>
+                <div className="spinner"></div>
+                <img src={post.image} className='carroselImg' alt={post.id} />
+                </div>
                 <h6 className='bottom-title'>{post.title}</h6>
                 <h6 className='bottom-author'>{post.author}</h6>
               </Link>
