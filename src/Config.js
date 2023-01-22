@@ -52,6 +52,7 @@ function Config() {
             console.log(Error)
         }
     }
+
     const changeEmail = async () => {
         try {
             var nick = document.getElementById('changeE')
@@ -65,10 +66,22 @@ function Config() {
         }
     }
 
+    const changePass = async () => {
+        try {
+            var passOld = document.getElementById('changeOLDP').value
+            var pass = document.getElementById('changePass').value
+
+            console.log(passOld,pass)
+            User.editPassword(passOld,pass)
+        } catch (Error) {
+            console.log(Error)
+        }
+    }
 
     var istrue = true
     var istrue2 = true
     var istrue3 = true
+    var istrue4 = true
 
     function show() {
         if (istrue === true) {
@@ -101,6 +114,17 @@ function Config() {
 
         }
     }
+
+    function ChangePass() {
+        if (istrue4 === true) {
+            document.getElementById('ChangePass').style.display = 'block'
+            istrue4 = false
+        } else {
+            document.getElementById('ChangePass').style.display = 'none'
+            istrue4 = true
+
+        }
+    }
     return (
         <div className="app" onLoad={name}>
             <SideMenu />
@@ -127,6 +151,15 @@ function Config() {
                 <input placeholder="Escreva o Email que desejar mudar" id='changeE'/>
                 <button onClick={changeEmail}>Trocar</button>
             </div>
+
+            <div id="ChangePass">
+            <div className="Blacks" onClick={ChangePass}></div>
+                <input placeholder="Senha antiga" id='changeOLDP'/>
+                <input placeholder="Nova senha" id='changePass'/>
+                <button onClick={changePass}>Trocar</button>
+
+            </div>
+
             <div className="configAll">
                 <div id="Profile">
                     <div className="pic" onClick={show} >
@@ -151,7 +184,10 @@ function Config() {
                         </svg></div>
 
                     <div>
-                        <h2 id='Pass'></h2>                </div>
+                        <h2 id='Pass'></h2>    <svg onClick={ChangePass} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fillRule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>             </div>
                 </div>
             </div>
         </div>)

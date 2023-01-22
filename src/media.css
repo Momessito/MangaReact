@@ -274,7 +274,12 @@ flex-wrap: wrap;
     background-color: var(--color2);
     width: 100%;
   }
-
+  .RecentsCard img{
+    width: 120px;
+  }
+  .RecentsImage{
+    width: 120px;
+  }
 #Container2 h1{
   width: 100%;
 }

@@ -25,36 +25,33 @@ function Recentes() {
     }, []);
 
   return (
-    <div className='app'>
+    <div className='appRecents'>
       <SideMenu />
       <Nav />
       <div className='Black'></div>
-      <h1 style={{color: 'white',width: '100%',borderBottom: '3px solid white', paddingBottom: '15px'}}>Ultimos mangas Atualizados</h1>
+      <h1 className='RecentsTitle' style={{color: 'white',width: '100%',borderBottom: '3px solid white', paddingBottom: '15px'}}>Ultimos mangas Atualizados</h1>
       {posts.length === 0 ?
             <p>Carregando</p> : (
                 posts.map((post) => (
-                    <div key={post.id} className='itemCR' style={{width: '100% !important'}}>
+                    <div key={post.id} className=''>
                         <Link to={'/mangas/' + post.id} >
-                            <div className="img-hover-rec">
+                            <div className="RecentsCard">
+                                <div className='RecentsImage'>
                             <img alt='logo' src={post.image} id='imagemca' />
-                            <button data-text="Awesome" class="button">
-    <span class="actual-text">&nbsp;Ler Agora&nbsp;</span>
-    <span class="hover-text" aria-hidden="true">&nbsp;Ler Agora&nbsp;</span>
-</button>
+                    </div>
+                            <h2 className='RecentsChap'>Cap {post.chapters_count}</h2>
 
-                            </div>
-
-                            <div className="recentes" id="">
+                            <div className="RecentsDesc" id="">
                                 <h3>{post.title}</h3>
-                                <h4>{post.author}</h4>
-                                <h6 className="" href='home'>Cap: {post.chapters_count}</h6>
                                 <p className='descr'>{post.description}</p>
-                                <div className="">
-                                    <div className="cat" id="cat" >
-                                        <p className="at" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </p>
+
+                                <div className="RatingRecents">
+                                        <h5 className="" href='home'><span role="img" aria-label=''>⭐{post.score}</span> </h5>
+
                                         {post.categories.map((category) => (
-                                            <h5 id='categories' key={category}>{category}</h5>))}
-                                    </div></div>
+                                        <h5 id='' key={category}>{category}</h5>))}
+                                    </div>
+                            </div>
                             </div>
                         </Link>
 

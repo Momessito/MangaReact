@@ -144,7 +144,7 @@ const Chapters = () => {
                     {posts.length === 0 ? <p id='load'>Carregando</p> : (
                         posts.map((post) => (
                             <Link to={'/mangas/'+mangaId+'/capitulos/' + post.release_id}  key={post.release_id} >
-                                <img style={{display: 'none'}} onLoad={lido} src='https://static.wikia.nocookie.net/portalworldsgame/images/0/02/Elven_Block_1.png/revision/latest?cb=20190610134709'/>
+                                <img style={{display: 'none'}} onLoad={lido} src='https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'/>
                                 <p style={{display: 'none'}} onLoad={lido}>{post.read.toString()}</p>
                             
                                 <div className='ChaptersCard' id='ChaptersCard' >

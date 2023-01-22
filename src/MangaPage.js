@@ -140,26 +140,26 @@ function Manga() {
 
     function aumentar() {
         if (istrue === true) {
-            var page = document.getElementsByTagName('img')
-            for (let index = 2; index < page.length; index++) {
-                var page2 = document.getElementsByTagName('img')[index];
+            var page = document.querySelector('.mainManga').getElementsByTagName('img')
+            for (let index = 0; index < page.length; index++) {
+                var page2 = document.querySelector('.mainManga').getElementsByTagName('img')[index];
                 page2.style.width = '70%';
             }
-            document.getElementById('fullscreen1').style.opacity = '0'
-            document.getElementById('fullscreen2').style.opacity = '1'
+            document.getElementById('fullscreen2').style.display = 'block'
+            document.getElementById('fullscreen1').style.opacity = 'none'
 
             istrue = false
 
 
         } else if (istrue === false) {
             var page4 = document.getElementsByTagName('img')
-            for (let index = 2; index < page4.length; index++) {
-                var page3 = document.getElementsByTagName('img')[index];
-                console.log(page3);
+            for (let index = 0; index < page4.length; index++) {
+                var page3 = document.querySelector('.mainManga').getElementsByTagName('img')[index];
                 page3.style.width = '30%';
             }
-            document.getElementById('fullscreen1').style.opacity = '1'
-            document.getElementById('fullscreen2').style.opacity = '0'
+            document.getElementById('fullscreen2').style.display = 'none'
+            document.getElementById('fullscreen1').style.opacity = 'block'
+
             istrue = true
         }
     }

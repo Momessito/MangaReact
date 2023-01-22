@@ -13,6 +13,7 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 #root {
+   
   background: linear-gradient(300deg,var(--color1),var(--color6),var(--color7));
   background-size: 180% 180%;
   animation: gradient-animation 18s ease infinite;
@@ -538,7 +539,7 @@ margin-left: 20px;
 
 
 }
-#ChangeImg, #ChangeNick, #ChangeEmail{
+#ChangeImg, #ChangeNick, #ChangeEmail, #ChangePass{
   display: none;
   width: 100%;
   height: 100vh;
@@ -554,12 +555,21 @@ margin-left: 20px;
   margin-left: 50%;
   transform: translate(-50%);
 }
+#ChangePass input{
+  margin-top: 100px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
 #ChangeEmail input{
   margin-top: 100px;
   margin-left: 50%;
   transform: translate(-50%);
 }
 #ChangeNick button{
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+#ChangePass button{
   margin-left: 50%;
   transform: translate(-50%);
 }
@@ -2564,3 +2574,97 @@ border: 2px solid var(--color5);
   width: 100%;
   filter: drop-shadow(0 0 23px var(--animation-color))
 }
+
+.RecentsTitle{
+font-style: normal;
+font-weight: lighter;
+margin-top: 10px;
+font-size: 24px;
+line-height: 29px;
+}
+
+.RecentsCard{
+  display: flex;
+  margin-left: 50%;
+  transform: translate(-50%);
+  width: 80%;
+  background-color: var(--color1);
+  margin-top: 10px;
+}
+.appRecents{
+  display: flex;
+  flex-direction: column;
+}
+.RecentsCard img{
+border-radius: 10px;
+width: 150px;
+height: 100%;
+}
+.RecentsImage{
+  width: 150px;
+  margin: 10px;
+  border-radius: 10px;
+}
+.RatingRecents{
+  display: flex;
+  width: 85%;
+  overflow-x: auto;
+}
+.RatingRecents::-webkit-scrollbar{
+  background-color: var(--color6);
+  height: 10px;
+  border-radius: 10px;
+}
+.RatingRecents::-webkit-scrollbar-thumb{
+  background-color: var(--color2);
+  border-radius: 10px;
+}
+.RatingRecents h5{
+ font-size:  smaller;
+ margin-left: 5px;
+ background-color: var(--color2);
+ border-radius: 5px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding:10px 10px;
+ color: black;
+}
+.RatingRecents h5:first-child{
+  font-size:  smaller;
+  margin-left: 5px;
+  background-color: #ffc83d;
+  text-shadow: 0px 0px 5px black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:10px 10px;
+  color: black;
+ }
+ .RecentsDesc p{
+  font-size: small;
+  overflow: hidden;
+ }
+ .RecentsDesc{
+  width: calc(100% - 180px);
+  overflow: hidden;
+ }
+ .RecentsDesc h3{
+  font-size: large;
+  margin-top: 5px;
+  height: 45px;
+  overflow: hidden;
+ }
+ .RecentsChap{
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  padding: 05px 25px;
+  font-size: medium;
+  border-radius: 10px;
+  background-color: var(--color2);
+ }
+ .Last a h1:hover{
+  text-decoration: underline;
+ }
