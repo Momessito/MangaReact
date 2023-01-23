@@ -1017,7 +1017,7 @@ transform: scaleX(1.05);
 }
 
 .textsC h4 {
-  color: var(--color2);
+  color: white;
   margin-top: 10px;
   font-size: small;
   margin-bottom: 10px;
@@ -2252,7 +2252,7 @@ border: 2px solid var(--color5);
   color: var(--color1);
   padding: 5px 10px;
   background-color: var(--color2);
-  width: 45%;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   border-radius: 0px 0px 10px 10px;
@@ -2271,7 +2271,7 @@ border: 2px solid var(--color5);
   color: var(--color1);
   padding: 5px 10px;
   background-color: var(--color2);
-  width: 45%;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   border-radius: 10px 10px 0px 0px;
@@ -2645,6 +2645,7 @@ height: 100%;
  .RecentsDesc p{
   font-size: small;
   overflow: hidden;
+  font-weight: 300;
  }
  .RecentsDesc{
   width: calc(100% - 180px);
@@ -2655,6 +2656,7 @@ height: 100%;
   margin-top: 5px;
   height: 45px;
   overflow: hidden;
+  font-weight: bold;
  }
  .RecentsChap{
   position: absolute;

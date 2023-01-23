@@ -9,6 +9,8 @@ import Chapters from './Chapters';
 import Config from './Config';
 import Favoritos from './Favoritos';
 import Recentes from './Recentes';
+import MostRead from './MostRead';
+import Popular from './Popular';
 
 function App() {
   
@@ -24,6 +26,8 @@ return(
       <Route path='/config' element={<Config />} />
       <Route path='/favoritos' element={<Favoritos />} />
       <Route path='/Recentes' element={<Recentes />} />
+      <Route path='/Populares' element={<Popular />} />
+      <Route path='/Maislidos' element={<MostRead />} />
     </Routes>
   </Router>
 )

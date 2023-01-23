@@ -8,9 +8,11 @@ body {
 
 code {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap');
+
 
 
 *{

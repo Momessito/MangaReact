@@ -12,6 +12,7 @@ import MyGallery from './components/carros';
 import Categories from './components/dragCat';
 import Mangas from './backend/mangas';
 import GoogleAds from './components/GoogleAds';
+import { Link } from 'react-router-dom';
 
 function Home() {
   var isH = false
@@ -77,7 +78,7 @@ function Home() {
         </div>
         <div className='all2' id='down-animation2'>
           <div className='Top'>
-          <div className="Last3">            <h1>Populares</h1> 
+          <div className="Last3">            <Link to={'/Populares'}><h1>Populares</h1> </Link>
             </div>
             <Top />
 

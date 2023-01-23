@@ -283,6 +283,14 @@ flex-wrap: wrap;
 #Container2 h1{
   width: 100%;
 }
+.RecentsCard{
+  display: flex;
+  margin-left: 50%;
+  transform: translate(-50%);
+  width: 95%;
+  background-color: var(--color1);
+  margin-top: 10px;
+}
 .C img{
   width: 100%;
 }

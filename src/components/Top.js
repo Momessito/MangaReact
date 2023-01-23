@@ -37,7 +37,8 @@ const Top2 = () => {
 
   return <div className="Container" id="Container3">
     <div className="TopText">    
-    <h1>Mangás Mais Lidos</h1>
+    <Link to={'/Maislidos'}>
+    <h1>Mangás Mais Lidos</h1></Link>
     
     </div>
 
