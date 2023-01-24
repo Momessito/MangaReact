@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = "https://9h2vaj.deta.dev";
+const baseGateWay = 'https://uerxf4.deta.dev';
 
 class User {
 
@@ -136,7 +137,7 @@ class User {
 
     static async getFavorites() {
         try {
-            const url = `${baseUrl}/users/favorites/`;
+            const url = `${baseGateWay}/users/favorites/`;
             const token = localStorage.getItem('token');
             const response = await axios.get(url, {
                 headers: {
