@@ -21,23 +21,34 @@ const buildDirectUrl = (path, params = {}) => {
     return `${mangaDexBase}/${path}${qs ? '?' + qs : ''}`;
 };
 
-// Smart fetch: dev = direct, prod = Vercel proxy → corsproxy.io fallback
+// ⬇️ Depois de criares o Cloudflare Worker, substitui pelo teu URL
+// Ex: 'https://mangadex-proxy.SEU-USER.workers.dev'
+const CLOUDFLARE_WORKER_URL = 'https://shy-cell-4a30.pinhoes1000.workers.dev/'; // Deixa vazio para usar Vercel proxy
+
+// Smart fetch: dev = direct, prod = CF Worker → Vercel → corsproxy.io
 const mangaFetch = async (path, params = {}) => {
     if (isDev) {
         const res = await axios.get(buildDirectUrl(path, params));
         return res.data;
     }
-    // Try 1: Our Vercel serverless proxy
+    const proxyQs = buildQS({ path, ...params });
+
+    // Try 1: Cloudflare Worker (IPs nao bloqueados)
+    if (CLOUDFLARE_WORKER_URL) {
+        try {
+            const res = await axios.get(`${CLOUDFLARE_WORKER_URL}?${proxyQs}`, { timeout: 8000 });
+            return res.data;
+        } catch (e) { console.warn('[mangas] CF Worker failed:', e.message); }
+    }
+    // Try 2: Vercel serverless proxy
     try {
-        const proxyQs = buildQS({ path, ...params });
         const res = await axios.get(`/api/mangadex?${proxyQs}`, { timeout: 8000 });
         return res.data;
-    } catch (e1) {
-        console.warn('[mangas] Vercel proxy failed, fallback to corsproxy.io:', e1.message);
-    }
-    // Try 2: Public corsproxy.io
+    } catch (e) { console.warn('[mangas] Vercel proxy failed:', e.message); }
+
+    // Try 3: corsproxy.io (publico, ultimo recurso)
     const directUrl = buildDirectUrl(path, params);
-    const res = await axios.get(`https://corsproxy.io/?${encodeURIComponent(directUrl)}`, { timeout: 10000 });
+    const res = await axios.get(`https://corsproxy.io/?${encodeURIComponent(directUrl)}`, { timeout: 12000 });
     return res.data;
 };
 
