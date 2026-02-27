@@ -15,26 +15,29 @@ import Popular from './Popular';
 import Amigos from './Amigos';
 import Chat from './Chat';
 import Profile from './Profile';
+import AccessGate from './components/AccessGate';
 
 function App() {
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/mangas/:id/capitulos/:chap" element={<Manga />} />
-        <Route path='/mangas/:id' element={<Chapters />} />
-        <Route path='/config' element={<Config />} />
-        <Route path='/favoritos' element={<Favoritos />} />
-        <Route path='/Recentes' element={<Recentes />} />
-        <Route path='/Populares' element={<Popular />} />
-        <Route path='/mais-lidos' element={<MostRead />} />
-        <Route path='/amigos' element={<Amigos />} />
-        <Route path='/chat/:id' element={<Chat />} />
-        <Route path='/perfil/:id' element={<Profile />} />
-      </Routes>
-    </Router>
+    <AccessGate>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/mangas/:id/capitulos/:chap" element={<Manga />} />
+          <Route path='/mangas/:id' element={<Chapters />} />
+          <Route path='/config' element={<Config />} />
+          <Route path='/favoritos' element={<Favoritos />} />
+          <Route path='/Recentes' element={<Recentes />} />
+          <Route path='/Populares' element={<Popular />} />
+          <Route path='/mais-lidos' element={<MostRead />} />
+          <Route path='/amigos' element={<Amigos />} />
+          <Route path='/chat/:id' element={<Chat />} />
+          <Route path='/perfil/:id' element={<Profile />} />
+        </Routes>
+      </Router>
+    </AccessGate>
   )
 }
 
