@@ -10,7 +10,6 @@
   --background: #72728f;
 }
 
-@import "~react-image-gallery/styles/css/image-gallery.css";
 
 #root {
 
@@ -506,7 +505,7 @@ input:focus {
 .configAll {
   width: 100%;
   background-color: var(--color1);
-  height: 90.9vh;
+  height: auto;
 }
 
 #icon2,

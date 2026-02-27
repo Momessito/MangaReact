@@ -107,6 +107,23 @@ class User {
         }
     }
 
+    static async updateProfileCustomization({ banner, background, bio, accentColor }) {
+        try {
+            const uid = this.getUid();
+            if (!uid) return false;
+            const updates = {};
+            if (banner !== undefined) updates.banner = banner;
+            if (background !== undefined) updates.background = background;
+            if (bio !== undefined) updates.bio = bio;
+            if (accentColor !== undefined) updates.accentColor = accentColor;
+            await updateDoc(doc(db, 'users', uid), updates);
+            return true;
+        } catch (err) {
+            console.error(err);
+            return false;
+        }
+    }
+
     static async editPassword(oldPass, newPass) {
         try {
             const user = auth.currentUser;

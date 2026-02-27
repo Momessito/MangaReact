@@ -82,8 +82,7 @@ function Nav() {
                 <li><Link to={'/perfil/meu-perfil'} id='listC'>Meu Perfil</Link></li>
                 <li><Link to={'/amigos'} id='listC'>Comunidade</Link></li>
                 <li><Link to={'/favoritos'} id='listC'>Meus Favoritos</Link></li>
-                <li><Link to={'/config'} id='listC'>Mangas</Link></li>
-                <li><Link to={'/config'} id='listC'>Configurações</Link></li>
+                <li><Link to={'/config'} id='listC'>Configurações'</Link></li>
               </ul>
               <Link reloadDocument>
                 <div className='wr2'></div>
