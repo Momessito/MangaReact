@@ -75,9 +75,13 @@ class Mangas {
 
     static async getChapters(id, offset = 0) {
         try {
-            // Chapter feed is called directly — no proxy needed, no CORS issues on this endpoint
-            const url = `https://api.mangadex.org/manga/${id}/feed?limit=100&offset=${offset}&translatedLanguage[]=pt-br&translatedLanguage[]=en&order[chapter]=desc`;
-            const response = await axios.get(url, { headers: User.getHeaders() });
+            const url = buildUrl(`manga/${id}/feed`, {
+                limit: 100,
+                offset,
+                'translatedLanguage[]': 'pt-br',
+                'order[chapter]': 'desc'
+            });
+            const response = await axios.get(url);
             return response.data;
         } catch (err) {
             console.log(err);
