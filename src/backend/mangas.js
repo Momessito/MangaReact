@@ -1,23 +1,30 @@
 import axios from 'axios';
 import User from './users';
 
-// In production (Vercel), use our serverless proxy to bypass CORS.
-// In development (localhost), hit MangaDex directly.
 const isDev = import.meta.env.DEV;
-const baseUrl = isDev
-    ? "https://api.mangadex.org"
-    : ""; // Empty base - proxy URL is built dynamically
+const mangaDexBase = 'https://api.mangadex.org';
 
-// Build a request URL: in production routes via /api/mangadex?path=...
+// Build query string keeping [] literal (MangaDex needs them unencoded)
+function buildQS(params) {
+    return Object.entries(params)
+        .flatMap(([key, value]) => {
+            if (Array.isArray(value)) {
+                return value.map(v => `${key}=${encodeURIComponent(v)}`);
+            }
+            return [`${key}=${encodeURIComponent(value)}`];
+        })
+        .join('&');
+}
+
+// In dev: call MangaDex directly. In prod: route via Vercel serverless proxy.
 const buildUrl = (path, params = {}) => {
+    const qs = buildQS(params);
     if (isDev) {
-        const qs = new URLSearchParams(params).toString();
-        return `${baseUrl}/${path}${qs ? '?' + qs : ''}`;
-    } else {
-        // Proxy format: /api/mangadex?path=manga/xxx&limit=20&...
-        const qs = new URLSearchParams({ path, ...params }).toString();
-        return `/api/mangadex?${qs}`;
+        return `${mangaDexBase}/${path}${qs ? '?' + qs : ''}`;
     }
+    // Proxy: keeps params as-is in the query string (the proxy reconstructs them with literal [])
+    const proxyQs = buildQS({ path, ...params });
+    return `/api/mangadex?${proxyQs}`;
 };
 
 // Helper to extract the title from the manga object

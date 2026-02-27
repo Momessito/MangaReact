@@ -27,13 +27,17 @@ function Manga() {
     const getposts = async () => {
         try {
             const isDev = import.meta.env.DEV;
-            // Build proxy-aware URL: in dev hit MangaDex directly, in prod go via /api/mangadex
             const mkUrl = (path, params = {}) => {
+                const qs = Object.entries(params)
+                    .flatMap(([k, v]) => Array.isArray(v) ? v.map(x => `${k}=${encodeURIComponent(x)}`) : [`${k}=${encodeURIComponent(v)}`])
+                    .join('&');
                 if (isDev) {
-                    const qs = new URLSearchParams(params).toString();
                     return `https://api.mangadex.org/${path}${qs ? '?' + qs : ''}`;
                 }
-                return `/api/mangadex?${new URLSearchParams({ path, ...params }).toString()}`;
+                const proxyQs = Object.entries({ path, ...params })
+                    .flatMap(([k, v]) => Array.isArray(v) ? v.map(x => `${k}=${encodeURIComponent(x)}`) : [`${k}=${encodeURIComponent(v)}`])
+                    .join('&');
+                return `/api/mangadex?${proxyQs}`;
             };
 
             const response = await axios.get(mkUrl(`at-home/server/${location2}`));
@@ -44,7 +48,6 @@ function Manga() {
 
             const mappedImages = dataFiles.map((filename, index) => ({
                 id: index,
-                // CDN image URLs are always direct from browser — not proxied
                 url: `${baseUrl}/data/${hash}/${filename}`
             }));
 
