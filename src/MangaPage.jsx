@@ -26,13 +26,11 @@ function Manga() {
 
     const getposts = async () => {
         try {
-            const isDev = import.meta.env.DEV;
-            const mkUrl = (path) => isDev
-                ? `https://api.mangadex.org/${path}`
-                : `/api/mangadex?path=${encodeURIComponent(path)}`;
-
-            // location2 is the chapter ID
-            const response = await axios.get(mkUrl(`at-home/server/${location2}`));
+            // at-home/server and chapter endpoints are called DIRECTLY from browser.
+            // MangaDex CDN detects server-side proxy and serves a DRM placeholder — so never proxy these.
+            const response = await axios.get(
+                `https://api.mangadex.org/at-home/server/${location2}`
+            );
 
             const baseUrl = response.data.baseUrl;
             const hash = response.data.chapter.hash;
@@ -43,7 +41,7 @@ function Manga() {
                 url: `${baseUrl}/data/${hash}/${filename}`
             }));
 
-            const chapInfoRes = await axios.get(mkUrl(`chapter/${location2}`));
+            const chapInfoRes = await axios.get(`https://api.mangadex.org/chapter/${location2}`);
             const chapData = chapInfoRes.data.data;
 
             setposts(mappedImages);
