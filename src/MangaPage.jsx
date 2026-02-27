@@ -26,22 +26,24 @@ function Manga() {
 
     const getposts = async () => {
         try {
+            const isDev = import.meta.env.DEV;
+            const mkUrl = (path) => isDev
+                ? `https://api.mangadex.org/${path}`
+                : `/api/mangadex?path=${encodeURIComponent(path)}`;
+
             // location2 is the chapter ID
-            const response = await axios.get(
-                `https://api.mangadex.org/at-home/server/${location2}`
-            );
+            const response = await axios.get(mkUrl(`at-home/server/${location2}`));
 
             const baseUrl = response.data.baseUrl;
             const hash = response.data.chapter.hash;
-            const dataFiles = response.data.chapter.data; // High quality images
+            const dataFiles = response.data.chapter.data;
 
             const mappedImages = dataFiles.map((filename, index) => ({
                 id: index,
                 url: `${baseUrl}/data/${hash}/${filename}`
             }));
 
-            // To get chapter info (like chapter number), we need a separate request
-            const chapInfoRes = await axios.get(`https://api.mangadex.org/chapter/${location2}`);
+            const chapInfoRes = await axios.get(mkUrl(`chapter/${location2}`));
             const chapData = chapInfoRes.data.data;
 
             setposts(mappedImages);
