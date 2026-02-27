@@ -16,16 +16,31 @@ function buildQS(params) {
         .join('&');
 }
 
-// In dev: call MangaDex directly. In prod: route via Vercel serverless proxy.
-const buildUrl = (path, params = {}) => {
+const buildDirectUrl = (path, params = {}) => {
     const qs = buildQS(params);
-    if (isDev) {
-        return `${mangaDexBase}/${path}${qs ? '?' + qs : ''}`;
-    }
-    // Proxy: keeps params as-is in the query string (the proxy reconstructs them with literal [])
-    const proxyQs = buildQS({ path, ...params });
-    return `/api/mangadex?${proxyQs}`;
+    return `${mangaDexBase}/${path}${qs ? '?' + qs : ''}`;
 };
+
+// Smart fetch: dev = direct, prod = Vercel proxy → corsproxy.io fallback
+const mangaFetch = async (path, params = {}) => {
+    if (isDev) {
+        const res = await axios.get(buildDirectUrl(path, params));
+        return res.data;
+    }
+    // Try 1: Our Vercel serverless proxy
+    try {
+        const proxyQs = buildQS({ path, ...params });
+        const res = await axios.get(`/api/mangadex?${proxyQs}`, { timeout: 8000 });
+        return res.data;
+    } catch (e1) {
+        console.warn('[mangas] Vercel proxy failed, fallback to corsproxy.io:', e1.message);
+    }
+    // Try 2: Public corsproxy.io
+    const directUrl = buildDirectUrl(path, params);
+    const res = await axios.get(`https://corsproxy.io/?${encodeURIComponent(directUrl)}`, { timeout: 10000 });
+    return res.data;
+};
+
 
 // Helper to extract the title from the manga object
 const getTitle = (manga) => {
@@ -70,26 +85,21 @@ class Mangas {
 
     static async getMangaById(id) {
         try {
-            const url = buildUrl(`manga/${id}`, {
-                'includes[]': 'cover_art',
-            });
-            const response = await axios.get(url);
-            return mapManga(response.data.data);
-        } catch (Error) {
-            console.log(Error);
+            const data = await mangaFetch(`manga/${id}`, { 'includes[]': 'cover_art' });
+            return mapManga(data.data);
+        } catch (err) {
+            console.log(err);
         }
     }
 
     static async getChapters(id, offset = 0) {
         try {
-            const url = buildUrl(`manga/${id}/feed`, {
-                limit: 100,
-                offset,
+            const data = await mangaFetch(`manga/${id}/feed`, {
+                limit: 100, offset,
                 'translatedLanguage[]': 'pt-br',
                 'order[chapter]': 'desc'
             });
-            const response = await axios.get(url);
-            return response.data;
+            return data;
         } catch (err) {
             console.log(err);
         }
@@ -97,14 +107,13 @@ class Mangas {
 
     static async search(manga_name) {
         try {
-            const url = buildUrl('manga', {
+            const data = await mangaFetch('manga', {
                 title: manga_name,
                 'includes[]': 'cover_art',
                 limit: 20,
                 'availableTranslatedLanguage[]': 'pt-br'
             });
-            const response = await axios.get(url);
-            return response.data.data.map(mapManga);
+            return data.data.map(mapManga);
         } catch (err) {
             console.log(err);
             return [];
@@ -113,14 +122,13 @@ class Mangas {
 
     static async getRecents() {
         try {
-            const url = buildUrl('manga', {
+            const data = await mangaFetch('manga', {
                 limit: 20,
                 'order[createdAt]': 'desc',
                 'includes[]': 'cover_art',
                 'availableTranslatedLanguage[]': 'pt-br'
             });
-            const response = await axios.get(url);
-            return response.data.data.map(mapManga);
+            return data.data.map(mapManga);
         } catch (err) {
             console.log(err);
             return [];
@@ -129,14 +137,13 @@ class Mangas {
 
     static async getMostRead() {
         try {
-            const url = buildUrl('manga', {
+            const data = await mangaFetch('manga', {
                 limit: 20,
                 'order[followedCount]': 'desc',
                 'includes[]': 'cover_art',
                 'availableTranslatedLanguage[]': 'pt-br'
             });
-            const response = await axios.get(url);
-            return response.data.data.map(mapManga);
+            return data.data.map(mapManga);
         } catch (err) {
             console.log(err);
             return [];
