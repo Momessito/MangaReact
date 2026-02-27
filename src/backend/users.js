@@ -1,220 +1,279 @@
-import axios from 'axios';
-
-const baseUrl = "https://9h2vaj.deta.dev";
-const baseGateWay = 'https://uerxf4.deta.dev';
+import { auth, db } from '../firebase';
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    updatePassword,
+    EmailAuthProvider,
+    reauthenticateWithCredential
+} from 'firebase/auth';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 
 class User {
 
-    constructor() { }
+    static getHeaders() {
+        return {
+            "Content-Type": "application/json"
+        };
+    }
 
-    // USER
+    // Helper to get current UID (fallback to localStorage if auth state is still initializing)
+    static getUid() {
+        if (auth.currentUser) return auth.currentUser.uid;
+        return localStorage.getItem('firebase_uid');
+    }
+
+    static async register(email, password, nick) {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Create user profile in Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                nickname: nick,
+                email: email,
+                img: "",
+                favorites: [],
+                read: [],
+                recentlyRead: [],
+                friends: [],
+                friendRequests: []
+            });
+
+            localStorage.setItem('firebase_uid', user.uid);
+            return { status: 200 };
+        } catch (err) {
+            console.error(err);
+            if (err.code === 'auth/email-already-in-use') throw new Error("Email já em uso!");
+            if (err.code === 'auth/weak-password') throw new Error("A senha deve ter pelo menos 6 caracteres!");
+            throw new Error("Erro ao criar conta.");
+        }
+    }
+
     static async login(email, password) {
         try {
-            const url = `${baseUrl}/login/`;
-            const response = await axios.post(url, {
-                email: email,
-                password: password
-            });
-            localStorage.setItem('token', response.data.token);
-            return response;
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            localStorage.setItem('firebase_uid', user.uid);
+            return { status: 200 };
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            throw new Error("Credenciais inválidas.");
         }
     }
 
     static async getUser() {
         try {
-            const url = `${baseUrl}/users/`;
-            const token = localStorage.getItem('token');
-            const user = await axios.get(url, {
-                headers: {
-                    "x-acess-token": token,
-                }
-            });
-            return user;
-        } catch (err) {
-        }
-    }
+            const uid = this.getUid();
+            if (!uid) return null;
 
-    static async createUser(nickname, email, password) {
-        try {
-            const url = `${baseUrl}/users/`;
-            const response = await axios.post(url, {
-                nickname: nickname,
-                email: email,
-                password: password
-            });
-            return response;
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    static async editUser(user) {
-        const { nickname, img, email } = user;
-        try {
-            const url = `${baseUrl}/users/`;
-            const token = localStorage.getItem('token');
-            const body = {
-                "nickname": nickname,
-                "img": img,
-                "email": email
+            const userDoc = await getDoc(doc(db, "users", uid));
+            if (userDoc.exists()) {
+                const data = userDoc.data();
+                return { data: { nickname: data.nickname || "User", email: data.email, img: data.img || '' } };
             }
-            const response = await axios.put(url, body, {
-                headers: {
-                    "x-acess-token": token
-                }
-            });
-            return response;
+            return null;
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            return null;
         }
     }
 
-    static async editPassword(old_password, new_password) {
+    static async editUser(useredit) {
         try {
-            const url = `${baseUrl}/users/password/`;
-            const body = {
-                "old_password": old_password,
-                "new_password": new_password
+            const uid = this.getUid();
+            if (!uid) return;
+
+            const userRef = doc(db, "users", uid);
+            const updates = {};
+
+            if (useredit.nickname || (useredit.data && useredit.data.nickname)) {
+                updates.nickname = useredit.nickname || useredit.data.nickname;
             }
-            const token = localStorage.getItem('token');
-            const response = await axios.put(url, body, {
-                headers: {
-                    "x-acess-token": token
-                }
-            });
-            return response;
+            if (useredit.img || (useredit.data && useredit.data.img)) {
+                updates.img = useredit.img || useredit.data.img;
+            }
+            if (useredit.email || (useredit.data && useredit.data.email)) {
+                // Changing email in Firestore doesn't change Firebase Auth email natively without extra steps,
+                // but we update it here for display.
+                updates.email = useredit.email || useredit.data.email;
+            }
+
+            if (Object.keys(updates).length > 0) {
+                await updateDoc(userRef, updates);
+            }
         } catch (err) {
-            console.log(err);
+            console.error(err);
+        }
+    }
+
+    static async editPassword(oldPass, newPass) {
+        try {
+            const user = auth.currentUser;
+            if (!user) {
+                alert("Sessão expirada. Faça login novamente.");
+                return;
+            }
+
+            const credential = EmailAuthProvider.credential(user.email, oldPass);
+            await reauthenticateWithCredential(user, credential);
+            await updatePassword(user, newPass);
+            alert("Senha atualizada com sucesso!");
+        } catch (err) {
+            console.error(err);
+            if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+                alert("A password antiga está incorreta!");
+            } else {
+                alert("Erro ao alterar senha.");
+            }
         }
     }
 
     static async Exit() {
         try {
+            await signOut(auth);
+            localStorage.removeItem('firebase_uid');
             console.log('saiu');
-            localStorage.setItem('token', '');
-
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
-    // FAVORITE
+    // FIREBASE FAVORITES
     static async addFavorite(name, id) {
         try {
-            const url = `${baseUrl}/users/favorites/`;
-            const body = {
-                "name": name,
-                "manga_id": id
-            }
-            const token = localStorage.getItem('token');
-            const response = await axios.post(url, body, {
-                headers: {
-                    "x-acess-token": token
-                }
+            const uid = this.getUid();
+            if (!uid) throw new Error("Not logged in");
+
+            const userRef = doc(db, "users", uid);
+            await updateDoc(userRef, {
+                favorites: arrayUnion(id)
             });
-            return response;
+            return { status: 200 };
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
     static async removeFavorite(id) {
         try {
-            const url = `${baseUrl}/users/favorites/${id}/`;
-            const token = localStorage.getItem('token');
-            const response = await axios.delete(url, {
-                headers: {
-                    "x-acess-token": token
-                }
+            const uid = this.getUid();
+            if (!uid) throw new Error("Not logged in");
+
+            const userRef = doc(db, "users", uid);
+            await updateDoc(userRef, {
+                favorites: arrayRemove(id)
             });
-            return response;
+            return { status: 200 };
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
-    static async getFavorites() {
+    static async getFavorites(limit = 100, offset = 0) {
         try {
-            const url = `${baseGateWay}/users/favorites/`;
-            const token = localStorage.getItem('token');
-            const response = await axios.get(url, {
-                headers: {
-                    "x-acess-token": token
-                }
-            });
-            return response;
+            const uid = this.getUid();
+            if (!uid) throw new Error("Not logged in");
+
+            const userDoc = await getDoc(doc(db, "users", uid));
+            if (userDoc.exists()) {
+                const favorites = userDoc.data().favorites || [];
+                return { data: { data: favorites.map(id => ({ id })) } };
+            }
+            return { data: { data: [] } };
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            return { data: { data: [] } };
         }
     }
 
     static async isFavorited(id) {
         try {
-            const response = await this.getFavorites();
-            const size = response.data.items.length;
-            for (let i = 0; i < size; i++){
-                const mangaId = response.data.items[i].manga_id;
-                const key = response.data.items[i].key;
-                if (mangaId == id) return key;
+            const uid = this.getUid();
+            if (!uid) return null;
+
+            const userDoc = await getDoc(doc(db, "users", uid));
+            if (userDoc.exists()) {
+                const favorites = userDoc.data().favorites || [];
+                return favorites.includes(id) ? 'reading' : null;
             }
             return null;
         } catch (err) {
-            console.log(err);
+            console.error("Not favorited or not logged in", err);
+            return null;
         }
     }
 
-    static async markMangaRead(mangaId, capId){
+    // FIREBASE READING HISTORY
+    static async markMangaRead(mangaId, capId) {
         try {
-            const url = `${baseUrl}/users/historys/`;
-            const body = {
-                "manga_id": mangaId, 
-                "cap_id": capId
+            const uid = this.getUid();
+            if (!uid) throw new Error("Not logged in");
+
+            const userRef = doc(db, "users", uid);
+            const userDoc = await getDoc(userRef);
+
+            if (userDoc.exists()) {
+                let recentlyRead = userDoc.data().recentlyRead || [];
+                recentlyRead = recentlyRead.filter(id => id !== mangaId); // remove duplicate
+                recentlyRead.unshift(mangaId); // prepend
+                if (recentlyRead.length > 20) recentlyRead.pop();
+
+                await updateDoc(userRef, {
+                    read: arrayUnion(capId),
+                    recentlyRead: recentlyRead
+                });
             }
-            const token = localStorage.getItem('token');
-            const response = await axios.post(url, body, {
-                headers: {
-                    "x-acess-token": token
-                }
-            });
-            return response;
+            return { status: 200 };
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
     static async markMangaUnread(mangaId, capId) {
         try {
-            const url = `${baseUrl}/users/historys/`;
-            const token = localStorage.getItem('token');
-            const body = {
-                "manga_id": mangaId, 
-                "cap_id": capId
-            }
-            const response = await axios.delete(url, body, {
-                headers: {
-                    "x-acess-token": token
-                }
+            const uid = this.getUid();
+            if (!uid) throw new Error("Not logged in");
+
+            const userRef = doc(db, "users", uid);
+            await updateDoc(userRef, {
+                read: arrayRemove(capId)
             });
-            return response;
+            return { status: 200 };
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
-    static async listMangaRead(idManga){
+    static async listMangaRead(idManga) {
         try {
-            const url = `${baseUrl}/users/historys/${idManga}`;
-            const token = localStorage.getItem('token');
-            const response = await axios.get(url, {
-                headers: {
-                    "x-acess-token": token
-                }
-            });
-            return response;
+            const uid = this.getUid();
+            if (!uid) return [];
+
+            const userDoc = await getDoc(doc(db, "users", uid));
+            if (userDoc.exists()) {
+                return userDoc.data().read || [];
+            }
+            return [];
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            return [];
+        }
+    }
+
+    static async getRecentlyRead() {
+        try {
+            const uid = this.getUid();
+            if (!uid) return [];
+
+            const userDoc = await getDoc(doc(db, "users", uid));
+            if (userDoc.exists()) {
+                return userDoc.data().recentlyRead || [];
+            }
+            return [];
+        } catch (err) {
+            console.error(err);
+            return [];
         }
     }
 }
