@@ -14,10 +14,10 @@ function NavRead() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    const scrollEl = document.getElementById('root');
     const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        const currentScrollY = window.scrollY;
-        // Hid the navbar if scrolling down past 60px
+      if (scrollEl) {
+        const currentScrollY = scrollEl.scrollTop;
         if (currentScrollY > lastScrollY && currentScrollY > 60) {
           setIsVisible(false);
         } else {
@@ -26,8 +26,8 @@ function NavRead() {
         setLastScrollY(currentScrollY);
       }
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (scrollEl) scrollEl.addEventListener('scroll', handleScroll, { passive: true });
+    return () => { if (scrollEl) scrollEl.removeEventListener('scroll', handleScroll); };
   }, [lastScrollY]);
 
   useEffect(() => {

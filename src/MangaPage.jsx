@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Mangas from './backend/mangas';
 import User from './backend/users';
 import ReviewModal from './components/ReviewModal';
+import ChapterComments from './components/ChapterComments';
 
 function Manga() {
     const { id: location, chap: location2 } = useParams();
@@ -114,10 +115,13 @@ function Manga() {
     }
 
     const handleImageClick = (e) => {
-        window.scrollBy({
-            top: window.innerHeight * 0.75,
-            behavior: 'smooth'
-        });
+        const root = document.getElementById('root');
+        if (root) {
+            root.scrollBy({
+                top: window.innerHeight * 0.75,
+                behavior: 'smooth'
+            });
+        }
     }
 
     return (
@@ -171,6 +175,8 @@ function Manga() {
                 </button>
                 <div id="disqus_thread"></div>
             </div>
+
+            <ChapterComments mangaId={location} chapterId={location2} />
 
             <ReviewModal
                 isOpen={isReviewModalOpen}

@@ -63,17 +63,6 @@ function Home() {
 
       <SideMenu />
       <Nav />
-      <div id='nav2'>
-        <h2 onClick={() => scrollTo(0)}>Destaques</h2>
-        <div className='wr' ></div>
-        <h2 onClick={() => scrollTo(1200)}>Favoritos</h2>
-        <div className='wr'></div>
-        <h2 onClick={() => scrollTo(700)}>Últimos adicionados</h2>
-        <div className='wr'></div>
-        <h2 onClick={() => scrollTo(500)}>Populares</h2>
-        <div className='wr'></div>
-        <h2 onClick={() => scrollTo(2000)}>Mais Lidos</h2>
-      </div>
       <div className='carro'>
         <MyGallery />
       </div>
