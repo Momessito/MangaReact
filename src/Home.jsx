@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import MyGallery from './components/carros';
 import Categories from './components/dragCat';
 import UltimosLidos from './components/UltimosLidos';
+import HomeDownloads from './components/HomeDownloads';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -66,6 +67,7 @@ function Home() {
       <div className='carro'>
         <MyGallery />
       </div>
+      <HomeDownloads />
       <UltimosLidos />
       <Categories />
 
