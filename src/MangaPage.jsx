@@ -23,39 +23,96 @@ function Manga() {
     const [chap, setchap] = useState({});
     const [mangaInfo, setMangaInfo] = useState({});
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+    const [downloading, setDownloading] = useState(false);
+    const [downloadProgress, setDownloadProgress] = useState('');
+    const [isSavedOffline, setIsSavedOffline] = useState(false);
+
+    // Check if chapter is already saved offline
+    useEffect(() => {
+        const checkSaved = async () => {
+            const { default: OfflineStorage } = await import('./backend/offlineStorage');
+            const saved = await OfflineStorage.isChapterSaved(location2);
+            setIsSavedOffline(saved);
+        };
+        checkSaved();
+    }, [location2]);
+
+    const saveOffline = async () => {
+        if (posts.length === 0 || downloading) return;
+        setDownloading(true);
+        setDownloadProgress('Preparando...');
+
+        try {
+            const { default: OfflineStorage } = await import('./backend/offlineStorage');
+            const pages = [];
+
+            for (let i = 0; i < posts.length; i++) {
+                setDownloadProgress(`Salvando ${i + 1} de ${posts.length}...`);
+                try {
+                    const proxyUrl = `/api/proxy-image?url=${encodeURIComponent(posts[i].url)}`;
+                    const response = await axios.get(proxyUrl, { responseType: 'arraybuffer' });
+                    pages.push({
+                        index: i,
+                        blob: response.data,
+                        type: 'image/jpeg',
+                    });
+                } catch (imgErr) {
+                    // Fallback: try direct
+                    try {
+                        const response = await axios.get(posts[i].url, { responseType: 'arraybuffer' });
+                        pages.push({ index: i, blob: response.data, type: 'image/jpeg' });
+                    } catch (e2) {
+                        console.error(`Skipping page ${i + 1}`);
+                    }
+                }
+            }
+
+            setDownloadProgress('Salvando no dispositivo...');
+            await OfflineStorage.saveChapter({
+                mangaId: location,
+                mangaTitle: mangaInfo.title || 'Mangá',
+                mangaImage: mangaInfo.image || '',
+                chapterId: location2,
+                chapterNum: chap.chapter || '?',
+                chapterTitle: chap.title || '',
+                pages,
+            });
+
+            setIsSavedOffline(true);
+            setDownloadProgress('Salvo! ✓');
+            setTimeout(() => setDownloadProgress(''), 2000);
+        } catch (err) {
+            console.error('Save offline failed:', err);
+            setDownloadProgress('Erro ao salvar!');
+            setTimeout(() => setDownloadProgress(''), 3000);
+        } finally {
+            setDownloading(false);
+        }
+    };
 
     const getposts = async () => {
         try {
-            const isDev = import.meta.env.DEV;
-            const mkUrl = (path, params = {}) => {
-                const qs = Object.entries(params)
-                    .flatMap(([k, v]) => Array.isArray(v) ? v.map(x => `${k}=${encodeURIComponent(x)}`) : [`${k}=${encodeURIComponent(v)}`])
-                    .join('&');
-                if (isDev) {
-                    return `https://api.mangadex.org/${path}${qs ? '?' + qs : ''}`;
-                }
-                const proxyQs = Object.entries({ path, ...params })
-                    .flatMap(([k, v]) => Array.isArray(v) ? v.map(x => `${k}=${encodeURIComponent(x)}`) : [`${k}=${encodeURIComponent(v)}`])
-                    .join('&');
-                return `/api/mangadex?${proxyQs}`;
-            };
+            // Use mangaFetch proxy chain (CF Worker → Vercel → corsproxy) for ALL environments
+            const response = await Mangas.getChapterServer(location2);
+            if (!response) {
+                console.log("Failed to get chapter server data");
+                return;
+            }
 
-            const response = await axios.get(mkUrl(`at-home/server/${location2}`));
-
-            const baseUrl = response.data.baseUrl;
-            const hash = response.data.chapter.hash;
-            const dataFiles = response.data.chapter.data;
+            const baseUrl = response.baseUrl;
+            const hash = response.chapter.hash;
+            const dataFiles = response.chapter.data;
 
             const mappedImages = dataFiles.map((filename, index) => ({
                 id: index,
                 url: `${baseUrl}/data/${hash}/${filename}`
             }));
 
-            const chapInfoRes = await axios.get(mkUrl(`chapter/${location2}`));
-            const chapData = chapInfoRes.data.data;
+            const chapInfoRes = await Mangas.getChapterInfo(location2);
+            const chapData = chapInfoRes?.data;
 
             setposts(mappedImages);
-            setchap(chapData.attributes || {});
+            setchap(chapData?.attributes || {});
 
             // Fetch chapter feed to determine next/prev chapter
             const feedRes = await Mangas.getChapters(location);
@@ -63,16 +120,14 @@ function Manga() {
                 const chapters = feedRes.data;
                 const currentIndex = chapters.findIndex(c => c.id === location2);
 
-                // MangaDex feed is usually descending order, meaning next chapter is index - 1
                 if (currentIndex >= 0) {
-                    // Try to find the next chapter with a higher chapter number
                     const currentChapNum = parseFloat(chapData.attributes.chapter);
                     const nextChap = chapters.slice().reverse().find(c => parseFloat(c.attributes.chapter) > currentChapNum);
 
                     if (nextChap) {
                         setnext(nextChap.id);
                     } else {
-                        setnext(""); // No next chapter
+                        setnext("");
                     }
                 }
             }
@@ -141,8 +196,41 @@ function Manga() {
             <NavRead />
 
             <div className='mainManga'>
-                <div className='flex'>
-                    <h1 id='Title'>Capitulo: {chap.chapter_number}</h1>
+                <div className='flex' style={{ alignItems: 'center', gap: '15px', flexWrap: 'wrap' }}>
+                    <h1 id='Title'>Capitulo: {chap.chapter || chap.chapter_number}</h1>
+
+                    {/* Save Offline Button */}
+                    <div
+                        onClick={isSavedOffline ? undefined : saveOffline}
+                        style={{
+                            cursor: downloading ? 'wait' : isSavedOffline ? 'default' : 'pointer',
+                            opacity: downloading ? 0.6 : 1,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            padding: '8px 16px',
+                            backgroundColor: isSavedOffline ? '#1a4a1a' : downloading ? '#333' : '#00e6e6',
+                            borderRadius: '8px',
+                            color: isSavedOffline ? '#4f4' : downloading ? '#ccc' : '#000',
+                            fontWeight: 'bold',
+                            fontSize: '0.85rem',
+                            transition: 'all 0.2s',
+                            userSelect: 'none',
+                        }}
+                    >
+                        {isSavedOffline ? (
+                            <>✓ Salvo Offline</>
+                        ) : (
+                            <>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                </svg>
+                                {downloading ? downloadProgress : 'Salvar Offline'}
+                            </>
+                        )}
+                    </div>
+
                     <div className='fullscreen' onClick={toggleFullscreen}>
                         <div id='fullscreen1' style={{ display: isFullscreen ? 'none' : 'block' }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" className="bi bi-fullscreen" viewBox="0 0 16 16">

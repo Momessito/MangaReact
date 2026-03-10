@@ -7,6 +7,8 @@ import Mangas from './backend/mangas';
 import User from './backend/users';
 import Footer from './components/Footer';
 import ReviewModal from './components/ReviewModal';
+import axios from 'axios';
+import OfflineStorage from './backend/offlineStorage';
 
 const Chapters = () => {
     const location = useLocation();
@@ -16,19 +18,145 @@ const Chapters = () => {
     const [posts, setposts] = useState([]);
     const [resultArray, setResultArray] = useState([]);
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+    const [savingAll, setSavingAll] = useState(false);
+    const [saveProgress, setSaveProgress] = useState('');
+    const [savedCount, setSavedCount] = useState(0);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [sortDesc, setSortDesc] = useState(true);
+    const [isLoadingChapters, setIsLoadingChapters] = useState(true);
+
+    // Check how many chapters are already saved
+    useEffect(() => {
+        const checkSaved = async () => {
+            if (posts.length === 0) return;
+            let count = 0;
+            for (const ch of posts) {
+                const saved = await OfflineStorage.isChapterSaved(ch.id);
+                if (saved) count++;
+            }
+            setSavedCount(count);
+        };
+        checkSaved();
+    }, [posts]);
+
+    const saveAllOffline = async () => {
+        if (savingAll || posts.length === 0) return;
+        setSavingAll(true);
+
+        const chaptersToSave = [...posts].reverse(); // save from first to last
+        let done = 0;
+
+        for (const chapter of chaptersToSave) {
+            const chNum = chapter.attributes.chapter || '?';
+
+            // Skip if already saved
+            const alreadySaved = await OfflineStorage.isChapterSaved(chapter.id);
+            if (alreadySaved) {
+                done++;
+                setSaveProgress(`Cap ${chNum} já salvo. (${done}/${chaptersToSave.length})`);
+                continue;
+            }
+
+            setSaveProgress(`Baixando Cap ${chNum}... (${done + 1}/${chaptersToSave.length})`);
+
+            try {
+                // Get chapter image server
+                const serverData = await Mangas.getChapterServer(chapter.id);
+                if (!serverData || !serverData.chapter) {
+                    done++;
+                    continue;
+                }
+
+                const baseUrl = serverData.baseUrl;
+                const hash = serverData.chapter.hash;
+                const dataFiles = serverData.chapter.data;
+
+                const pages = [];
+                for (let i = 0; i < dataFiles.length; i++) {
+                    setSaveProgress(`Cap ${chNum} — página ${i + 1}/${dataFiles.length} (${done + 1}/${chaptersToSave.length})`);
+                    try {
+                        const imgUrl = `${baseUrl}/data/${hash}/${dataFiles[i]}`;
+                        const proxyUrl = `/api/proxy-image?url=${encodeURIComponent(imgUrl)}`;
+                        const response = await axios.get(proxyUrl, { responseType: 'arraybuffer' });
+                        pages.push({ index: i, blob: response.data, type: 'image/jpeg' });
+                    } catch (e) {
+                        try {
+                            const imgUrl = `${baseUrl}/data/${hash}/${dataFiles[i]}`;
+                            const response = await axios.get(imgUrl, { responseType: 'arraybuffer' });
+                            pages.push({ index: i, blob: response.data, type: 'image/jpeg' });
+                        } catch (e2) {
+                            console.error(`Skip page ${i + 1} of cap ${chNum}`);
+                        }
+                    }
+                }
+
+                await OfflineStorage.saveChapter({
+                    mangaId,
+                    mangaTitle: img.title || 'Mangá',
+                    mangaImage: img.image || '',
+                    chapterId: chapter.id,
+                    chapterNum: chNum,
+                    chapterTitle: chapter.attributes.title || '',
+                    pages,
+                });
+
+                done++;
+                setSavedCount(prev => prev + 1);
+            } catch (err) {
+                console.error(`Error saving chapter ${chNum}:`, err);
+                done++;
+            }
+        }
+
+        setSaveProgress(`✓ ${done} capítulos salvos!`);
+        setTimeout(() => setSaveProgress(''), 4000);
+        setSavingAll(false);
+    };
 
     const getposts = async () => {
         try {
-            let result = [];
-            // Just get the first massive batch (up to 100). Or handle proper pagination if needed.
-            // MangaDex feed returns { data: [...chapters] }
-            const response = await Mangas.getChapters(mangaId, 0);
-            if (response && response.data) {
-                setposts(response.data);
+            setIsLoadingChapters(true);
+            let limit = 500;
+            let offset = 0;
+            let allChapters = [];
+            let hasMore = true;
+
+            while (hasMore) {
+                const response = await Mangas.getChapters(mangaId, offset);
+                if (response && response.data && response.data.length > 0) {
+                    allChapters = [...allChapters, ...response.data];
+                    offset += limit;
+                    if (response.data.length < limit) {
+                        hasMore = false;
+                    }
+                } else {
+                    hasMore = false;
+                }
             }
+            setposts(allChapters);
+            setIsLoadingChapters(false);
         } catch (err) {
             console.error(err);
+            setIsLoadingChapters(false);
         }
+    }
+
+    // Filter and Sort logic
+    const filteredPosts = posts.filter(post => {
+        const chapterNum = post.attributes.chapter || '';
+        const chapterTitle = post.attributes.title || '';
+        const searchUpper = searchTerm.toUpperCase();
+        return chapterNum.toUpperCase().includes(searchUpper) || chapterTitle.toUpperCase().includes(searchUpper);
+    });
+
+    const sortedPosts = [...filteredPosts].sort((a, b) => {
+        const numA = parseFloat(a.attributes.chapter) || 0;
+        const numB = parseFloat(b.attributes.chapter) || 0;
+        return sortDesc ? numB - numA : numA - numB;
+    });
+
+    function descer() {
+        setSortDesc(!sortDesc);
     }
 
     useEffect(() => {
@@ -137,22 +265,70 @@ const Chapters = () => {
                         <h4>Descrição: {img.description}</h4>
                     </div>
                 </div>
+
+                {/* Bulk Save Offline Button */}
+                <div style={{ padding: '10px 15px', marginBottom: '10px' }}>
+                    <div
+                        onClick={savingAll ? undefined : saveAllOffline}
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '10px',
+                            padding: '14px 20px',
+                            backgroundColor: (savedCount > 0 && savedCount >= posts.length) ? '#1a4a1a' : savingAll ? '#222' : '#00e6e6',
+                            color: (savedCount > 0 && savedCount >= posts.length) ? '#4f4' : savingAll ? '#aaa' : '#000',
+                            borderRadius: '12px',
+                            fontWeight: 'bold',
+                            fontSize: '1rem',
+                            cursor: savingAll ? 'wait' : 'pointer',
+                            transition: 'all 0.3s',
+                            userSelect: 'none',
+                            width: '100%',
+                            boxSizing: 'border-box',
+                        }}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                        </svg>
+                        {savingAll
+                            ? saveProgress
+                            : (savedCount > 0 && savedCount >= posts.length)
+                                ? `✓ Todos os ${posts.length} capítulos salvos offline`
+                                : savedCount > 0
+                                    ? `Salvar Todos Offline (${savedCount}/${posts.length} já salvos)`
+                                    : `Salvar Todos os ${posts.length} Capítulos Offline`
+                        }
+                    </div>
+                    {savingAll && (
+                        <div style={{ marginTop: '8px', height: '4px', backgroundColor: '#333', borderRadius: '2px', overflow: 'hidden' }}>
+                            <div style={{
+                                height: '100%',
+                                backgroundColor: '#00e6e6',
+                                borderRadius: '2px',
+                                transition: 'width 0.3s',
+                                width: posts.length > 0 ? `${(savedCount / posts.length) * 100}%` : '0%',
+                            }} />
+                        </div>
+                    )}
+                </div>
                 <div className="Filter">
                     <div className=''>
-                        <svg onClick={descer} xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="var(--color2)" className="filterDown bi bi-arrow-down-up" viewBox="0 0 16 16">
+                        <svg onClick={descer} style={{ cursor: 'pointer', transform: sortDesc ? 'none' : 'rotate(180deg)', transition: 'transform 0.3s' }} xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="var(--color2)" className="filterDown bi bi-arrow-down-up" viewBox="0 0 16 16">
                             <path fillRule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
                         </svg>
                     </div>
                     <div className='filterI'><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="var(--color2)" className="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                    </svg><input placeholder='Pesquisar...' id='pesquisa' onKeyUp={pesquisar} />
+                    </svg><input placeholder='Pesquisar...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} id='pesquisa' />
                     </div>
 
                 </div>
                 <div className='flexC' id='flexC'>
 
-                    {posts.length === 0 ? <p id='load'>Carregando</p> : (
-                        posts.map((post) => {
+                    {isLoadingChapters ? <p id='load'>Carregando capítulos...</p> : sortedPosts.length === 0 ? <p id='load'>Nenhum capítulo encontrado</p> : (
+                        sortedPosts.map((post) => {
                             const readStatus = false; // Add User checking layer if needed
                             return (
                                 <Link to={'/mangas/' + mangaId + '/capitulos/' + post.id} key={post.id} >
@@ -192,22 +368,6 @@ const Chapters = () => {
         }
     }
 
-    function pesquisar() {
-
-    }
-
-
-    function descer() {
-        if (istrue === true) {
-            document.getElementById('flexC').style.flexDirection = 'column-reverse'
-            document.getElementById('flexC').style.animation = 'scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
-            istrue = false
-        } else {
-            document.getElementById('flexC').style.flexDirection = 'column'
-            document.getElementById('flexC').style.animation = 'scale-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both'
-            istrue = true
-        }
-    }
 }
 
 export default Chapters;

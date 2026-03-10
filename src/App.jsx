@@ -16,6 +16,11 @@ import Amigos from './Amigos';
 import Chat from './Chat';
 import Profile from './Profile';
 import AccessGate from './components/AccessGate';
+import AnimeExplore from './AnimeExplore';
+import AnimePage from './AnimePage';
+import AnimePlayer from './AnimePlayer';
+import Downloads from './Downloads';
+import OfflineReader from './OfflineReader';
 
 function App() {
 
@@ -35,6 +40,11 @@ function App() {
           <Route path='/amigos' element={<Amigos />} />
           <Route path='/chat/:id' element={<Chat />} />
           <Route path='/perfil/:id' element={<Profile />} />
+          <Route path='/animes' element={<AnimeExplore />} />
+          <Route path='/anime/:slug' element={<AnimePage />} />
+          <Route path='/anime/:slug/play' element={<AnimePlayer />} />
+          <Route path='/downloads' element={<Downloads />} />
+          <Route path='/offline/:chapterId' element={<OfflineReader />} />
         </Routes>
       </Router>
     </AccessGate>

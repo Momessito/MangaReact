@@ -25,13 +25,21 @@ const buildDirectUrl = (path, params = {}) => {
 // Ex: 'https://mangadex-proxy.SEU-USER.workers.dev'
 const CLOUDFLARE_WORKER_URL = 'https://shy-cell-4a30.pinhoes1000.workers.dev/'; // Deixa vazio para usar Vercel proxy
 
-// Smart fetch: dev = direct, prod = CF Worker → Vercel → corsproxy.io
+// Smart fetch: dev = local proxy (via Vite proxy → Express on 3001), prod = CF Worker → Vercel → corsproxy.io
 const mangaFetch = async (path, params = {}) => {
-    if (isDev) {
-        const res = await axios.get(buildDirectUrl(path, params));
-        return res.data;
-    }
     const proxyQs = buildQS({ path, ...params });
+
+    // In dev mode, try local Express proxy first (through Vite's proxy), then fallback to direct
+    if (isDev) {
+        try {
+            const res = await axios.get(`/api/mangadex?${proxyQs}`, { timeout: 8000 });
+            return res.data;
+        } catch (e) {
+            console.warn('[mangas] Local proxy failed, trying direct:', e.message);
+            const res = await axios.get(buildDirectUrl(path, params));
+            return res.data;
+        }
+    }
 
     // Try 1: Cloudflare Worker (IPs nao bloqueados)
     if (CLOUDFLARE_WORKER_URL) {
@@ -59,10 +67,12 @@ const getTitle = (manga) => {
 };
 
 // Helper to find the cover filename from relationships
+// Images are proxied through /api/proxy-image to avoid MangaDex hotlink blocking
 const getCoverUrl = (manga) => {
     const coverRel = manga.relationships.find(rel => rel.type === 'cover_art');
     if (coverRel && coverRel.attributes) {
-        return `https://uploads.mangadex.org/covers/${manga.id}/${coverRel.attributes.fileName}`;
+        const directUrl = `https://uploads.mangadex.org/covers/${manga.id}/${coverRel.attributes.fileName}`;
+        return `/api/proxy-image?url=${encodeURIComponent(directUrl)}`;
     }
     return "/static/media/Logo.10d9b2ebed4705df7759.png";
 };
@@ -106,7 +116,7 @@ class Mangas {
     static async getChapters(id, offset = 0) {
         try {
             const data = await mangaFetch(`manga/${id}/feed`, {
-                limit: 100, offset,
+                limit: 500, offset,
                 'translatedLanguage[]': 'pt-br',
                 'order[chapter]': 'desc'
             });
@@ -177,6 +187,28 @@ class Mangas {
         } catch (err) {
             console.log(err);
             return [];
+        }
+    }
+
+    // Get the image server + chapter hash + file list for reading a chapter
+    static async getChapterServer(chapterId) {
+        try {
+            const data = await mangaFetch(`at-home/server/${chapterId}`);
+            return data;
+        } catch (err) {
+            console.log(err);
+            return null;
+        }
+    }
+
+    // Get chapter metadata (title, chapter number, etc.)
+    static async getChapterInfo(chapterId) {
+        try {
+            const data = await mangaFetch(`chapter/${chapterId}`);
+            return data;
+        } catch (err) {
+            console.log(err);
+            return null;
         }
     }
 }

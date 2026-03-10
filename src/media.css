@@ -1,51 +1,58 @@
 @media screen and (max-width:320px) {
 
 
-#Title{
-  color:  white;
-  margin: 5px;
-  margin-left: 0px !important; 
-  margin-right: 0px !important;
-  transform: translate(0);
-}
+  #Title {
+    color: white;
+    margin: 5px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    transform: translate(0);
+  }
 
-#nav2{
-  overflow-y: hidden;
-}
-#nav2 h2{
-  font-size: 0.5rem
-}
+  #nav2 {
+    overflow-y: hidden;
+  }
 
-}
-@media screen and (max-width:375px) {
-  #nav2 h2{
+  #nav2 h2 {
     font-size: 0.5rem
   }
 
-#Login{
-  left: 0;
-  margin-left: 50px;
-    }
 }
+
+@media screen and (max-width:375px) {
+  #nav2 h2 {
+    font-size: 0.5rem
+  }
+
+  #Login {
+    left: 0;
+    margin-left: 50px;
+  }
+}
+
 @media screen and (max-width:425px) {
   .itemC img {
     width: 100% !important;
     height: 250px;
     border-radius: 15px 0px 15px 0px;
   }
-  .scrollH{
+
+  .scrollH {
     width: 100%;
   }
-  #Profile{
+
+  #Profile {
     width: 90%;
   }
+
   .categories img {
     height: 170px;
     width: 120px !important;
     margin-left: 50%;
     transform: translate(-50%);
   }
-  .ChaptersCard{
+
+  .ChaptersCard {
     background-color: var(--color1);
     margin-top: 0px;
     border-radius: 0;
@@ -54,44 +61,53 @@
     margin-right: 50px;
     color: var(--color2);
   }
-  .allchapters{
+
+  .allchapters {
     width: 100%;
     margin-left: 50%;
     transform: translate(-50%);
   }
-  .filterDown{
+
+  .filterDown {
     margin: 10px 20px;
     cursor: pointer;
     background-color: none;
     width: auto;
     padding: 10px;
     border-radius: 55px;
-    
+
   }
-  .filterI{
+
+  .filterI {
     border-radius: 5px;
     border: 1px solid var(--color1);
     padding: 5px 5px;
-    margin:15px 20px;
+    margin: 15px 20px;
     display: flex;
   }
-  .Register-Form{
+
+  .Register-Form {
     width: 90%;
     margin-left: 0;
   }
-  #Login{
-left: 0;
-margin-left: 65px;
+
+  #Login {
+    left: 0;
+    margin-left: 65px;
   }
-  .h1{
+
+  .h1 {
     font-size: 5vh !important;
   }
-  .Login-Form{
+
+  .Login-Form {
     width: 90%;
   }
-  .indiana-scroll-container--native-scroll::before{
+
+  .indiana-scroll-container--native-scroll::before {
     display: none;
   }
+
   #Bigsearch {
     transition: 1s all;
     width: 100% !important;
@@ -107,349 +123,427 @@ margin-left: 65px;
     z-index: 101;
     margin-right: 0px;
     animation: slide-in-fwd-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-  #burger{
+  }
+
+  #burger {
     margin-right: 5%;
   }
-  .all{
+
+  .all {
     flex-direction: column !important;
   }
-  nav .a{
+
+  nav .a {
     display: none !important;
   }
-.Text-right,.Text-left{
-  display: none;
-}
-.carousel-indicators{
-  display: none !important;
-}
-.all2:last-child {
-  width: auto !important;
-}
-.itemC{
-  flex-direction: column;
-  padding:5px 2px;
-  width: 49% !important;
-  margin: 0.5%;
-  background-color: var(--color1);
-}
-.itemC a{
-  flex-direction: column;
-}
-.carros .carroselImg {
-  border: 0px solid black;
-}
-.cat{
-  margin: 0px;
-  display: flex;
-  padding: 0px;
-  margin-left: 5px;
-  width: auto;
-  margin-top: 15px;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  overflow: auto;
-  white-space:nowrap;
-}
-.Container{
 
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin: 0px;
-  margin-top: 15px;
-  padding: 10px 5px;
-  box-shadow:0px 0px 0px black;
-}
-.logo-img {
-  display: block;
-  margin-top: 5px;
-}
-#Container3{
-  flex-direction: column;
-flex-wrap: nowrap;
-}
-#Container2{
-  margin-top: 20px;
-}
-.all button{
-  margin-top: 10px;
-}
-#textS{
-  display: none;
-}
-#search{
-  margin-right: 15%;
-}
-.carro .carousel-control-next-icon {
+  .Text-right,
+  .Text-left {
+    display: none;
+  }
+
+  .carousel-indicators {
+    display: none !important;
+  }
+
+  .all2:last-child {
+    width: auto !important;
+  }
+
+  .itemC {
+    flex-direction: column;
+    padding: 5px 2px;
+    width: 49% !important;
+    margin: 0.5%;
+    background-color: var(--color1);
+  }
+
+  .itemC a {
+    flex-direction: column;
+  }
+
+  .carros .carroselImg {
+    border: 0px solid black;
+  }
+
+  .cat {
+    margin: 0px;
+    display: flex;
+    padding: 0px;
+    margin-left: 5px;
+    width: auto;
+    margin-top: 15px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .Container {
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 0px;
+    margin-top: 15px;
+    padding: 10px 5px;
+    box-shadow: 0px 0px 0px black;
+  }
+
+  .logo-img {
+    display: block;
+    margin-top: 5px;
+  }
+
+  #Container3 {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  #Container2 {
+    margin-top: 20px;
+  }
+
+  .all button {
+    margin-top: 10px;
+  }
+
+  #textS {
+    display: none;
+  }
+
+  #search {
+    margin-right: 15%;
+  }
+
+  .carro .carousel-control-next-icon {
     filter: invert(0);
     margin-top: 20px;
-}
-.carro .carousel-control-prev-icon {
-  filter: invert(0);
-  margin-top: 20px;
-} 
-.MostC{
-  margin:10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: var(--color7);
-  padding: 10px 5px;
-  border-radius: 5px;
-  display: flex;
-}
-.MostC img {
-  background-color: var(--color6);
-  height: 225px;
-  border-radius: 25px 0px 25px 0px;
-  width: 211px;
-}
-.texts2{
-  margin-left: 25px;
-}
-.texts2 h5{
-  font-size: 2vh;
-}
-.C{
-  border-left: 1px solid white;
-  border-bottom: 1px solid white;
-  padding: 25px;
-  border-radius: 25px;
-  flex-direction: column;
-  width: 100%;
-}
-.C .texts{
-  flex-direction: column;
-flex-wrap: wrap;
-
-}
-.chapter-visual{
-  color: var(--color2);
-  background-color: var(--color1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-.chapter-visual h1{
-  font-size:large;
-}
-.chapter-visual h2{
-  font-size: medium;
-}
-.chapter-visual h4{
-  color: var(--color1);
-  font-size: small;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: var(--color2);
-}
-.all2:first-child{
-  box-shadow: 0px 0px 10px var(--color7);
-  margin-top: 20px;
-  background-color: transparent;
-}
-.textsC{
-  margin-left: 2px;
-  width: 100%;
-  margin-right: 2px;
-}
-.itemC:hover{
-  border: 1px solid transparent;
-}
-.itemC:hover .textsC{
-  transform: scale(1);
-}
-.img-hover:hover img{
-  transform: scale(1.02) !important;  
   }
+
+  .carro .carousel-control-prev-icon {
+    filter: invert(0);
+    margin-top: 20px;
+  }
+
+  .MostC {
+    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: var(--color7);
+    padding: 10px 5px;
+    border-radius: 5px;
+    display: flex;
+  }
+
+  .MostC img {
+    background-color: var(--color6);
+    height: 225px;
+    border-radius: 25px 0px 25px 0px;
+    width: 211px;
+  }
+
+  .texts2 {
+    margin-left: 25px;
+  }
+
+  .texts2 h5 {
+    font-size: 2vh;
+  }
+
+  .C {
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 25px;
+    border-radius: 25px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .C .texts {
+    flex-direction: column;
+    flex-wrap: wrap;
+
+  }
+
+  .chapter-visual {
+    color: var(--color2);
+    background-color: var(--color1);
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .chapter-visual h1 {
+    font-size: large;
+  }
+
+  .chapter-visual h2 {
+    font-size: medium;
+  }
+
+  .chapter-visual h4 {
+    color: var(--color1);
+    font-size: small;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: var(--color2);
+  }
+
+  .all2:first-child {
+    box-shadow: 0px 0px 10px var(--color7);
+    margin-top: 20px;
+    background-color: transparent;
+  }
+
+  .textsC {
+    margin-left: 2px;
+    width: 100%;
+    margin-right: 2px;
+  }
+
+  .itemC:hover {
+    border: 1px solid transparent;
+  }
+
+  .itemC:hover .textsC {
+    transform: scale(1);
+  }
+
+  .img-hover:hover img {
+    transform: scale(1.02) !important;
+  }
+
   .img-hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* [1.1] Set it as per your need */
-    overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+    height: 100%;
+    /* [1.1] Set it as per your need */
+    overflow: hidden;
+    /* [1.2] Hide the overflowing of child elements */
     border-radius: 15px 0px 15px 0px;
     background-color: var(--color2);
     width: 100%;
   }
-  .RecentsCard img{
+
+  .RecentsCard img {
     width: 120px;
   }
-  .RecentsImage{
+
+  .RecentsImage {
     width: 120px;
   }
-#Container2 h1{
-  width: 100%;
-}
-.RecentsCard{
-  display: flex;
-  margin-left: 50%;
-  transform: translate(-50%);
-  width: 95%;
-  background-color: var(--color1);
-  margin-top: 10px;
-}
-.C img{
-  width: 100%;
-}
-.SizeC{
-  width: 48%;
-  margin: 3px;
-}
-.carro img {
-  text-shadow:0px 0px 5px white;
-  width: 100%;
-  margin-left: 50%;
-  transform: translate(-50%);
-}
-#Container3 .MostC img{
-  width: 100%;
-  height: 100%;
-}
-.image-gallery-swipe::after{
-  content: '';
-  width: 100%;
-  height: 50px;
-  background-image: linear-gradient(transparent,var(--color6));
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-.App{
-  overflow-x: hidden;
-}
-.voltar {
-  margin-left: 20px;
-}
-.next{
-  margin-right: 20px;
-}
-.Logo{
-  margin-left: 5%;
-}
-.Scrollover{
-  background-color: rgba(255, 0, 0, 0);
-  margin-top: 20px;
-  height: 150px;
-  width: 100%;
-  overflow: auto;
-  display: flex;
-  
-}
-.context{
-  color: var(--color2);
-  background-color: var(--color1);
-  display: flex;
-  text-align: center;
-  margin-right: 10px;
-  width: 300px;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-}
-.carro {
-  width: 100% !important;
-  margin-left: 50%;
-  transform: translate(-50%);
-}
-.image-gallery{
-  width: 100%;
-  margin-left: 50%;
-  transform: translate(-50%);
+
+  #Container2 h1 {
+    width: 100%;
+  }
+
+  .RecentsCard {
+    display: flex;
+    margin-left: 50%;
+    transform: translate(-50%);
+    width: 95%;
+    background-color: var(--color1);
+    margin-top: 10px;
+  }
+
+  .C img {
+    width: 100%;
+  }
+
+  .SizeC {
+    width: 48%;
+    margin: 3px;
+  }
+
+  .carro img {
+    text-shadow: 0px 0px 5px white;
+    width: 100%;
+    margin-left: 50%;
+    transform: translate(-50%);
+  }
+
+  #Container3 .MostC img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-gallery-swipe::after {
+    content: '';
+    width: 100%;
+    height: 50px;
+    background-image: linear-gradient(transparent, var(--color6));
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .App {
+    overflow-x: hidden;
+  }
+
+  .voltar {
+    margin-left: 20px;
+  }
+
+  .next {
+    margin-right: 20px;
+  }
+
+  .Logo {
+    margin-left: 5%;
+  }
+
+  .Scrollover {
+    background-color: rgba(255, 0, 0, 0);
+    margin-top: 20px;
+    height: 150px;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+
+  }
+
+  .context {
+    color: var(--color2);
+    background-color: var(--color1);
+    display: flex;
+    text-align: center;
+    margin-right: 10px;
+    width: 300px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carro {
+    width: 100% !important;
+    margin-left: 50%;
+    transform: translate(-50%);
+  }
+
+  .image-gallery {
+    width: 100%;
+    margin-left: 50%;
+    transform: translate(-50%);
+  }
+
+  .PageManga {
+    width: 100% !important;
+  }
+
+  .nav1 {
+    width: 100% !important;
+    height: 60px;
+  }
+
+  .mainManga {
+    overflow-x: hidden;
+  }
+
+  .Top {
+    width: 100% !important;
+  }
+
+  .carousel {
+    width: 100%;
+  }
+
+  .score {
+    font-size: smaller;
+  }
+
+  .chapter-visual h1 {
+    font-size: x-large;
+  }
+
+  #Title {
+    color: white;
+    margin: 5px;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+    transform: translate(0);
+  }
+
+  .fullscreen div {
+    display: none;
+  }
 }
 
-.PageManga{
-  width: 100% !important;
-}
-.nav1{
-  width: 100% !important; height: 60px;
-}
-.mainManga{
-  overflow-x: hidden;
-}
-
-.Top{
-  width: 100% !important;
-}
-.carousel{
-  width: 100%;
-}
-.score{
-  font-size: smaller;
-}
-.chapter-visual h1{
-font-size:x-large;
-}
-#Title{
-  color:  white;
-  margin: 5px;
-  margin-left: 20px !important;
-  margin-right: 20px !important;
-  transform: translate(0);
-}
-.fullscreen div{
-  display: none;}
-}
 @media screen and (max-width:520px) {
-#Profile{
-  width: 50%;
-}
-.favoritos{
-  width: 100%;
-  flex-direction: row;
-  justify-content: flex-start;
-flex-wrap: wrap;
-}
-.favoritos .categories{
-  border: 1px solid var(--color2);
-  width: 31.9% !important;
-  background-color: var(--color7);
-  border-radius: 5px;
-  margin: 03px 0.716% !important;
-  padding: 2px;
-margin: 3px;
-font-size: smaller;
-}
-.favoritos .bottom-title{
-  font-size: smaller;
-  text-align: left;
-  vertical-align: middle;
-  padding: 5px 0px;
-}
-.favoritos .categories img{
-  width: 100% !important;
-  height: 70%;
-}
-.favoritos{
-  width: 100%;
-  display: flex;
-}
-.titleCanvas{
-  width: 100%;
-}
-.config::-webkit-scrollbar{
+  #Profile {
+    width: 50%;
+  }
+
+  .favoritos {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .favoritos .categories {
+    border: 1px solid var(--color2);
+    width: 31.9% !important;
+    background-color: var(--color7);
+    border-radius: 5px;
+    margin: 03px 0.716% !important;
+    padding: 2px;
+    margin: 3px;
+    font-size: smaller;
+  }
+
+  .favoritos .bottom-title {
+    font-size: smaller;
+    text-align: left;
+    vertical-align: middle;
+    padding: 5px 0px;
+  }
+
+  .favoritos .categories img {
+    width: 100% !important;
+    height: 70%;
+  }
+
+  .favoritos {
+    width: 100%;
+    display: flex;
+  }
+
+  .titleCanvas {
+    width: 100%;
+  }
+
+  .config::-webkit-scrollbar {
     background-color: transparent;
     opacity: 0.7;
     height: 5px;
   }
-  .config::-webkit-scrollbar-thumb{
+
+  .config::-webkit-scrollbar-thumb {
     background-color: transparent;
   }
 }
+
 @media screen and (max-width:768px) {
-  .carro{
+  .carro {
     width: 100% !important;
   }
-  .image-gallery{
+
+  .image-gallery {
     width: 100%;
   }
+
   .scrollH {
     width: 100%;
   }
-  #Title{
-    color:  white;
+
+  #Title {
+    color: white;
     margin: 5px;
     margin-left: 100px;
     margin-right: 100px;
@@ -457,80 +551,92 @@ font-size: smaller;
     overflow: hidden;
   }
 
-  #informations{
+  #informations {
     width: 90%;
   }
-  .Container{
+
+  .Container {
     width: 100%;
   }
+
   .all {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-}
-.all2 {
-  width: 100% !important;
-}
-}
-@media screen and (max-width:1024px) {
-  .itemC a{
+  }
+
+  .all2 {
     width: 100% !important;
   }
-  .all2{
+}
+
+@media screen and (max-width:1024px) {
+  .itemC a {
+    width: 100% !important;
+  }
+
+  .all2 {
     width: 45%;
   }
-.all2 {
-  width: 50%;
-}
-.all2:last-child{
-  width: 40%;
-}
-.Text-right{
-  width: 200px;
-}
-.Text-left{
-display: none;
-}
+
+  .all2 {
+    width: 50%;
+  }
+
+  .all2:last-child {
+    width: 40%;
+  }
+
+  .Text-right {
+    width: 200px;
+  }
+
+  .Text-left {
+    display: none;
+  }
 
 }
+
 @media screen and (min-width:521px) and (max-width:1024px) {
-.favoritos{
-  width: 100%;
-  flex-direction: row;
-  
-flex-wrap: wrap;
-}
-.favoritos .categories{
-  border: 1px solid var(--color2);
-  width: 24%;
-  background-color: var(--color7);
-  border-radius: 5px;
-  margin: 03px 0.5% !important;
-  padding: 2px;
-font-size: smaller;
-}
-.favoritos .bottom-title{
-  font-size: smaller;
-  text-align: left;
-  vertical-align: middle;
-  padding: 5px 0px;
-}
-.favoritos .categories img{
-  width: 100% !important;
-  height: 70%;
-}
-.favoritos{
-  width: 100%;
-  display: flex;
-}
+  .favoritos {
+    width: 100%;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+  }
+
+  .favoritos .categories {
+    border: 1px solid var(--color2);
+    width: 24%;
+    background-color: var(--color7);
+    border-radius: 5px;
+    margin: 03px 0.5% !important;
+    padding: 2px;
+    font-size: smaller;
+  }
+
+  .favoritos .bottom-title {
+    font-size: smaller;
+    text-align: left;
+    vertical-align: middle;
+    padding: 5px 0px;
+  }
+
+  .favoritos .categories img {
+    width: 100% !important;
+    height: 70%;
+  }
+
+  .favoritos {
+    width: 100%;
+    display: flex;
+  }
 }
 
 
 
-@media screen and (min-width:1025px) and (max-width:1440px) {
-  
-}
-@media screen and (max-width:2560px) {
-}
+@media screen and (min-width:1025px) and (max-width:1440px) {}
+
+@media screen and (max-width:2560px) {}
