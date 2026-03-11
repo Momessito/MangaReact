@@ -26,6 +26,9 @@ function Manga() {
     const [downloading, setDownloading] = useState(false);
     const [downloadProgress, setDownloadProgress] = useState('');
     const [isSavedOffline, setIsSavedOffline] = useState(false);
+    const [readMode, setReadMode] = useState(localStorage.getItem('readMode') || 'vertical'); // 'vertical' or 'horizontal'
+    const [currentPage, setCurrentPage] = useState(0);
+    const touchStartX = React.useRef(0);
 
     // Check if chapter is already saved offline
     useEffect(() => {
@@ -162,7 +165,11 @@ function Manga() {
     const loadMangaInfo = async () => {
         try {
             const data = await Mangas.getMangaById(location);
-            if (data) setMangaInfo(data);
+            if (data) {
+                setMangaInfo(data);
+                localStorage.setItem(`lastTitle_${location}`, data.title || '');
+                localStorage.setItem(`lastImg_${location}`, data.image || '');
+            }
         } catch (err) {
             console.log(err);
         }
@@ -173,6 +180,8 @@ function Manga() {
         getChapters();
         lido();
         loadMangaInfo();
+        // Save for "Continue Reading" on homepage
+        localStorage.setItem(`lastChapter_${location}`, location2);
     }, [location, location2]);
 
     const toggleFullscreen = () => {
@@ -246,7 +255,63 @@ function Manga() {
                     </div>
                 </div>
 
-                {posts.length === 0 ? <p id='load'>Carregando</p> : (
+                {/* Reading Mode Toggle */}
+                <div style={{ display: 'flex', gap: '8px', margin: '10px 0', justifyContent: 'center' }}>
+                    <button
+                        onClick={() => { setReadMode('vertical'); localStorage.setItem('readMode', 'vertical'); }}
+                        style={{
+                            padding: '8px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer',
+                            backgroundColor: readMode === 'vertical' ? 'var(--color5)' : 'var(--color3)',
+                            color: readMode === 'vertical' ? 'white' : '#888', fontWeight: 'bold', fontSize: '0.85rem'
+                        }}
+                    >↕️ Vertical</button>
+                    <button
+                        onClick={() => { setReadMode('horizontal'); setCurrentPage(0); localStorage.setItem('readMode', 'horizontal'); }}
+                        style={{
+                            padding: '8px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer',
+                            backgroundColor: readMode === 'horizontal' ? 'var(--color5)' : 'var(--color3)',
+                            color: readMode === 'horizontal' ? 'white' : '#888', fontWeight: 'bold', fontSize: '0.85rem'
+                        }}
+                    >↔️ Horizontal</button>
+                </div>
+
+                {posts.length === 0 ? <p id='load'>Carregando</p> : readMode === 'horizontal' ? (
+                    /* Horizontal Swipe Reader */
+                    <div
+                        style={{ position: 'relative', width: '100%', overflow: 'hidden', touchAction: 'pan-y' }}
+                        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+                        onTouchEnd={(e) => {
+                            const diff = touchStartX.current - e.changedTouches[0].clientX;
+                            if (Math.abs(diff) > 50) {
+                                if (diff > 0 && currentPage < posts.length - 1) setCurrentPage(p => p + 1);
+                                if (diff < 0 && currentPage > 0) setCurrentPage(p => p - 1);
+                            }
+                        }}
+                        onClick={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            if (x > rect.width * 0.6 && currentPage < posts.length - 1) setCurrentPage(p => p + 1);
+                            else if (x < rect.width * 0.4 && currentPage > 0) setCurrentPage(p => p - 1);
+                        }}
+                    >
+                        <img
+                            src={posts[currentPage]?.url}
+                            alt={`Page ${currentPage + 1}`}
+                            style={{ width: '100%', minHeight: '400px', objectFit: 'contain', userSelect: 'none', WebkitTapHighlightColor: 'transparent' }}
+                        />
+                        {/* Page Counter */}
+                        <div style={{
+                            position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)',
+                            backgroundColor: 'rgba(0,0,0,0.7)', color: 'white', padding: '6px 16px',
+                            borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold'
+                        }}>
+                            {currentPage + 1} / {posts.length}
+                        </div>
+                        {/* Navigation Arrows */}
+                        <div style={{ position: 'absolute', top: '50%', left: '10px', transform: 'translateY(-50%)', opacity: currentPage > 0 ? 0.6 : 0.15, fontSize: '2rem', color: 'white', pointerEvents: 'none' }}>‹</div>
+                        <div style={{ position: 'absolute', top: '50%', right: '10px', transform: 'translateY(-50%)', opacity: currentPage < posts.length - 1 ? 0.6 : 0.15, fontSize: '2rem', color: 'white', pointerEvents: 'none' }}>›</div>
+                    </div>
+                ) : (
                     posts.map((post) => (
                         <img
                             src={post.url}

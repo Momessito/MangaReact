@@ -21,12 +21,17 @@ import AnimePage from './AnimePage';
 import AnimePlayer from './AnimePlayer';
 import Downloads from './Downloads';
 import OfflineReader from './OfflineReader';
+import NotFound from './NotFound';
+import Generos from './Generos';
+import Historico from './Historico';
+import InstallBanner from './components/InstallBanner';
 
 function App() {
 
   return (
     <AccessGate>
       <Router>
+        <InstallBanner />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -45,6 +50,9 @@ function App() {
           <Route path='/anime/:slug/play' element={<AnimePlayer />} />
           <Route path='/downloads' element={<Downloads />} />
           <Route path='/offline/:chapterId' element={<OfflineReader />} />
+          <Route path='/generos' element={<Generos />} />
+          <Route path='/historico' element={<Historico />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
     </AccessGate>

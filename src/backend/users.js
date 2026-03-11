@@ -107,7 +107,7 @@ class User {
         }
     }
 
-    static async updateProfileCustomization({ banner, background, bio, accentColor }) {
+    static async updateProfileCustomization({ banner, background, bio, accentColor, profileLayout, cardStyle, nameEffect, badgeEmoji, spotlightManga }) {
         try {
             const uid = this.getUid();
             if (!uid) return false;
@@ -116,6 +116,11 @@ class User {
             if (background !== undefined) updates.background = background;
             if (bio !== undefined) updates.bio = bio;
             if (accentColor !== undefined) updates.accentColor = accentColor;
+            if (profileLayout !== undefined) updates.profileLayout = profileLayout;
+            if (cardStyle !== undefined) updates.cardStyle = cardStyle;
+            if (nameEffect !== undefined) updates.nameEffect = nameEffect;
+            if (badgeEmoji !== undefined) updates.badgeEmoji = badgeEmoji;
+            if (spotlightManga !== undefined) updates.spotlightManga = spotlightManga;
             await updateDoc(doc(db, 'users', uid), updates);
             return true;
         } catch (err) {

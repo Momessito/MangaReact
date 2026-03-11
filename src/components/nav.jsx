@@ -9,8 +9,10 @@ import User from '../backend/users';
 import { auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
+
 function Nav() {
   const [currentUser, setCurrentUser] = useState(null);
+
 
   useEffect(() => {
     // Listen to Firebase Auth state directly to avoid race conditions on page load

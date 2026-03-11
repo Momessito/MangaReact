@@ -1,106 +1,180 @@
-
 import React, { useState, useEffect } from 'react';
-import '../App.css';
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-} from 'reactstrap';
-import axios from "axios";
 import { Link } from 'react-router-dom';
 import Mangas from '../backend/mangas';
 
-const Items = (args) => {
-
-  const [items, setitems] = useState([]);
-
-  const getItems = async () => {
-    try {
-      const data = await Mangas.getRecents();
-      setitems(data || [])
-    } catch (Error) {
-      console.log(Error)
-    }
-  }
+const Items = () => {
+  const [items, setItems] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    getItems();
+    const fetchData = async () => {
+      try {
+        const data = await Mangas.getRecents();
+        setItems(data || []);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
   }, []);
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  useEffect(() => {
+    if (items.length === 0) return;
+    const interval = setInterval(() => {
+      setActiveIndex((c) => (c === items.length - 1 ? 0 : c + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [items.length]);
 
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const slides = items.map((post) => {
+  if (items.length === 0) {
     return (
-      <CarouselItem className='Week' id='box'
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={post.id}
-        interval={10000}
-        slide={false}
-      >
-        <Link to={'/mangas/' + post.id} onLoad={categorias}>
-          <img src={post.image} className='carroselImg' alt={post.id} height='100%' />
-
-          <h6 className='bottom-title'>{post.title}</h6>
-          <h6 className='bottom-author'>{post.author}</h6>
-          <h6 className='top-cap'>Cap.{post.chapters_count}</h6>
-          <div>{post.categories[0]}</div>
-          <div>{post.categories[1]}</div>
-          <div>{post.categories[2]}</div>
-        </Link>
-      </CarouselItem>
-
+      <div style={{
+        backgroundColor: 'rgba(30, 30, 46, 0.7)',
+        borderRadius: '14px',
+        padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '12px',
+      }}>
+        <div className="skeleton-pulse" style={{ width: '100%', height: '320px', borderRadius: '12px' }} />
+        <div className="skeleton-pulse" style={{ width: '60%', height: '16px' }} />
+        <div className="skeleton-pulse" style={{ width: '40%', height: '12px' }} />
+        <style>{`
+          @keyframes shimmer {
+            0% { background-position: -400px 0; }
+            100% { background-position: 400px 0; }
+          }
+          .skeleton-pulse {
+            background: linear-gradient(90deg, #1e1e2e 25%, #2a2a3e 50%, #1e1e2e 75%);
+            background-size: 800px 100%;
+            animation: shimmer 1.5s infinite ease-in-out;
+            border-radius: 8px;
+          }
+        `}</style>
+      </div>
     );
-  });
+  }
+
+  const current = items[activeIndex];
+  const isAdult = current.categories && current.categories.some(c => c === 'Hentai' || c === 'Ecchi');
 
   return (
-    <Carousel
-      slide={false}
-      activeIndex={activeIndex}
-      next={next}
-      previous={previous}
-      {...args}
-    >
+    <div style={{
+      backgroundColor: 'rgba(30, 30, 46, 0.7)',
+      borderRadius: '14px',
+      border: '1px solid rgba(255,255,255,0.04)',
+      padding: '16px',
+      overflow: 'hidden',
+    }}>
+      {/* Cover Image */}
+      <Link to={`/mangas/${current.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <div style={{ position: 'relative', width: '100%', borderRadius: '12px', overflow: 'hidden' }}>
+          <img
+            src={current.image}
+            alt={current.title}
+            style={{
+              width: '100%',
+              height: '340px',
+              objectFit: 'cover',
+              borderRadius: '12px',
+              transition: 'opacity 0.5s',
+              filter: isAdult ? 'blur(4px)' : 'none',
+            }}
+          />
 
-      {slides}
-      <CarouselControl
-        className='voltar'
-        direction="prev"
-        directionText="Previous"
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        className='next'
-        direction="next"
-        directionText="Next"
-        onClickHandler={next}
-      />
-    </Carousel>
+          {/* Chapter badge */}
+          <div style={{
+            position: 'absolute',
+            top: '10px',
+            left: '10px',
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            color: 'var(--color5)',
+            padding: '4px 10px',
+            borderRadius: '8px',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            backdropFilter: 'blur(5px)',
+          }}>
+            Cap.{current.chapters_count || '?'}
+          </div>
+
+          {/* NEW badge */}
+          <div style={{
+            position: 'absolute',
+            top: '8px',
+            right: '8px',
+            backgroundColor: '#ff3b30',
+            color: 'white',
+            padding: '3px 8px',
+            borderRadius: '8px',
+            fontSize: '0.65rem',
+            fontWeight: 'bold',
+          }}>
+            NEW
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={(e) => { e.preventDefault(); setActiveIndex(i => i === 0 ? items.length - 1 : i - 1); }}
+            style={{
+              position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)',
+              backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', border: 'none',
+              borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem',
+              backdropFilter: 'blur(5px)',
+            }}
+          >‹</button>
+          <button
+            onClick={(e) => { e.preventDefault(); setActiveIndex(i => i === items.length - 1 ? 0 : i + 1); }}
+            style={{
+              position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)',
+              backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', border: 'none',
+              borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem',
+              backdropFilter: 'blur(5px)',
+            }}
+          >›</button>
+        </div>
+
+        {/* Title & Author */}
+        <h4 style={{
+          margin: '12px 0 4px',
+          fontSize: '0.95rem',
+          fontWeight: '700',
+          color: 'white',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}>
+          {current.title}
+        </h4>
+        <span style={{ fontSize: '0.78rem', color: '#888' }}>
+          {current.author || 'MangaDex'}
+        </span>
+      </Link>
+
+      {/* Dots Navigation */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '12px' }}>
+        {items.slice(0, 8).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveIndex(i)}
+            style={{
+              width: i === activeIndex ? '20px' : '8px',
+              height: '8px',
+              borderRadius: '4px',
+              border: 'none',
+              backgroundColor: i === activeIndex ? 'var(--color5)' : 'rgba(255,255,255,0.2)',
+              cursor: 'pointer',
+              transition: 'all 0.3s',
+              padding: 0,
+            }}
+          />
+        ))}
+      </div>
+    </div>
   );
-
-  function categorias(prop) {
-    var a = prop.target.parentElement.getElementsByTagName('div')[0]
-    var b = prop.target.parentElement.getElementsByTagName('div')[1]
-    var c = prop.target.parentElement.getElementsByTagName('div')[2]
-    if (a.innerHTML === 'Hentai' || a.innerHTML === 'Ecchi' || b.innerHTML === 'Hentai' || b.innerHTML === 'Ecchi' || c.innerHTML === 'Hentai' || c.innerHTML === 'Ecchi') {
-      prop.target.style.filter = 'blur(4px)'
-
-    }
-  }
 }
 
 export default Items;

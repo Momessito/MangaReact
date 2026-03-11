@@ -11,7 +11,7 @@ function Categories() {
     try {
 
       const datae = await Mangas.getFavorites();
-      if(datae == undefined){}else{
+      if (datae == undefined) { } else {
         setitems(datae)
       }
 
@@ -50,13 +50,17 @@ function Categories() {
     <div className='textScroll'><Link to={'/favoritos'}>Favoritos</Link></div>
     <div className='scrollH2'>
       {items == null || items.length == 0 ?
-        <p>Carregando</p> : (
+        <div style={{ padding: '40px 0', width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <svg width="40" height="40" viewBox="0 0 50 50" style={{ animation: 'spin 1.2s linear infinite' }}>
+            <circle cx="25" cy="25" r="20" fill="none" stroke="var(--color5)" strokeWidth="4" strokeLinecap="round" strokeDasharray="90 150" />
+          </svg>
+        </div> : (
           items.map((post) => (
             <div className='categories' key={post.id}>
               <Link to={'/mangas/' + post.id}>
-                <div className='img'>            
-                <div className="spinner"></div>
-                <img src={post.image} className='carroselImg' alt={post.id} />
+                <div className='img'>
+                  <div className="spinner"></div>
+                  <img src={post.image} className='carroselImg' alt={post.id} />
                 </div>
                 <h6 className='bottom-title'>{post.title}</h6>
                 <h6 className='bottom-author'>{post.author}</h6>

@@ -23,7 +23,7 @@ const buildDirectUrl = (path, params = {}) => {
 
 // ⬇️ Depois de criares o Cloudflare Worker, substitui pelo teu URL
 // Ex: 'https://mangadex-proxy.SEU-USER.workers.dev'
-const CLOUDFLARE_WORKER_URL = 'https://shy-cell-4a30.pinhoes1000.workers.dev/'; // Deixa vazio para usar Vercel proxy
+const CLOUDFLARE_WORKER_URL = ''; // Deixa vazio para usar Vercel proxy
 
 // Smart fetch: dev = local proxy (via Vite proxy → Express on 3001), prod = CF Worker → Vercel → corsproxy.io
 const mangaFetch = async (path, params = {}) => {
@@ -209,6 +209,40 @@ class Mangas {
         } catch (err) {
             console.log(err);
             return null;
+        }
+    }
+
+    // Get mangas by tag/genre
+    static async getByTag(tagId) {
+        try {
+            const data = await mangaFetch('manga', {
+                limit: 20,
+                'includedTags[]': tagId,
+                'includes[]': 'cover_art',
+                'availableTranslatedLanguage[]': 'pt-br',
+                'order[followedCount]': 'desc'
+            });
+            return data.data.map(mapManga);
+        } catch (err) {
+            console.log(err);
+            return [];
+        }
+    }
+
+    // Get real chapter count for a specific language
+    static async getChapterCount(id, lang = 'pt-br') {
+        try {
+            const data = await mangaFetch(`manga/${id}/aggregate`, {
+                'translatedLanguage[]': lang
+            });
+            if (!data.volumes || (Array.isArray(data.volumes) && data.volumes.length === 0)) return 0;
+            let total = 0;
+            for (const vol of Object.values(data.volumes)) {
+                total += Object.keys(vol.chapters || {}).length;
+            }
+            return total;
+        } catch (err) {
+            return 0;
         }
     }
 }
